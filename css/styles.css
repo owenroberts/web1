@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* CSS STYLES */
+
+
+/* RESETS */
+* { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:14px;line-height:21px;}
+
+body { font-family: sans-serif }
+
+img { border: 0; }
+
+a, a:link, a:hover, a:visited {
+	text-decoration:none;
+  color:black;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* --- LAYOUT --- */
+#container {
+  width:820px;
+  margin: 0 auto;
+  margin-top:60px;
+}
+
+#nav {
+  float: left;
+  width: 250px;
+}
+
+#content {
+  float: left;
+}
+
+/* -- NAV -- */
+
+#nav h2 {
+  margin-bottom:20px;
+}
+
+#nav h3 {
+  display:inline;
+}
+
+#nav ul {
+  width: 200px;
+}

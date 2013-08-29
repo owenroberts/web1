@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <div id="nav">
+      <h2><a href="../index.html">Home</a></h2>
+      
+      <div id="nav-item">
+        <h3>Week 1</h3>
+        <ul><li><a href="week1-lecture.html">History of the Internet</a></li>
+          <li><a href="week1-demo.html">Getting started</a></li>
+          <li><a href="week1-assigment.html">Assigment</a></li>
+          
+        </ul>
+      </div>
+    </div>
+
+    <div id="content">
+        <h1>Is this on the Internet?</h1>
+
+        <hr>
+
+
+        <iframe width="560" height="315" src="http://www.youtube.com/embed/iQJGmjnc8LU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+        <h2>HTML</h2>
+        <p>HTML stands for HyperText Markup Language.  We're skipping <i>a lot</i> of info, but its important to understand that HTML is simply a way of packaging content that can be interpreted by browsers.  Much like the standardized protocols that gave rise to ARPANET and the Web, there are standards and conventions for HTML that allow us to make simple pages which display information the same way in a variety of devices.</p>
+        <h2>Browsers</h2>
+        <p>A browser is a piece of software, a program just like Photoshop or Word, that renders information downloaded from the web.  Browsers use a Request-Response model of communication.  One computer sends a message to another computer and waits for a response.  Once the browser has downloaded the data for structure, text, style and media in a document, it renders the content to your screen.</p>
+        <p>The information that is received comes from a "remote" server or computer.  The documents that are on your computer are "local" files.  We will primarily be working with local files as we learn how HTML and CSS work, but we will talk about how to upload data to the web.</p>
+        <p>HTML and CSS are used for what's referred to as "front-end" development.  This means that it changes the things we see in the browser window.  "Back-end" development refers to the code that is used to supply information to those pages.  We'll talk about that more in a later class.  Strictly speaking, HTML and CSS are not programming languages - they are more like grammar rules that are used by browsers to make sense of the data they are receiving.</p>
+        <p>HTML is used to describe the basic structure, document type, and layout of a page.  CSS supplements HTML by describing styling, colors, sizes, and other attributes that make designing a page easier.  We may also talk a little about JavaScript, which is a web based programming language that lets us add some functionality to webpages.  We're going to start today by going over the basics of HTML.</p>
+	
+        <h3>First, let's set up our development environment.</h3>
+        <p>What editor should I use?</p>
+        <ul>
+          <li>Text Edit</li>
+          <li><a href="http://macromates.com/">TextMate</a></li>
+          <li><a href="http://www.sublimetext.com/">Sublime</a></li>
+          <li>Don't use Word.</li>
+          <li>Dreamweaver is okay.</li>
+        </ul>
+        <p>File structure</p>
+        <ul><li>Should mimic remote structure</li>
+          <li>Separate directories for libraries, images, styles, etc.</li>
+          <li>Index page, other pages</li>
+        </ul>
+
+        <h2>Finally, some HTML</h2>
+        <p>Like other markup languages, HTML uses brackets like this: < > to divide content and tags.  Tags tell the browser what to do with the content.  The first tag we need to write is the HTML tag, which declares the type of document.</p>
+
+        <xmp>This is an html tag: <html>
+        </xmp>
+
+      <xmp>These days, all you need to write is <!DOCTYPE html>
+        </xmp>
+
+      <xmp>To close a tag, use a back slash: </html></xmp>
+	
+        <p>This is standard with HTML5.  In the past you had to write more characters describing the specific HTML type that you are referencing.  There are some advantages and disadvantages to this, basically transitional HTML versions still work with outdated code.  We're not going to worry about that.</p>
+
+        <p>We're going to go through the basic tags now.</p>
+        <ul><li>head</li>
+          <li>meta</li>
+          <li>body</li>
+          <li>div</li>
+          <li>p</li>
+          <li>h1, h2, etc.</li>
+          <li>br</li>
+          <li>hr</li>
+          <li>ol, ul, li</li>
+          <li>blockquote, em, strong, code, pre</li>
+        </ul>
+	
+        <p>Tags are necessary for the browser to find content, and also to interpret that content.  Search engines use tags to display information about what is on the site.  So tags describe style but are also good for Search Engine Optimization, which will look at h1 tags and understand that it is a header.</p>
+
+        <p>Now that we understand some HTML, lets take a look at a website and see how we can inspect the structure.</p>
+        <ul><li>View source</li>
+          <li>Inspect element</li>
+        </ul>
+
+	
+        <h2>Hypertext & Media</h2>
+        <p>Hypertext is one of the most important aspects of the Internet.  It allows pages to be linked to one another.  The idea of hypertext goes back to Borges and early computer scientists and thinkers.  Douglas Engelbart created the model of hypertext that is used today.</p>
+        <p>Making a hyper link is very simple.</p>
+        <p>Wrap a piece of text or media with the <xmp><a></xmp> tag and reference the page to be linked with the "href"</p>
+          <p>You can also reference other parts of the same page using the a tag</p>
+          <p>There are some important attributes to hyperlinks.  the "target" attribute tells the browser to open the linked page in the same window or a new window.  It sits right inside the a tag:</p>
+          <xmp><a href="http://www.google.com" target="_blank">Google</a></xmp><br>
+          <a href="http://www.google.com" target="_blank">Google</a>
+
+          <p>Using hyperlinks, we're going to create a few different pages for our website and link them together.</p>
+
+          <p>Before we talk about that, let's go over images.</p>
+          <xmp><img src="my-image.jpg" /></xmp>
+          <p>Images can be added easily using the img tag and the src attribute.</p>
+          <p>You can add attributes like width to style the images, but this is more often done with CSS.</p>
+          <p>Photoshop is useful for image compression and editing.  Fireworks is a image editing program that is specifically used for web and does more sophisticated compression.</p>
+          <p>Use the alt attribute in the img tag to specify the name of the image and source.</p>
+
+          
+        </div>
+      </div>
+    </body>
+    </html>
+  

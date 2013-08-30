@@ -1,0 +1,167 @@
+@charset "UTF-8";
+/* CSS STYLES */
+
+
+/* RESETS */
+* { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:14px;line-height:21px;}
+
+body { font-family: sans-serif }
+
+img { border: 0; }
+
+a, a:link, a:hover, a:visited {
+	text-decoration:none;
+<<<<<<< HEAD
+  color:black;
+=======
+>>>>>>> gh-pages
+}
+
+ul {
+  list-style: none;
+}
+
+<<<<<<< HEAD
+=======
+pre {
+  color:blue;
+  margin-top:10px;
+}
+
+xmp {
+  color:blue;
+  display:inline;
+  white-space:pre-wrap;
+  
+}
+
+a:link, a:visited {
+  color:#f3f;
+  display:block;
+}
+
+hr {
+  height: 12px;
+      border: 0;
+      box-shadow: inset 0 12px 12px -12px #f3f;
+}
+
+#active {
+  color:black;
+}
+
+
+
+>>>>>>> gh-pages
+
+/* --- LAYOUT --- */
+#container {
+  width:820px;
+  margin: 0 auto;
+  margin-top:60px;
+}
+
+#nav {
+  float: left;
+<<<<<<< HEAD
+  width: 250px;
+=======
+  width: 210px;
+>>>>>>> gh-pages
+}
+
+#content {
+  float: left;
+<<<<<<< HEAD
+=======
+  width:560px;
+  margin-bottom:100px;
+>>>>>>> gh-pages
+}
+
+/* -- NAV -- */
+
+<<<<<<< HEAD
+#nav h2 {
+  margin-bottom:20px;
+}
+
+#nav h3 {
+  display:inline;
+}
+
+#nav ul {
+  width: 200px;
+}
+=======
+#nav a:hover{
+  background:#fdf;
+}
+
+#nav-item {
+  clear:left;
+}
+#nav h2 {
+  margin-bottom:20px;
+  width:200px;
+}
+
+#nav h3 {
+  color:Gray;
+  float:left;
+  margin-left:-60px;
+}
+
+#nav ul {
+  width:200px;
+  margin-bottom:20px;
+}
+
+
+/* --- main content -- */
+
+#content a {
+  display:inline;
+}
+
+#content a:hover{
+  border-bottom:1px dotted #f3f;
+}
+
+#content h1 {
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+#content p {
+  margin-top:20px;
+}
+
+#content iframe {
+  margin-top:20px;
+}
+
+#content h2 {
+  margin-top:30px;
+  font-size:20px;
+}
+
+#content ul {
+  list-style:square;
+  margin-left:20px;
+}
+
+#sources {
+  font-size:12px;
+  color:Gray;
+}
+
+
+
+
+
+
+
+
+
+>>>>>>> gh-pages

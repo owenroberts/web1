@@ -80,14 +80,12 @@ hr {
 }
 
 #nav h3 {
-  display:inline;
-  margin-left:-260px;
   color:Gray;
-  margin-top:20px;
+  float:left;
+  margin-left:-60px;
 }
 
 #nav ul {
-  float:left;
   width:200px;
   margin-bottom:20px;
 }

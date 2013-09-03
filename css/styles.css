@@ -103,8 +103,19 @@ hr {
   margin-bottom:20px;
 }
 
-#content p {
+#content p, img {
   margin-top:20px;
+}
+
+#content img {
+  border:none;
+}
+
+#content a:hover img {
+  border-bottom:none;
+  -webkit-box-shadow: 0 0 5px 2px #f3f;
+  -moz-box-shadow: 0 0 5px 2px #f3f;
+  box-shadow: 0 0 5px 2px #f3f;
 }
 
 #content iframe {
@@ -125,3 +136,4 @@ hr {
   font-size:12px;
   color:Gray;
 }
+  

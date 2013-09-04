@@ -5,7 +5,7 @@
 /* RESETS */
 * { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:14px;line-height:21px;}
 
-body { font-family: sans-serif }
+body { font-family:sans-serif;text-rendering: optimizeLegibility; }
 
 img { border: 0; }
 
@@ -45,6 +45,7 @@ hr {
 }
 
 
+
 /* --- LAYOUT --- */
 #container {
   width:820px;
@@ -55,6 +56,7 @@ hr {
 #nav {
   float: left;
   width: 210px;
+  
 }
 
 #content {
@@ -137,4 +139,13 @@ hr {
   font-size:12px;
   color:Gray;
 }
+
+/* -- modifications -- */
+
+#ext a,
+#ext a:hover {
+  color:Gray;
+  background:transparent;
+}
+
   

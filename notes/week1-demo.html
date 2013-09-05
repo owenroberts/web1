@@ -23,8 +23,8 @@
       <div id="nav-item">
         <h3>Week 2</h3>
         <ul><li><a href="week2-lecture.html">Evolution of web design</a></li>
-          <li id="ext"><a href="#">Introduction to CSS</a></li>
-          <li id="ext"><a href="#">Assignment</a></li>
+          <li><a href="week2-demo.html">Introduction to CSS</a></li>
+          <li><a href="week2-assignment.html">Assignment</a></li>
         </ul>
       </div>
       
@@ -67,9 +67,9 @@
         <h2>Finally, some HTML</h2>
         <p>Like other markup languages, HTML uses brackets like this: < > to divide content and tags.  Tags tell the browser what to do with the content.  The first tag we need to write is the HTML tag, which declares the type of document.</p>
 
-        <xmp>This is an html tag: <html>
+       <p> <xmp>This is an html tag: <html>
 These days, all you need to write is <!DOCTYPE html>
-To close a tag, use a back slash: </html></xmp>
+To close a tag, use a back slash: </html></xmp></p>
 	
         <p>This is standard with HTML5.  In the past you had to write more characters describing the specific HTML type that you are referencing.  There are some advantages and disadvantages to this, basically transitional HTML versions still work with outdated code.  We're not going to worry about that.</p>
 
@@ -105,16 +105,19 @@ To close a tag, use a back slash: </html></xmp>
         <h2>Hypertext & Media</h2>
         <p>Hypertext is one of the most important aspects of the Internet.  It allows pages to be linked to one another.  The idea of hypertext goes back to Borges and early computer scientists and thinkers.  Douglas Engelbart created the model of hypertext that is used today.</p>
         <p>Making a hyper link is very simple.</p>
-        <p>Wrap a piece of text or media with the <xmp><a></xmp> tag and reference the page to be linked with the "href"</p>
-          <p>You can also reference other parts of the same page using the a tag</p>
-          <p>There are some important attributes to hyperlinks.  the "target" attribute tells the browser to open the linked page in the same window or a new window.  It sits right inside the a tag:</p>
-          <xmp><a href="http://www.google.com" target="_blank">Google</a></xmp><br>
-          <a href="http://www.google.com" target="_blank">Google</a>
+        <p><xmp><a href=""></a></xmp></p>
+        <p>Wrap a piece of text or media with the anchor tag and reference the page to be linked with the "href".</p>
+          <p>You can also reference other parts of the same page using the a tag.</p>
+          <p><xmp><a href="#section2"></a></xmp></p>
+          <p><xmp><a name="section2"></a></xmp></p>
+          <p>There are some important attributes to hyperlinks.  The "target" attribute tells the browser to open the linked page in the same window or a new window.  It sits right inside the a tag:</p>
+          <p><xmp><a href="http://www.google.com" target="_blank">Google</a></xmp></p>
+          <p><a href="http://www.google.com" target="_blank">Google</a></p>
 
           <p>Using hyperlinks, we're going to create a few different pages for our website and link them together.</p>
 
           <p>Before we talk about that, let's go over images.</p>
-          <xmp><img src="my-image.jpg" /></xmp>
+          <p><xmp><img src="my-image.jpg" /></xmp></p>
           <p>Images can be added easily using the img tag and the src attribute.</p>
           <p>You can add attributes like width to style the images, but this is more often done with CSS.</p>
           <p>Photoshop is useful for image compression and editing.  Fireworks is a image editing program that is specifically used for web and does more sophisticated compression.</p>

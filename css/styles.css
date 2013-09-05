@@ -24,9 +24,8 @@ pre {
 
 xmp {
   color:blue;
-  display:inline;
+  display:inline;  
   white-space:pre-wrap;
-  
 }
 
 a:link, a:visited {
@@ -36,8 +35,9 @@ a:link, a:visited {
 
 hr {
   height: 12px;
-      border: 0;
-      box-shadow: inset 0 12px 12px -12px #f3f;
+  border: 0;
+  box-shadow: inset 0 12px 12px -12px #f3f;
+  margin-bottom:20px;
 }
 
 #active {
@@ -106,8 +106,8 @@ hr {
   margin-bottom:20px;
 }
 
-#content p, img {
-  margin-top:20px;
+#content p, img, iframe {
+  margin-bottom:20px;
 }
 
 #content img {
@@ -121,18 +121,15 @@ hr {
   box-shadow: 0 0 5px 2px #f3f;
 }
 
-#content iframe {
-  margin-top:20px;
-}
-
 #content h2 {
-  margin-top:30px;
+  margin-bottom:20px;
   font-size:20px;
 }
 
 #content ul {
   list-style:square;
   margin-left:20px;
+  margin-bottom:20px;
 }
 
 #sources {

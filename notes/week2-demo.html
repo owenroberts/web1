@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <div id="nav">
+      <h2><a href="../index.html">Home</a></h2>
+      
+      
+      <div id="nav-item">
+        <h3>Week 1</h3>
+        <ul><li><a href="week1-lecture.html">History of the Internet</a></li>
+          <li><a href="week1-demo.html">Getting started with HTML</a></li>
+          <li><a href="week1-assignment.html">Assignment</a></li>
+        </ul>
+      </div>
+      
+      <div id="nav-item">
+        <h3>Week 2</h3>
+        <ul><li><a href="week2-lecture.html">Evolution of web design</a></li>
+          <li><a href="#" id="active">Introduction to CSS</a></li>
+          <li><a href="week2-assignment.html">Assignment</a></li>          
+        </ul>
+      </div>
+      
+      <h2><a href="../web1-fall2013.pdf" target="blank">Syllabus</a></h2>
+          
+    </div>
+
+    <div id="content">
+      
+      <h1>Introduction to CSS</h2>
+        <hr>
+        <h2>What is CSS?</h2>
+        
+        <ul><li>Cascading style sheets.</li>
+          <li>Used to separate design and layout descriptions from basic HTML content.</li>
+          <li>"Cascading" refers to the way multiple styles can be applied to one page, with different priority given to the styles.</li>
+          <li>Idea has existed since beginning of markup languages, "SGML" or Standard Generalized Markup Language (XML & HTML).</li>
+          <li>As HTML grew in popularity, web developers were frustrated at the lack of control over appearance sites had in different browsers and machines.</li>
+          <li>In 1994, nine different style sheet languages were proposed to the World Wide Web Consortium.</li>
+          <li>In 1997, CSS had its own working group.</li>
+          <li>CSS3 started in 1998,  still used today.</li>
+          <li>Full compatibility with browsers around 2005.</li>
+          <li>CSS3 split into "modules", ie "Color".</li>
+        </ul>
+      
+        <h2>Three ways to implement CSS</h2>
+        <h2>inline</h2>
+        <ul><li>Adding styling inside of HTML tags.</li>
+          <li>Least effective use of CSS.</li>
+          <li>Not reusable or global.</li>
+          <li>Okay to fix something that only happens once.</li>
+          <li>Many tags not supported for inline.</li>
+          <li>Overrides internal and external sheets.</li>
+        </ul>
+        
+        <p>Example: <xmp><p style="color:red;text-decoration:line-through;background-color:white;display:inline;font-size:50px;">Hello World!</p></xmp></p>
+      	
+        <p><p style="color:red;text-decoration:line-through;background-color:white;display:inline;font-size:50px;">Hello World!</p></p>
+        
+        <h2>internal style sheet</h2>
+        <ul><li>Written into <strong>head</strong> of HTML.</li>
+          <li>Not ideal, better than inline.</li>
+          <li>Okay for static pages.</li>
+          <li>Overrides external sheets.</li>
+        </ul>
+        <p>Example:</p><xmp><head>
+<style type="text/css">
+body {
+  margin:10%;
+}
+p {
+  font-size:14px;
+}
+</style>
+</head>
+      </xmp>
+      
+      <h2>external style sheet</h2>
+      <ul><li>The best way to implement CSS.</li>
+        <li>CSS rules are written into separate page, like styles.css or css.css.</li>
+        <li>Can be applied to multiple pages, on top of other styles.</li>
+        <li>Add sheet to HTML with path link in <strong>head</strong>.</li>
+      </ul>
+      <p>Example:</p>
+      <p><xmp><link rel="stylesheet" type="text/css" href="styles.css"></xmp></p>
+      <p>Stylesheet is a separate document that looks like this:</p>
+      <p><pre style="background:LightGray;padding:5px">@charset "UTF-8";
+/* CSS STYLES */
+
+html, body {
+margin:0;
+padding:0;
+}
+
+....</pre></p>
+
+        <h1>CSS Basic Syntax</h1>
+        <h2>Selectors, Properties, Values</h2>
+        <ul><li>Selectors are names of styles.</li>
+          <li>Basic selectors are named after HTML tags: body, html, p, h1, etc.</li>
+          <li>Properties describe design/style elements: font-size, color, line-height, etc.</li>
+          <li>Values are numbers or descriptions of properties: 14px, red, Times New Roman, etc.</li>
+          <li>Format is:<pre>selector { property: value } </pre></li>
+          <li>Very flexible for writing, will explore different ways to combine style selectors together. ie:<pre>h1, h2, h3 { font-family: sans-serif } </pre></li>
+        </ul>
+        <p>Selectors</p>
+        <ul><li>Type: p, h1, body, etc.</li>
+          <li>Type selectors are written like this: <pre>p { color: pink } </pre></li>
+          <li>Class: usually describes group of divs or html tags.  Written inside the html brackets: <xmp><div class="content"></div></xmp></li>
+          <li>Class is written like this: <pre>.content { color: red }</pre></li>
+          <li>ID: usually used to describe a specific div or html element.  Example: <xmp><div id="chapter1"></div></xmp></li>
+          <li>ID is written like this: <pre>#chapter1 { color: blue }</pre></li>
+          <br>
+          <li>Compound selectors combine type, class and id to create styles that apply to specific elements or multiple elements.  Some examples:</li>
+          <ul>
+            <li><pre>a.nav, a.content { color: blue; text-decoration: underline }</pre></li>
+            <li><pre>p#sidebar { font-size: 14px }</pre></li>
+            <li><pre>p.content #diary { font-style: italic }</pre></li>
+          </ul>
+        </ul>
+        
+      	<p>Descendant</p>
+      	<ul><li>Describes elements that is a descendant of another element in document tree.</li>
+      		<li><pre>h1 strong { text-decoration:underline }</pre></li>
+      		<li>Used: <xmp class="inline"><h1>My cat is <strong>very</strong> large.</h1></xmp></li>
+      	</ul>
+      	<p>Child</p>
+      	<ul><li>Difference between child and descendent is sort of confusing.  Child is your direct descendent.  So if there are multiple tags contained within a particular div or p, the ones effected are directly enclosed in the original div.</li>
+      	<li><pre>body > p { color: purple }</pre></li>
+      	</ul>
+      	<p>Sibling</p>
+      	<ul><li>Elements that sit next to other elements.  A lot of css types have predetermined rules, like p always has a top and bottom margin.  If this doesn't suit your design, you could add a sibling description to your h1 or h2 to change that.</li>
+      		<li><pre>h1 + p { margin-top: 0 }</pre></li>
+      		<li>This will only effect a p directly following an h1.</li>
+      	</ul>
+      	<p>Attribute</p>
+      	<ul><li>Nice, easy way to add styles to whatever type you want with a specific title, not worrying about class or id.</li>
+      		<li><pre>[title=cats] { border: 1px solid black }</pre></li>
+      		<li><xmp class="inline"><p title="cats"></p></xmp></li>
+      		<li>Also written: <pre>[title~=cats]</pre> or just <pre>[title]</pre></li>
+      		<li>You don't see this method as much as others.</li>
+      	</ul>
+      	<p>Universal</p>
+      	<ul><li>Like the name implies, these rules apply to html tags regardless of where they are nested on the page, using an asterisk.</li>
+      	<li><pre>*.content</pre></li>
+      	<li><pre>*#user</pre></li>
+      	</ul>
+      	<p>Pseudo</p>
+      	<ul><li>Pseudo CSS selectors describe elements that cannot be described by the document tree, usually elements that are dynamic in some way.</li>
+      		<li>Very useful for links, targets, etc.</li>
+      		<li><pre>:link</pre> describes links that have not been visited.</li>
+      		<li>Other link pseudo classes include <pre>:visited, :hover, & :active</pre></li>
+      		<li>Written like this: <pre>a:hover { color: red }</pre></li>
+      	</ul>
+        
+      	<h2>Links</h2>
+      	<ul><li>For testing HTML/CSS: <a href="http://jsfiddle.net/" target="blank">JS Fiddle</a></li>
+      		<li>CSS rules/regulations homepage: <a href="http://www.w3.org/Style/CSS/#specs" target="blank">CSS</a></li>
+      		<li>CSS Selectors and more! <a href="http://www.w3.org/TR/css3-selectors/" target="blank">Selectors</a></li>
+      		<li>Don't forget Chrome "View Source" and "Inspect Element" to view and play with CSS in a page!!!</li>
+      		</ul>
+      
+      </div>
+    
+    </div>
+  </body>
+  </html>

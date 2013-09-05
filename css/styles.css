@@ -106,7 +106,7 @@ hr {
   margin-bottom:20px;
 }
 
-#content p, img, iframe {
+#content p, img, iframe, pre, xmp {
   margin-bottom:20px;
 }
 

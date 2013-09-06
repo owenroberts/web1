@@ -19,16 +19,20 @@ Naavy = {
 
         $( '<a>' )
         .text( 'Home' )
-        .attr( 'href', 'index.html' )
+        
         
       ))
      
-    //if home page is selected, make it "active"   
+    //if home page is selected, make it "active", add href
     if (pageUrl == 'index.html' || pageUrl == '') {
-        nav.find('a').attr('id','active')
+        nav.find('a').attr('id','active').attr( 'href', 'index.html' )
         urlPre = "notes/"
+        
+        //if not homepage, add href
     }  else {
       urlPre2 = "../"
+      nav.find('a').attr( 'href', 'index.html' )
+      
     }
       
     //adds rest of navigation links  

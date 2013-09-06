@@ -24,7 +24,7 @@ Naavy = {
       ))
      
     //if home page is selected, make it "active"   
-    if (pageUrl == 'index.html') {
+    if (pageUrl == 'index.html' || pageUrl == '') {
         nav.find('a').attr('id','active')
         urlPre = "notes/"
     }  else {
@@ -58,8 +58,8 @@ Naavy = {
             }) 
           }) 
     
+          //add extra links to bottom
           nav.append( $( '<ul>' ))    
-          
           Naavy.linkers.forEach( function( link, linkNum ) {
             var ln = $( '<li>' )                  
             ln.append( 

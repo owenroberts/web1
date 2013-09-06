@@ -4,7 +4,11 @@ Naavy = {
     
     // get current page and url
     
-    var pageUrl = document.location.href.split( '/' ).pop()
+    var urlArray = document.location.href.split( '/' )
+    var pageUrl = urlArray.pop()
+    var dir = urlArray.pop()
+    console.log(dir)
+    console.log(pageUrl)
     var urlPre = ""
     var urlPre2 = ""
     
@@ -24,16 +28,19 @@ Naavy = {
       ))
      
     //if home page is selected, make it "active", add href
+    if (dir == 'notes') urlPre2 = "../"
+    else urlPre = 'notes/'
     if (pageUrl == 'index.html' || pageUrl == '') {
         nav.find('a').attr('id','active').attr( 'href', 'index.html' )
         urlPre = "notes/"
         
         //if not homepage, add href
     }  else {
-      urlPre2 = "../"
-      nav.find('a').attr( 'href', '../index.html' )
-      
+      nav.find('a').attr( 'href', urlPre2 + 'index.html' )      
     }
+    
+    
+    
       
     //adds rest of navigation links  
     Naavy.navigation.forEach( function( week, weekNum ) {
@@ -71,8 +78,9 @@ Naavy = {
                 .text(link.name)
                 .attr('href', urlPre2 + link.url)
             )
-            console.log(linkNum, link.url, pageUrl)
-            if (link.url == ('notes/'+pageUrl)) ln.find('a').attr('id', 'active')
+            if (link.url.split('/').pop() == pageUrl) {
+              ln.find('a').attr('id', 'active')
+            } 
             if (link.target != null) ln.find('a').attr('target', link.target)
             nav.append( ln )
             
@@ -106,6 +114,10 @@ Naavy = {
         ],
         
         linkers: [
+        {
+          name: 'Student Work',
+          url: 'student-work.html'
+        },
         {
           name: 'Syllabus',
           url: 'web1-fall2013.pdf',

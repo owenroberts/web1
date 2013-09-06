@@ -1,1 +1,119 @@
-document.write('\<div id="nav"><h2><a href="../index.html">Home</a></h2><div id="nav-item"><h3>Week 1</h3><ul><li><a href="week1-lecture.html" id="active">History of the Internet</a></li><li><a href="week1-demo.html">Getting started with HTML</a></li><li><a href="week1-assignment.html">Assignment</a></li></ul></div><div id="nav-item"><h3>Week 2</h3></div></div>');
+Naavy = {
+  
+  setup: function(){
+    
+    // get current page and url
+    
+    var pageUrl = document.location.href.split( '/' ).pop()
+    var urlPre = ""
+    var urlPre2 = ""
+    
+    //alert(pageUrl)
+    
+    //begin nav structure
+    nav = $( '<div>').attr( 'id', 'nav' )
+    
+    // add link to home page
+    nav.append(
+      $( '<h2>' ).append(
+
+        $( '<a>' )
+        .text( 'Home' )
+        .attr( 'href', 'index.html' )
+        
+      ))
+     
+    //if home page is selected, make it "active"   
+    if (pageUrl == 'index.html') {
+        nav.find('a').attr('id','active')
+        urlPre = "notes/"
+    }  else {
+      urlPre2 = "../"
+    }
+      
+    //adds rest of navigation links  
+    Naavy.navigation.forEach( function( week, weekNum ) {
+        wtext = 'Week ' + (weekNum + 1)
+        nav.append(
+          $( '<div>' ).attr('id', 'nav-item').append(
+            $( '<h3>' )
+            .text(wtext)
+          )).append(
+            $( '<ul>') )
+        
+            week.pages.forEach( function( page, pageNum ) {
+              
+              linkUrl = week.url + '-' + page[1] + '.html'
+              var li = $( '<li>' )
+              //console.log(li)
+              li.append(
+                  $( '<a>' )
+                  .text(page[0])
+                  .attr('href', urlPre + linkUrl)
+                )
+              
+              if (linkUrl == pageUrl) li.find('a').attr('id', 'active')
+              
+              nav.append( li )
+            }) 
+          }) 
+    
+          nav.append( $( '<ul>' ))    
+          
+          Naavy.linkers.forEach( function( link, linkNum ) {
+            var ln = $( '<li>' )                  
+            ln.append( 
+                $( '<a>' )
+                .text(link.name)
+                .attr('href', urlPre2 + link.url)
+            )
+            console.log(linkNum, link.url, pageUrl)
+            if (link.url == ('notes/'+pageUrl)) ln.find('a').attr('id', 'active')
+            if (link.target != null) ln.find('a').attr('target', link.target)
+            nav.append( ln )
+            
+          } )
+      
+          
+      
+    
+          $( 'nav' ).empty().append( nav )
+    
+        },
+  
+        navigation: [
+
+        {
+          url:'week1',
+          pages: [
+          ['History of the Internet', 'lecture'],
+          ['Getting started with HTML', 'demo'],
+          ['Assignment', 'assignment']
+          ] 
+        },
+        {
+          url:'week2',
+          pages: [
+          ['Evolution of web design', 'lecture'],
+          ['Introduction to CSS', 'demo'],
+          ['Assignment', 'assignment']
+          ]
+        }
+        ],
+        
+        linkers: [
+        {
+          name: 'Syllabus',
+          url: 'web1-fall2013.pdf',
+          target: 'blank'
+        },
+        {
+          name: 'FTP Instructions',
+          url: 'notes/ftp.html'
+        }
+        ]
+  
+  
+      }
+
+      $( document ).ready( Naavy.setup )

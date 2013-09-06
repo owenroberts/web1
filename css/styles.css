@@ -12,9 +12,7 @@ img { border: 0; }
 a, a:link, a:hover, a:visited {
 	text-decoration:none;
 }
-ul {
-  list-style: none;
-}
+
 
 pre {
   color:blue;
@@ -40,7 +38,7 @@ hr {
   margin-bottom:20px;
 }
 
-#active {
+#active, .active {
   color:black;
 }
 
@@ -88,6 +86,18 @@ hr {
 #nav ul {
   width:200px;
   margin-bottom:20px;
+}
+
+#nav a {
+  width:200px;
+}
+
+#nav li {
+  list-style: none;
+}
+
+#nav li + div {
+  margin-top:20px;
 }
 
 

@@ -153,10 +153,13 @@ hr {
 
 /* -- modifications -- */
 
-#ext a,
-#ext a:hover {
+
+a#ext, a#ext:hover  {
   color:Gray;
   background:transparent;
+  cursor:default;
 }
+
+
 
   

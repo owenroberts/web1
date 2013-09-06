@@ -7,8 +7,6 @@ Naavy = {
     var urlArray = document.location.href.split( '/' )
     var pageUrl = urlArray.pop()
     var dir = urlArray.pop()
-    console.log(dir)
-    console.log(pageUrl)
     var urlPre = ""
     var urlPre2 = ""
     
@@ -27,23 +25,23 @@ Naavy = {
         
       ))
      
-    //if home page is selected, make it "active", add href
-    if (dir == 'notes') urlPre2 = "../"
-    else urlPre = 'notes/'
-    if (pageUrl == 'index.html' || pageUrl == '') {
+      //if home page is selected, make it "active", add href
+      if (dir == 'notes') urlPre2 = "../"
+      else urlPre = 'notes/'
+      if (pageUrl == 'index.html' || pageUrl == '') {
         nav.find('a').attr('id','active').attr( 'href', 'index.html' )
         urlPre = "notes/"
         
         //if not homepage, add href
-    }  else {
-      nav.find('a').attr( 'href', urlPre2 + 'index.html' )      
-    }
+      }  else {
+        nav.find('a').attr( 'href', urlPre2 + 'index.html' )      
+      }
     
     
     
       
-    //adds rest of navigation links  
-    Naavy.navigation.forEach( function( week, weekNum ) {
+      //adds rest of navigation links  
+      Naavy.navigation.forEach( function( week, weekNum ) {
         wtext = 'Week ' + (weekNum + 1)
         nav.append(
           $( '<div>' ).attr('id', 'nav-item').append(
@@ -53,17 +51,22 @@ Naavy = {
             $( '<ul>') )
         
             week.pages.forEach( function( page, pageNum ) {
-              
-              linkUrl = week.url + '-' + page[1] + '.html'
+ 
               var li = $( '<li>' )
-              //console.log(li)
               li.append(
-                  $( '<a>' )
-                  .text(page[0])
-                  .attr('href', urlPre + linkUrl)
-                )
+                $( '<a>' )
+                .text(page[0])
+                  
+              )
+              if (page[1] != null ) {
+                console.log(page[1])
+                linkUrl = week.url + '-' + page[1] + '.html'
+                li.find('a').attr('href', urlPre + linkUrl)
+                if (linkUrl == pageUrl) li.find('a').attr('id', 'active')
+              } else {
+                li.find('a').attr('id', 'ext')
+              }
               
-              if (linkUrl == pageUrl) li.find('a').attr('id', 'active')
               
               nav.append( li )
             }) 
@@ -74,9 +77,9 @@ Naavy = {
           Naavy.linkers.forEach( function( link, linkNum ) {
             var ln = $( '<li>' )                  
             ln.append( 
-                $( '<a>' )
-                .text(link.name)
-                .attr('href', urlPre2 + link.url)
+              $( '<a>' )
+              .text(link.name)
+              .attr('href', urlPre2 + link.url)
             )
             if (link.url.split('/').pop() == pageUrl) {
               ln.find('a').attr('id', 'active')
@@ -109,6 +112,13 @@ Naavy = {
           ['Evolution of web design', 'lecture'],
           ['Introduction to CSS', 'demo'],
           ['Assignment', 'assignment']
+          ]
+        },
+        {
+          url:'week3',
+          pages: [
+          ['Wireframing', null],
+          ['Photoshop for the Web', null]
           ]
         }
         ],

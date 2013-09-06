@@ -31,7 +31,7 @@ Naavy = {
         //if not homepage, add href
     }  else {
       urlPre2 = "../"
-      nav.find('a').attr( 'href', 'index.html' )
+      nav.find('a').attr( 'href', '../index.html' )
       
     }
       

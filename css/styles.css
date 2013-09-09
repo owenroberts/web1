@@ -160,6 +160,10 @@ a#ext, a#ext:hover  {
   cursor:default;
 }
 
+#students {
+  float:left;
+  width:240px;
+}
 
 
   

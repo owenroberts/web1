@@ -117,6 +117,19 @@ Naavy = {
         {
           url:'week3',
           pages: [
+          ['Web color and typography', null],
+          ['Navigation menu with CSS box model, floats and pseudo classes', null]
+          ]
+        },
+        {
+          url:'week4',
+          pages: [
+          ['Form & Grid', null]
+          ]
+        },
+        {
+          url:'week5',
+          pages: [
           ['Wireframing', null],
           ['Photoshop for the Web', null]
           ]

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Web color</h1>
+      <hr>
+      <blockquote>What counts here—first and last—is not so-called knowledge<br>
+of so-called facts, but vision—seeing.<br>
+        —Josef Albers
+      </blockquote>
+      <iframe width="480" height="360" src="http://www.youtube.com/embed/C3I0Foqj8nY?rel=0" frameborder="0" allowfullscreen></iframe>
+      
+      <p>Color is subjective and dynamic.  It can be very meaningful but might signify different meanings or experience for different viewers.  Similarly, the way color is displayed physically also changes between mediums.  Even with computers, the number of colors, the brightness and the general gamut of color can change from machine to machine.</p>
+      
+      <p>Josef Albers is a great resource for any exploration of color.  His <em>Interaction of Color</em> presents the theory that colors relate to one another in a deceptive and elusive logic.</p>
+      
+      <a style="border:none" href="http://modenodeblog.com/2012/04/03/color-blocking-and-transparency-inspiration-josef-albers/" target="blank"><img src="http://farticulate.files.wordpress.com/2011/01/josef-albers-ten-variants.jpg"/></a>
+      
+      <p><a href="http://books.google.com/books?id=wN9o0OULXjIC&printsec=frontcover#v=onepage&q&f=false" target="blank"><em>Interaction of Color</em></a></p>
+      
+      <h2>Print vs. screen</h2>
+      <p>One of challenges of designing with a computer is the difference between subtractive and additive color.  Screens and devices, which use light to create color, are additive, meaning the combination of all colors creates white, while the absence of color (or light) is black.  With print color, the addition of pigment darker colors, while white is the absence of color (pigment).  As web designers we basically avoid this problem, because we're not concerned with our designs being printed on a physical piece of paper.  While print color is based on the CMYK mode, all screens use RGB as a standard.  But within that standard there is a lot of variance.  Every device supports a slightly different "gamut" or range of colors.  RGB has a large gamut, but it is not the full spectrum of visible light.  RGB can produce millions of colors.
+        </p>
+        
+        <img src="http://www.hrgiclee.com/shop/images/gamut.jpg" /> 
+        <h2>Writing color values</h2>
+        <p>CSS styles can be written using RGB.  That would look like this:
+          <pre>blockquote { color: rgb(87, 104, 229); }</pre>
+        </p>
+        <p>This is the color of the Albers quotation above.  Hexadecimal values were created to represent web-safe colors.  Although most devices can now support millions of colors, using web-safe colors is still considered good practice and requires less download time because the hexadecimal value is a few characters shorter than the RGB value.  Here's the same color in hexadecimal:
+          <pre>blockquote { color: #5768e5; }</pre>
+        </p>
+        
+        <p>RGB color wheel.</p>
+        
+        <img src="http://www.webriti.com/wp-content/uploads/2012/01/rgb-color-wheel-lg.jpg" />
+        
+        <p>The problem with RGB when it comes to design is that it describes color the way a computer creates it and not the way that we as humans see it.  When it comes to design, HSB is a more a intuitive model.</p>
+        
+        <img src="http://www.res-publica.fr/ENSEIGNEMENT/FONDAMENTAUX/08_COULEUR/HSV_cone.png" />
+        
+        <p>Fortunately, we have some resources that make this process easier, like HSB sliders, and interactive color designers, which you will find in the Resources links.</p>
+        
+        <h2>Some basic color theory</h2>
+        <p>Color theory can mean many different things, but the essence is the interaction of color and its effect on the viewer.  When considering a color scheme, one must consider the complementation of colors, the contrast and the brightness.  Color schemes with a lot of contrast will make it easier to read text.  Using the color wheel will help us create different color complementation schemes.</p>
+        <p>I tend to prefer monochromatic schemes.  One hue is chosen, while the brightness and saturation can be varied.  This is popular in many comic books and print publications, where using multiple colors can be expensive.  I think that creates a retro feel, because we're used to seeing it in print.</p>
+        <img src="http://robot6.comicbookresources.com/wp-content/uploads/2010/02/almostsilent.jpg" />
+        
+        <p>Analogous color schemes are created by selecting colors that sit next to one another on the color wheel.  These tend to have a natural, harmonious feel.  Seen in paintings of nature.</p>
+        
+        <img src="http://uploads0.wikipaintings.org/images/edward-hopper/cape-cod-morning.jpg" />
+        
+        <p>Complementary color schemes are popular on the web.  In these schemes there is a dominant color and its compliment on the other side of the color wheel.</p>
+        
+        <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/757px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" />
+        
+        <p>Triadic schemes use three colors equally distant on the color wheel.  They were popular in early comic books that used a lot of basic color to make images and characters pop out of the page.</p>
+        <img src="http://image0-rubylane.s3.amazonaws.com/shops/antiquesshowroom/LLL2681.1L.jpg?67" />
+        
+        
+        <p>From here, there are many more complex schemes and combinations of schemes.  Use the Color scheme designer and read Albers to get more ideas for color schemes.</p>
+        
+      
+
+      <div id="sources"><p>Resources:</p>
+        <ul>
+          <li><a href="http://www.w3schools.com/html/html_colors.asp" target="blank">HTML named colors</a></li>
+          <li><a href="https://kuler.adobe.com/create/color-wheel/" target="blank">Kuler for Adobe (has Photoshop plugin)</a></li>
+          <li>Try opening DigitalColor Meter if you have a Mac</li>
+          <li><a href="http://colorschemedesigner.com/" target="blank">Color scheme designer (my favorite)</a></li>
+          <li><a href="http://colorizer.org/" target="blank">Sliders for RGB, HSB etc.  Very useful!</a></li>
+          <li><a href="http://www.xrite.com/online-color-test-challenge" target="blank">Test your eye for color</a></li>
+          
+          <li><a href="http://books.google.com/books?id=wN9o0OULXjIC&printsec=frontcover#v=onepage&q&f=false" target="blank"><em>Interaction of Color</em></a> by Josef Albers</li>
+          
+          <li><a href="http://www.designworksoregon.com/pages/web_design_colors.html" target="blank">Print vs screen</a></li>
+          <li><a href="http://cs.brown.edu/courses/cs092/VA10/HTML/AlbersExplanation.html" target="blank">Interactive Josef Albers color explanation site (requires Safari or Firefox)</a></li>
+          <li><a href="http://farticulate.wordpress.com/2011/01/26/26-january-2011-post-josef-albers-selected-works-interview/" target="blank">Some works and interview with Albers</a></li>
+          <!-- http://webdesign.tutsplus.com/articles/design-theory/an-introduction-to-color-theory-for-web-designers/ -- color theory -->
+          
+        </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

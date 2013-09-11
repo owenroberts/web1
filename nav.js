@@ -117,7 +117,8 @@ Naavy = {
         {
           url:'week3',
           pages: [
-          ['Web color and typography', null],
+          ['Web color', 'lecture-color'],
+          ['Web typography', null],
           ['Navigation menu with CSS box model, floats and pseudo classes', null]
           ]
         },

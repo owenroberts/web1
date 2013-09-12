@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <style type="text/css">
+  
+  #box1 {
+    border:1px dashed black;
+    width:540px;
+    height:280px;
+    background-color:white;
+    text-align:center
+  }
+  
+  #box2 {
+    border:1px solid black;
+    background-color:orange;
+    width:480px;
+    height:220px;
+    margin: 10px 30px;
+  }
+  
+  #box3 {
+    border:1px solid black;
+    width:400px;
+    height:140px;
+    background-color:white;
+    text-align:center;
+    margin: 20px 40px;
+  }
+
+  #box4 {
+    border:1px dashed black;
+    width:300px;
+    height:80px;
+    background-color:white;
+    text-align:center;
+    margin:10px 50px;
+  }
+  
+  </style>
+	
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Navigation menu</h1>
+      <hr>
+
+      <p>Today we're going to make a navigation panel using the CSS box model, CSS floats and psuedo classes.  Some of these concepts are new and some we've talked about, but they are all going to be essential to design and layout going forward.</p>
+      
+      <p>Most site navigation starts with an unordered list.
+      <xmp><ul><li>Home link</li>
+     <li>About page</li>
+     <li>Blog page</li>
+     <li>Etc</li>
+  </ul></xmp>
+      </p>
+  <p>The first thing we want to do is get rid of those bullet points.  To do this we have to set the <code>&#60;li&#62;</code> to <code>list-style: none;</code>.  But first, let's create a 'nav' id tag in CSS so that our styles will only apply to our menu, and not all the other lists littering our webpages: <code>#nav { }</code>.  Depending on whether you want a vertical or horizontal menu, you may want to then <code>float</code> your <code>&#60;li&#62;</code> (list items).</p>
+  
+  <p>Once we've chosen our orientation, let's work with the CSS box model to get the right spacing between our elements to make the navigation menu visible and clear.</p>
+  
+	<h2>CSS Box Model</h2>  
+  <p><div id="box1">Margin
+    <div id="box2">Border
+      <div id="box3">Padding
+        <div id="box4">Content
+          </div>
+      </div>
+    </div>
+  </div></p>
+  
+  <p>Using <code>margin</code>, <code>padding</code>, and <code>border</code>, we can separate our list items from one another.</p>
+  
+  <p>Next we can use pseudo elements to add dynamic changes to each link to make the interaction very clear for the user.</p>
+  
+  
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

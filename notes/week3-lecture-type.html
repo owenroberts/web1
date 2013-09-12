@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  <style type="text/css">
+  span {
+    font-size:24px;
+    line-height:44px;
+  }
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Web typography</h1>
+      <hr>
+      
+      <img src="http://upload.wikimedia.org/wikipedia/commons/2/29/Original_Mac_fonts.png" />
+      
+      <p>In early 90s, fonts were controlled by browsers, not the authors of web pages.  This reflected the top down, information heavy approach of early web architects.  Netscape, which we discussed last week, was the first browser to introduce customized fonts with the <code>&#60;font&#62;</code>  tag.  At this point, the font had to be downloaded by the user's computer, or it would default to one of the browser font faces.  Later, each new CSS specification introduced wider support for new web fonts.</p>
+      <p>"Web-safe" fonts were the dominant font group for many years.  These were fonts that were most likely to be available on any given machine.  These included</p> <pre><span style="font-family:Arial">Arial</span>, <span style="font-family:Courier New">Courier New</span>, <span style="font-family:Times New Roman">Times New Roman</span>,<br><span style="font-family:Comic sans">Comic Sans</span>, <span style="font-family:Impact">Impact</span>, <span style="font-family:Georgia">Georgia</span>, <span style="font-family:Trebuchet">Trebuchet</span>,<br><span style="font-family:Webdings">Webdings</span> and <span style="font-family:Verdana">Verdana</span>
+      </pre>
+      
+      <p>CSS allowed for several fonts to be listed as "fallback" fonts, in order of preference.</p>
+      <pre> font-family: Helvetica, Arial, sans-serif; </pre>
+      
+      <p><code>@font-face</code> was introduced to allow custom fonts to embedded in websites and downloaded at load time.  This was controversial because it allowed users to download font faces and redistribute them.  This led to new font file formats.</p>
+      
+      <p>I tend to default to <code>sans-serif</code> fonts.  This is something close to Helvetica or Arial, depending on the browser.</p>
+      <img src="../imgs/week3/helvetica-bestfriend2.png" />
+      
+      <p>There are tons of properties that can be added to CSS to describe fonts, including <code>font-size</code>, <code>text-decoration</code>, <code>line-height</code> and many more.  <code>line-height</code> is probably the most underrated—it is extremely important for legibility.  You will often see it at <code>1.5em</code> or greater.</p>
+      
+      <p><a href="http://www.google.com/fonts/" target="blank">Google fonts</a> is a great resource for finding fonts that can be embedded on a web page without having to be hosted and formatted correctly on your own.  There are a ton of fonts, like my favorite—<a href="http://www.google.com/fonts/specimen/Creepster" target="blank">Creepster</a>.</p>
+      
+      
+      <iframe data-slideshow="self" frameborder="0" height="338" src="http://player.vimeo.com/video/20759580?title=0&amp;byline=0&amp;portrait=0" width="600"> </iframe>
+      
+      <p>It's usually safest to include only one font family on your web design.  There are a lot of examples of sites that break this convention, but the decision has to be specific and considered for it to work.  Throwing fonts around the page can quickly make your site look like you copied your code from the 90s.  One use of multiple fonts you will see is article that use a specific font for headers while using a more generic font for the body text.  This gives you the ability to have a unique feel to your site while maintaining the readability of a font that people are familiar with.</p>
+      
+      
+      
+      
+      
+      
+
+      <div id="sources"><p>Resources:</p>
+        <ul><li><a href="http://www.w3.org/Talks/2010/0313-Fonts-SXSW/" target="blank">In depth font web history from W3C</a></li>
+            <li><a href="http://www.w3.org/wiki/Typography_on_the_Web" target="blank">Typography on the web</a></li>
+            <li><a href="http://webdesign.tutsplus.com/articles/typography-articles/the-anatomy-of-web-typography/" target="blank">Anatomy of web typography</a></li>
+            <li><a href="http://type.method.ac/" target="blank">Kerning game</a></li>
+            <li><a href="http://webtypography.net/" target="blank"><i>Elements of Typographic Style</i> (for the web)</a></li>
+            <li><a href="http://blog.themeforest.net/tutorials/how-to-achieve-cross-browser-font-face-support/" target="blank">@font-face cross browser support</a></li>
+            <li><a href="http://opinionator.blogs.nytimes.com/2012/08/08/hear-all-ye-people-hearken-o-earth/?_r=0" target="blank">Errol Morris piece of psychological impact of type</a></li>
+            <li><a href="http://www.adobe.com/devnet/html5/articles/web-typography-and-css-font-face.html" target="blank">Adobe in depth overview of @font-face, browser compatibility and more.</a></li>
+        </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

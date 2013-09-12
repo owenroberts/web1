@@ -3,7 +3,7 @@
 
 
 /* RESETS */
-* { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:14px;line-height:21px;}
+* { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:14px; line-height:21px;}
 
 body { font-family:sans-serif;text-rendering: optimizeLegibility; }
 
@@ -16,9 +16,12 @@ a, a:link, a:hover, a:visited {
 
 pre {
   color:blue;
-  padding-bottom:10px;
   padding-left:10px;
   
+}
+
+code {
+  background:#fdf;
 }
 
 xmp {
@@ -88,6 +91,7 @@ img {
 #nav-item {
   clear:left;
 }
+
 #nav h2 {
   margin-bottom:20px;
   width:200px;

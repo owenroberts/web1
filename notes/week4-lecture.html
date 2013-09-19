@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  <style type="text/css">
+  div.grid {
+  	width:480px;
+  	height:380px;
+  	border:1px solid white;
+  	background-color:#F0F0F0;
+	
+  }
+
+  div#manuscript {
+  	border:1px solid red;
+  	background-color:white;
+  	width:400px;
+  	height:300px;
+  	padding:20px;
+  	margin: 20px;
+  }
+
+  div#column {
+  	border:1px solid red;
+  	background-color:white;
+  	width:108px;
+  	height:340px;
+  	margin:20px 0 20px 20px;
+  	float:left;
+  }
+  div#column + #column {
+  	margin: 20px 0px;
+  }
+  div#mod {
+  	border:1px solid red;
+  	background-color:white;
+  	width:111px;
+  	height:115px;
+  	margin:5px 0px 0px 5px;
+  	float:left;
+  }
+  
+  form * {
+    margin:5px 0;
+  }
+  form {
+    margin-bottom:20px;
+    background-color:#5768e5;
+    padding:10px;
+  }
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+
+    	<h1>Form & Grid Systems</h1>
+      <hr>
+      <p>When we talk about "form" on the web, we are usually referring to the <code>&#60;form&#62;</code> HTML tag, which makes awesome interactive forms like this:</p>
+      <form name="What is form?">
+        What is form?<br>
+        Answer: <input type="text" name"answer" value="^?_?^"><br>
+        First name: <input type="text" name="FirstName" value="Wayne"><br>
+        Last name: <input type="text" name="LastName" value="Gretzky"><br>
+        <input type="submit" value="Submit">
+        </form>
+        
+        <p>In print design, form is an essential concept, referring to the shape and color of any object in a design.  On the web it is rare that we see sites with minimal forms.  Usually there is a lot of information on any given page, arranged in images, text and interactions.  In some early <a href="http://adaweb.com" target="blank">Internet art</a> we see playing with form.  But most of the time we're looking at stuff like this:</p>
+        <img src="http://www.novelr.com/wp-content/uploads/2007/08/New_York_Times_homepage.jpg" />
+        <p>Or this:</p>
+        <img src="http://www.addicottweb.com/images/blog_postings/tv_channels/espn.gif" />
+          
+        <p>Lots of information and links to more information--form is not the focus.  The classics of print design tend to focus more on form:</p>
+        <img src="http://www.cartype.com/pics/3814/small/vw_ad_2.jpg" />
+        
+        <p>One place we see attention to form is in splash pages.  Splash pages used to be very popular, but now are relatively uncommon.  We have become so used to the web being <i>fast</i> that we don't have patience for a nicely designed splash page, or anything that stands between us and information.  This becomes a choice as designers, the classic compromise between form and function.  Splash pages actually originated in video games--they were the art that was on screen at the beginning while the game was loading.  It was used in a similar way with early websites.  Video games got the idea from comic books, where a splash page refers to a page that contains one full work of art, instead of many panels.  They are often the feature of a comic book.</p>
+        
+        <p><a href="http://apple.com" target="blank">Apple typically has a pretty nice splash page for the home page of their site.</a></p>
+        
+        <p><a href="http://typecode.com/" target="blank">Typecode has a nice interactive splash page with a prominent logo.</a></p>
+        
+        
+        <p>Splash pages have sort of been adapted into general web designs.</p>
+          
+        <p><a href="http://rocafella.com" target="blank">Rocafella</a></p>
+        
+        <p>Depending on the functionality and purpose of the site, you may see more creative use of space and form.  Dropbox has a really nice simple landing page that uses form well:</p>
+        
+        <p><a href="http://dropbox.com" target="blank">Dropbox</a></p>
+        
+        
+      
+    	<p>In design, the "format" is the margins of the page that hold a design.  A grid system is the measurements that are used to align and size objects within the format.  There is no wrong way to set up a grid, but there are types of grids that are commonly used.  Grids are often created in Photoshop or Illustrator but are actually easier to make with CSS and HTML because we are limited to numbers.</p>
+    	
+      <ul>	<li>Manuscript grid: <div class="grid"><div id="manuscript"></div></div></li>
+    		<li>Column grid: <div class="grid">
+    			<div id="column"></div>
+    			<div id="column"></div>
+    			<div id="column"></div>
+    			<div id="column"></div>
+    			</div></li>
+    			<br>
+    		<li>Modular grid: <div class="grid">
+    			<div id="mod"></div><div id="mod"></div>
+    			<div id="mod"></div><div id="mod"></div>
+    			<div id="mod"></div><div id="mod"></div>
+    			<div id="mod"></div><div id="mod"></div>
+    			<div id="mod"></div><div id="mod"></div>
+    			<div id="mod"></div><div id="mod"></div></li>
+            
+</ul>
+    			
+    			<p>There are many different combinations and ways to use a grid.  Combinations of grid, using each box as way to place elements on the page.</p>
+          
+          <p>All websites are working with at least a manuscript grid.  Sites with a lot of information like ESPN or New York Times tend to use column grids.  Sites for designers and artists might prefer a modular grid.  You will often see a combination of grids on one page.  The important work for a grid is to make the hierarchy of information clear to the viewer.</p>
+          
+          
+          
+    		
+
+      <div id="sources"><p>Resources</p>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

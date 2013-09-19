@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">  
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      <h1>Two column layout with HTML & CSS</h1>
+      <hr>
+      
+    	<h2>Commenting</h2>
+    	<ul><li>Commenting is essential for writing clean, readable code.</li>
+    		<li>Uses regular language to describe what you are writing.</li>
+    		<li>HTML comments written: <br><xmp><!-- THIS IS A COMMENT --></xmp></li>
+    		<li>CSS comments written: <pre>/* this is a comment */</pre></li>
+    		</ul>
+      
+    	<h2>CSS Positioning</h2>
+    	<p>The position property allows you to tell HTML elements where to go on a page.</p>
+    	<p>CSS elements default to "static" meaning they will flow with other elements in the page.</p>
+    	<p>Floating</p>
+    	<ul><li>Pushes elements into the flow of the page, either to the right or left.</li>
+    		<li>Best way to position elements next to each other, place images within text, and layout pages.</li>
+    		<li>Clear: Tells the next elements not let floated elements next it.</li>
+    		<li>Values for float and clear include: <pre>right, left, none, inherit</pre></li>
+    		</ul>
+    	<p>Fixed</p>
+    	<ul><li>Positions elements in browser window, regardless of other elements.
+    		<br><pre>position: fixed;</pre> </li>   		
+        <li>Can be placed with <pre>top, bottom, right, left</pre></li>
+    		</ul>
+	
+    	<p>Relative</p>
+    	<ul><li>Positions relative to normal position in the flow of page.</li>
+    		<li>Relative elements can overlap with other elements.</li>
+    		</ul>
+	
+    	<p>Absolute</p>
+    	<ul><li>Positions relative first parent element, usually <br><xmp><html></xmp></li>
+    		<li>Removed from the normal flow of the page.</li>
+    		</ul>
+
+	
+	
+
+    	<h2>Two column layout</h2>
+    	<ul><li>This is a basic web page layout that includes a header, container, content column, side bar, and footer.</li>
+    		<li>Easily made with positioning and floats.</li>
+    		<li>This is the basic structure we will build:
+    		<br>	<xmp><div id="wrap">
+    	<div id="header"></div>
+    	<div id="nav"></div>
+    	<div id="main"></div>
+    	<div id="sidebar"></div>
+    	<div id="footer"></div>
+    </div></xmp></li>
+    		</ul>
+        
+        <p>Once we build that structure, we will use CSS to give the position and shape to the elements to fit our design.  Don't forget to use comments to make it clear where your sections begin and end.</p>
+
+    </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

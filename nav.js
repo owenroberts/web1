@@ -126,7 +126,9 @@ Naavy = {
         {
           url:'week4',
           pages: [
-          ['Form & Grid', null]
+          ['Form & Grid', 'lecture'],
+          ['Two column layout with HTML & CSS', 'demo'],
+          ['Assignment', 'assignment']
           ]
         },
         {

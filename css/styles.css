@@ -182,4 +182,17 @@ a#ext, a#ext:hover  {
 }
 
 
+/* -- week4 -- */
+
+ul#layouts {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+ul#layouts img {
+  border:1px dashed #5768e5;
+}
+
+
   

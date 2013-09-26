@@ -134,8 +134,8 @@ Naavy = {
         {
           url:'week5',
           pages: [
-          ['Wireframing', null],
-          ['Photoshop for the Web', null]
+          ['Wireframing', 'lecture'],
+          ['Assignment', 'assignment']
           ]
         }
         ],

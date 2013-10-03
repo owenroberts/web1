@@ -137,7 +137,31 @@ Naavy = {
           ['Wireframing', 'lecture'],
           ['Assignment', 'assignment']
           ]
-        }
+        },
+				{
+					url:'week6',
+					pages: [
+					['CSS: Fixed position, drop down navs', 'demo'],
+					['Wireframe swap', 'class'],
+					['Assignment', 'assignment']
+					]
+				},
+				{
+					url:'week7',
+					pages: [
+					['Internet art', null],
+					['Advanced hyperlink styles', null],
+					['Assignment', null]
+					]
+				},
+				{
+					url:'week8',
+					pages: [
+					['Web standards', null],
+					['Responsive layouts', null],
+					['Assignment', null]
+					]
+				}
         ],
         
         linkers: [

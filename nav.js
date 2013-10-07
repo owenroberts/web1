@@ -37,7 +37,22 @@ Naavy = {
         nav.find('a').attr( 'href', urlPre2 + 'index.html' )      
       }
     
-    
+      //add extra links to bottom
+      nav.append( $( '<ul>' ))    
+      Naavy.linkers.forEach( function( link, linkNum ) {
+        var ln = $( '<li>' )                  
+        ln.append( 
+          $( '<a>' )
+          .text(link.name)
+          .attr('href', urlPre2 + link.url)
+        )
+        if (link.url.split('/').pop() == pageUrl) {
+          ln.find('a').attr('id', 'active')
+        } 
+        if (link.target != null) ln.find('a').attr('target', link.target)
+        nav.append( ln )
+        
+      } )
     
       
       //adds rest of navigation links  
@@ -72,22 +87,7 @@ Naavy = {
             }) 
           }) 
     
-          //add extra links to bottom
-          nav.append( $( '<ul>' ))    
-          Naavy.linkers.forEach( function( link, linkNum ) {
-            var ln = $( '<li>' )                  
-            ln.append( 
-              $( '<a>' )
-              .text(link.name)
-              .attr('href', urlPre2 + link.url)
-            )
-            if (link.url.split('/').pop() == pageUrl) {
-              ln.find('a').attr('id', 'active')
-            } 
-            if (link.target != null) ln.find('a').attr('target', link.target)
-            nav.append( ln )
-            
-          } )
+          
       
           
       

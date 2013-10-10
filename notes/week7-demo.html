@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  
+  <style type=text/css>
+  .link a:hover img { box-shadow:0 0 10px green;}
+  
+  a.rollover { 
+       width:32px;
+       height:32px;
+       background: url(img);
+       background-position: 0 0;
+  }
+
+  a.rollover:hover {
+       background-position: -32px 0px;
+  }
+  
+  a.ro {
+    background: url(img);
+  }
+  a.ro:hover {
+    background: url(img);
+  }
+  
+  .ba a:hover:before,
+  .ba a:hover:after {
+    content:"++";
+  }
+  
+  #menu ul { list-style:none; }
+  #menu ul li a { 
+    display:block; 
+    width:300px; 
+    height:28px; 
+    background-color:#333; 
+    border-left:5px solid #222; 
+    border-right:5px solid #222; 
+    padding-left:10px;
+  	text-decoration:none; 
+    color:#bfe1f1; }
+  #menu ul li a:hover {  
+    -moz-transform:rotate(-5deg); 
+    -moz-box-shadow:10px 10px 20px #000000;
+  	-webkit-transform:rotate(-5deg); 
+    -webkit-box-shadow:10px 10px 20px #000000;
+  	transform:rotate(-5deg); 
+    box-shadow:10px 10px 20px #000000; 
+  }
+  
+  #triangle ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+  }
+  #triangle li:hover:before { 
+    content: "";
+    border-color: transparent #111;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+}
+  
+  
+  </style>
+  
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Hyperlinks</h1>
+      <hr>
+      
+      <p>Today we're going to look at different ways to style hyperlinks.  And some methods for embedding media.</p>
+      
+      <p>You can wrap a hyperlink around any HTML element.  Like an <code>&#60;img&#62;</code> tag.</p>
+      
+      <pre class="block"><xmp><a href="#"><img src="img" /></a></xmp></pre>
+
+      <a href="#" style="border:none">
+        <img src="../imgs/week7/kov.gif" />
+      </a>
+
+      <p>You can add styles to that image.</p>
+            
+      <pre class="block">a img:hover { box-shadow:0 0 10px green }</pre>
+        
+      <div class="link">    
+      <a style="border:none;"  href="#" >
+        <img  src="../imgs/week7/kov.gif"  />
+      </a></div>
+                  
+      <br><br>
+      <p>You can use CSS background position to make rollover images as links.</p>
+      
+      <pre class="block">a { 
+     width:32px;
+     height:32px;
+     background: url(img) no-repeat;
+     background-position: 0 0;
+}
+
+a:hover {
+     background-position: -32px 0px;
+}
+</pre>
+
+<a class="rollover" href="#"></a>
+
+<p>This will work also just by replacing the image.</p>
+
+<pre class="block">a {
+  background: url(img);
+}
+a:hover {
+  background: url(img);
+}
+</pre>
+
+
+<p>You can use CSS to add characters to a link in different pseudo states with <code>:before</code> and <code>:after</code>.</p>
+<pre class="block">a:before, a:after {
+  content:"++"
+}
+</pre>
+<div class="ba"><a href="#">before and after</a></div>
+
+
+<p>You can use CSS borders, or rollover images, to make triangles, or other shapes.</p>
+<pre class="block">ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+li:hover:before { 
+    content: "";
+    border-color: transparent #111;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+}
+</pre>
+<div id="triangle">
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+</div>
+
+<p>Or use a goofy animation.</p>
+<pre class="block">
+#menu ul { list-style:none; }
+#menu ul li a { 
+  display:block; 
+  width:300px; 
+  height:28px; 
+  background-color:#333; 
+  border-left:5px solid #222; 
+  border-right:5px solid #222; 
+  padding-left:10px;
+	text-decoration:none; 
+  color:#bfe1f1; }
+#menu ul li a:hover {  
+  -moz-transform:rotate(-5deg); 
+  -moz-box-shadow:10px 10px 20px #000000;
+	-webkit-transform:rotate(-5deg); 
+  -webkit-box-shadow:10px 10px 20px #000000;
+	transform:rotate(-5deg); 
+  box-shadow:10px 10px 20px #000000; 
+}
+</pre>
+
+
+<div id="menu">
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+</div>
+
+<p><a href="http://jsfiddle.net/kreYY/" target="blank">An example using some display changing hover elements</a>.</p>
+
+<h1>Embedding media</h1>
+
+<p>HTML5 video</p>
+<pre class="block"><xmp style="padding:0"><video width="620"  controls>
+<source src="video/cat.mp4" type="video/mp4">
+<source src="video/cat.ogg" type="video/ogg">
+	Your browser doesn't support video : (
+</video></xmp></pre>
+
+<p>Youtube embeds</p>
+<pre class="block"><xmp style="padding:0"><iframe width="640" height="360" src="http://www.youtube.com/embed/-Vp1xJdWrOk?rel=0" frameborder="0" allowfullscreen></iframe></xmp></pre>
+<img src="../imgs/week7/youtube-screen.png" />
+
+<p>HTML5 audio</p>
+
+<p>Souncloud embed</p>
+<pre class="block"><xmp style="padding:0"></xmp></pre>
+<img src="../imgs/week7/soundcloud-screen.png" />
+
+<h1>SVG</h1>
+
+<p>SVG is newly supported by browsers and allows us to embed scalable vector graphics in our websites and add animation and scripts to those graphics.  You can embed SVG using the <code>&#60;object&#62;</code>, <code>&#60;img&#62;</code>, <code>&#60;iframe&#62;</code> or <code>&#60;text&#62;</code>.  It may require some setup on your server.</p>
+<pre class="block"><xmp style="padding:0"><object type="image/svg+xml" data="css/imgs/hr.svg"></object></xmp></pre>
+<p>SVG files look like this:</p>
+<pre class="block"><xmp style="padding:0"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="600px" height="20px" viewBox="0 0 600 20" enable-background="new 0 0 600 20" xml:space="preserve">
+<line fill="none" stroke="#333333" stroke-miterlimit="10" x1="307" y1="10.5" x2="600" y2="10.5"/>
+<line fill="none" stroke="#333333" stroke-miterlimit="10" x1="0" y1="10.5" x2="293" y2="10.5"/>
+<text transform="matrix(1 0 0 1 293.8286 17.5371)" fill="#333333" font-family="'ArialMT'" font-size="24">♦</text>
+</svg></xmp></pre>
+
+
+<!--
+      <div id="sources"><p>Resources</p>
+        
+        
+                http://css-tricks.com/snippets/css/basic-link-rollover-as-css-sprite/
+                http://html.cita.illinois.edu/script/onmouseover/onmouseover-example.php#
+                http://www.pat-burt.com/web-development/how-to-do-css-rollovers-using-background-images-or-colors/
+                http://sixrevisions.com/web_design/designing-hyperlinks-tips-and-best-practices/
+                http://www.artishock.net/coding/css-list-styling-using-ascii-special-characters/
+                http://css-tricks.com/snippets/css/triangular-list-bullets/
+                http://www.marcofolio.net/css/8_different_ways_to_beautifully_style_your_lists.html
+                
+                svg
+                
+                video - youtube - html5
+                
+                audio - soundcloud - html5
+                
+               
+        
+        
+      </div>
+ -->
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

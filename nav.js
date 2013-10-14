@@ -150,7 +150,7 @@ Naavy = {
 					url:'week7',
 					pages: [
 					['Internet art', 'lecture'],
-					['Advanced hyperlink styles', 'demo'],
+					['Advanced hyperlink styles & embedding media', 'demo'],
 					['Assignment', 'assignment']
 					]
 				},

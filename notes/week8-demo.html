@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Responsive layout -- liquid & elastic</h1>
+      <hr>
+      
+      <p>Responsive web design uses dynamic CSS styles to optimize layouts and designs for different screen sizes.  It is related to but different from adaptive design, which focuses on the user experience and not the browser.  Both concepts are based on the idea of progressive enhancement, which describes a process for web design that moves from simplicity to complexity, starting with basic designs and markup and leading toward complex sites.  There are many concepts and methods that make up these ideas.  We're going to start with liquid and elastic layouts.</p>
+      
+      <p>Liquid and elastic layouts are based on similar principles, making content that resizes to fit the browser window that it is in.  So far we have focused on making static sites that appear with the same dimensions regardless of the context a user views them in.  While there are certain resolutions and dimensions that are more popular than others (<a href="http://www.w3counter.com/globalstats.php" target="blank">check out the statistics for browser usage</a>) these trends change over time and it is good to accommodate different users and viewing experiences.</p>
+      
+      <p>Starting with liquid layouts, the major difference is that we use percentage values for our sizes instead of pixel numbers.  Liquid layouts also use <code>mid-width</code> and <code>max-width</code> values to set the bounds of a layout.</p>
+      
+      <p>We will make two layouts, the first using liquid and the second using elastic, with the same content.</p>
+      
+      <p>Elastic layouts rely on <code>em</code> measurements to change the content size in a layout.  Browsers usually default to a font size of 16px, but users can change that default value.  Elastic layouts work with those values using the relative <code>em</code> sizing.  1em is equivalent to the inherited font size of each HTML element and can be calculated to the third decimal place.  Elastic layouts require some math in order to convert designs into specific em units.  For examples, with our 960px width layout, we have to divide 960 by 16 to get 60em, the width for our container.  Once you get this, the rest is relatively easy.</p>
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+
+      <div id="sources"><p>Resources</p>
+        <ul>
+        <li><a href="http://coding.smashingmagazine.com/2009/06/02/fixed-vs-fluid-vs-elastic-layout-whats-the-right-one-for-you/"  target="blank">Fixed vs Fluid vs Elastic</a></li>
+        <li><a href="http://www.smashingmagazine.com/2008/05/29/applying-divine-proportion-to-web-design/"  target="blank">Layout proportion</a></li>
+        <li><a href="http://v1.jontangerine.com/log/2007/09/the-incredible-em-and-elastic-layouts-with-css"  target="blank">Em and elastic layouts</a></li>
+        <li><a href="http://www.rasmussen.edu/degrees/design/blog/web-design-101-adaptive-vs-responsive-design/"  target="blank">Adaptive vs Responsive design</a></li>
+        <li><a href="http://css-tricks.com/the-perfect-fluid-width-layout/"  target="blank">Fluid width layout</a></li>
+        <li><a href="http://snook.ca/archives/html_and_css/font-size-with-rem" target="blank">Rem units</a></li></ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

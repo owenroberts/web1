@@ -157,9 +157,9 @@ Naavy = {
 				{
 					url:'week8',
 					pages: [
-					['Web standards', null],
-					['Responsive layouts', null],
-					['Assignment', null]
+					['Web standards', 'lecture'],
+					['Responsive layout design', 'demo'],
+					['Assignment', 'assignment']
 					]
 				}
         ],

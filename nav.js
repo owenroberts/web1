@@ -161,6 +161,47 @@ Naavy = {
 					['Responsive layout design', 'demo'],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week9',
+					pages: [
+					['Final project presentations', null],
+					['Assignment', 'assignment']
+					]
+				},
+				{
+					url:'week10',
+					pages: [
+					['Designing for dynamic content', null],
+					['CSS3 media queries and effects', null]
+					]
+				},
+				{
+					url:'week11',
+					pages: [
+					['Intro to jQuery', null]
+					]
+				},
+				{
+					url:'week12',
+					pages: [
+					['Electronic literature', null],
+					['More jQuery', null]
+					
+					]
+				},
+				{
+					url:'week13',
+					pages: [
+					['SVG animation', null]
+					]
+					
+				},
+				{
+					url:'week14',
+					pages: [
+					['Compatibility & backend', null]
+					]
 				}
         ],
         

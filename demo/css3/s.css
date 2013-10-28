@@ -1,0 +1,168 @@
+@charset 'utf-8';
+
+html {
+	height:100%;
+	width:100%;
+}
+
+body, p, h1, ul, menu {
+	margin:0;
+	padding:0;
+	font-weight:100;
+	
+}
+
+body {
+	font-family:sans-serif;
+	height:100%;
+	width:100%;
+	
+}
+
+a {
+	text-decoration:none;
+	color:black;
+}
+
+ul {
+	list-style:none;
+}
+
+h1 {
+	text-transform:uppercase;
+}
+
+
+body {
+	background:url(cat-bkg.jpg) no-repeat fixed;
+	background-size:cover;
+}
+
+
+
+header h1 {
+	color:white;
+	font-size:5em;
+	font-weight:500;
+	opacity:0.7;
+	text-align:center;
+	border:0.8rem solid rgba(255,255, 255,0.7);
+	background:url(cssbkg1.png);
+	
+	
+}
+
+menu li {
+	text-transform:uppercase;
+	float:left;
+	width:25%;
+	text-align:center;
+}
+
+menu a {
+	background: rgba(255,255,255,0.9);
+	padding:1em 0;
+	text-align:center;
+	display:block;
+}
+
+menu a:hover {
+	background: rgba(180,0,255,0.9);
+}
+
+menu li + li a {
+	margin-left:2px;
+}
+
+section#main {
+	clear:both;
+	padding:0.8rem;
+}
+
+section h1 {
+	padding:0.333em;
+	color:white;
+	font-size:3em;
+	font-weight:300;
+	background:url(cssbkg1.png);
+	background-color: rgba(180,0,255,0.9);
+	margin:0.2em auto;
+}
+
+section img {
+	float:right;
+	width:50%;
+	padding:2em;
+	
+}
+
+section p {
+	color:white;
+	background:url(cssbkg1.png);
+	background-color: rgba(180,0,255,0.9);
+	margin-top:1em;
+	padding:1em;
+	/*
+	z-index:1;
+		position:relative;*/
+	
+}
+
+footer {
+	height:1.8rem;
+	background-color:rgba(255,255, 255,0.7);
+	width:100%;
+	position:fixed;
+	bottom:0;
+}
+
+
+@media all and (min-width: 960px) {
+	
+}
+
+@media all and (min-width:780px ) {
+	body {
+		font-size:80%;
+	}
+	
+}
+
+@media all and (max-width: 480px) {
+	body {
+		background-color:lightblue;
+		background-position:0 8em;
+		background-size:100%;
+	}
+	
+	header h1 {
+		border:none;
+		text-align:left;
+		line-height:0.8;
+	}
+	
+	menu li {
+		float:none;
+		width:100%;
+	}
+	
+	menu a {
+		text-align:left;
+		padding:1rem;
+	}
+	
+	menu li + li a {
+		margin:2px 0;
+	}
+	
+	section img {
+		float:none;
+		width:100%;
+		padding:0;
+	}
+	
+	footer {
+		position:relative;
+	}
+
+}

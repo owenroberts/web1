@@ -132,6 +132,7 @@ footer {
 	body {
 		background-color:lightblue;
 		background-position:0 10em;
+		background-position:fixed;
 		background-size:100%;
 	}
 	

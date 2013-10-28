@@ -131,7 +131,7 @@ footer {
 @media all and (max-width: 480px) {
 	body {
 		background-color:lightblue;
-		background-position:0 6em;
+		background-position:0 10em;
 		background-size:100%;
 	}
 	

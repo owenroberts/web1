@@ -144,15 +144,14 @@ footer {
 	#bkg {
 		display:block;
 		background-color:lightblue;
-		background: url(cat-bkg.jpg) no-repeat fixed;
+		background-image: url(cat-bkg.jpg);
+		background-repeat:no-repeat;
 		background-size:100%;	
 		width:100%;
 		height:100%;
 		z-index:-1;
 		position:fixed;
 	}
-	
-	
 	
 	
 	header h1 {

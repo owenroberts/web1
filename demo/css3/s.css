@@ -131,7 +131,7 @@ footer {
 @media all and (max-width: 480px) {
 	body {
 		background-color:lightblue;
-		background-position:0 8em;
+		background-position:0 4em;
 		background-size:100%;
 	}
 	
@@ -139,6 +139,7 @@ footer {
 		border:none;
 		text-align:left;
 		line-height:0.8;
+		font-size:2em;
 	}
 	
 	menu li {

@@ -132,8 +132,9 @@ footer {
 	body {
 		background-color:lightblue;
 		/*background-position:0 10em;*/
-		background-position:fixed;
-		background-size:100%;
+		width:100%;
+		background-attachment:fixed;
+		background-position:center center;
 	}
 	
 	header h1 {

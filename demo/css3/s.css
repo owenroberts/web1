@@ -116,8 +116,12 @@ footer {
 	bottom:0;
 }
 
+#bkg {
+	display:none;
+}
 
 @media all and (min-width: 960px) { 
+	
 	
 }
 
@@ -134,6 +138,14 @@ footer {
 		/*background-position:0 10em;*/
 		background-position:fixed;
 		background-size:100%;
+	}
+	
+	#bkg {
+		display:static;
+		background: url(cat-bkg.jpg) no-repeat fixed;
+		top:0;
+		left:0;
+		z-index:-1;
 	}
 	
 	header h1 {

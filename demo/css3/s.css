@@ -65,12 +65,20 @@ menu a {
 	padding:1em 0;
 	text-align:center;
 	display:block;
+	
+	transition:transform 1s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+	-webkit-transition:-webkit-transform 1s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+	
 }
 
 menu a:hover {
+	transition:all 1s;
+	-webkit-transition:all 1s;
 	background: rgba(180,0,255,0.9);
 }
 
+
+	
 menu li + li a {
 	margin-left:2px;
 }
@@ -90,11 +98,22 @@ section h1 {
 	margin:0.2em auto;
 }
 
-section img {
+section#main img {
 	float:right;
 	width:50%;
 	padding:2em;
-	
+	position:relative;
+}
+section#main img:hover {
+	animation:imganim 2s;
+	-webkit-animation:imganim 2s;
+}
+
+@-webkit-keyframes imganim {
+	0% {-webkit-transform:rotate(0deg);top:-200px;left:-200px;}
+	25% {-webkit-transform:rotate(360deg);top:-200px;left:100px;}
+	75% {top:200px;left:100px;width:10%;}
+	95% {top:200px;left:-200px;width:50%;}
 }
 
 section p {
@@ -124,7 +143,13 @@ footer {
 
 
 
+
+
 @media all and (min-width: 960px) { 
+	menu a:active {
+		transform:rotateY(180deg);
+		-webkit-transform:rotateY(180deg);
+	}
 	
 	
 }
@@ -132,6 +157,10 @@ footer {
 @media all and (min-width:780px ) {
 	body {
 		font-size:80%;
+	}
+	menu a:active {
+		transform:rotateY(180deg);
+		-webkit-transform:rotateY(180deg);
 	}
 	
 }
@@ -163,11 +192,28 @@ footer {
 	menu li {
 		float:none;
 		width:100%;
+		text-align:left;
 	}
 	
 	menu a {
 		text-align:left;
-		padding:1rem;
+		padding:1rem 2rem;
+		display:inline-block;
+		letter-spacing:2px;
+		width:auto;
+	}
+	
+	menu a:hover {
+		background: rgba(255,255,255,0.9);
+		width:100%;
+		transition: width 1s ;
+		-webkit-transition: width 1s;
+	}
+	
+	menu a:active {
+		background:rgba(180,0,255,0.9);
+		transition: background 300ms;
+		-webkit-transition: background 300ms;
 	}
 	
 	menu li + li a {

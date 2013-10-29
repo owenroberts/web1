@@ -116,6 +116,13 @@ section#main img:hover {
 	95% {top:200px;left:-200px;width:50%;}
 }
 
+@keyframes imganim {
+	0% {transform:rotate(0deg);top:-200px;left:-200px;}
+	25% {transform:rotate(360deg);top:-200px;left:100px;}
+	75% {top:200px;left:100px;width:10%;}
+	95% {top:200px;left:-200px;width:50%;}
+}
+
 section p {
 	color:white;
 	background:url(cssbkg1.png);
@@ -220,7 +227,7 @@ footer {
 		margin:2px 0;
 	}
 	
-	section img {
+	section#main img {
 		float:none;
 		width:100%;
 		padding:0;

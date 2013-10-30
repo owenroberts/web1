@@ -35,20 +35,25 @@ h1 {
 
 body {
 	
-	background:url(cat-bkg.jpg) no-repeat fixed;
+	/*background:url(cat-bkg.jpg) no-repeat fixed;*/
 	background-size:cover;
+	background-color:lightblue;
+	background: -webkit-radial-gradient(60% 50%, farthest-corner,lightblue,blue,lightblue,#333); 
+	background-size:400%;
+	
 }
 
 
 
 header h1 {
 	color:white;
-	font-size:5em;
+	font-size:4em;
 	font-weight:500;
 	opacity:0.7;
 	text-align:center;
 	border:0.8rem solid rgba(255,255, 255,0.7);
 	background:url(cssbkg1.png);
+	background-size:10px;
 	
 	
 }
@@ -94,7 +99,7 @@ section h1 {
 	font-size:3em;
 	font-weight:300;
 	background:url(cssbkg1.png);
-	background-color: rgba(180,0,255,0.9);
+	background-color: rgba(180,0,255,0.5);
 	margin:0.2em auto;
 }
 
@@ -126,7 +131,7 @@ section#main img:hover {
 section p {
 	color:white;
 	background:url(cssbkg1.png);
-	background-color: rgba(180,0,255,0.9);
+	background-color: rgba(180,0,255,0.5);
 	margin-top:1em;
 	padding:1em;
 	/*
@@ -161,7 +166,7 @@ footer {
 	
 }
 
-@media all and (min-width:780px ) {
+@media all and (max-width:780px) and (min-width:480px) {
 	body {
 		font-size:80%;
 	}
@@ -172,7 +177,18 @@ footer {
 	
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width:550px) {
+	body {
+		width:550px;
+		font-size:80%;
+	}
+	
+	body * {
+		width:auto;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	body {
 		background:none;
 	}

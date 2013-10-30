@@ -172,8 +172,9 @@ Naavy = {
 				{
 					url:'week10',
 					pages: [
-					['Designing for dynamic content', null],
-					['Advanced CSS -- Media queries and animation', 'demo']
+					['Designing for dynamic content', 'lecture'],
+					['Advanced CSS -- Media queries and animation', 'demo'],
+					['Assignment', null]
 					]
 				},
 				{

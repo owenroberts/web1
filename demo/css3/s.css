@@ -229,17 +229,16 @@ footer {
 	}
 	
 	menu a:hover {
-		background: rgba(255,255,255,0.9);
+		background:rgba(180,0,255,0.9);
 		width:100%;
 		transition: width 1s ;
 		-webkit-transition: width 1s;
-	}
-	
-	menu a:active {
-		background:rgba(180,0,255,0.9);
+		
+		
 		transition: background 300ms;
 		-webkit-transition: background 300ms;
 	}
+
 	
 	menu li + li a {
 		margin:2px 0;

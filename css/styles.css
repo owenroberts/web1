@@ -109,7 +109,7 @@ img {
 #nav h3 {
   color:Gray;
   float:left;
-  margin-left:-60px;
+  margin-left:-70px;
 }
 
 #nav ul {
@@ -170,6 +170,11 @@ img {
   list-style:square;
   margin-left:20px;
   margin-bottom:20px;
+}
+
+#sources ul {
+  list-style:square;
+	
 }
 
 #sources {

@@ -101,6 +101,15 @@ section h1 {
 	background:url(cssbkg1.png);
 	background-color: rgba(180,0,255,0.5);
 	margin:0.2em auto;
+	
+	text-shadow:1px 1px 1px blue,
+							2px 2px 2px blue,
+							3px 3px 3px blue,
+							4px 4px 4px blue,
+							5px 5px 5px blue,
+							6px 6px 6px black,
+							7px 7px 7px blue
+							;
 }
 
 section#main img {

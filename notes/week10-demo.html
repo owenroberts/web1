@@ -16,14 +16,50 @@
       <h1>Advanced CSS -- Media queries and animation</h1>
       <hr>
       
-      <p><a href="../demo/css3" target="blank">Check out demo files here.</a></p>
+      <p><a href="../demo/css3" target="blank">Check out demo.</a></p>
+      <p><a href="../demo/css3.zip">Download files for class.</a></p>
       
       <p>Media queries are a CSS3 module that was developed to allow content to render according to specific platforms.  Media queries became standard in 2012 when browsers introduced support.  They are especially popular for making adaptive layouts for mobile and web devices.  We will look at making a layout that adapts to two different screen settings and mobile.</p>
+      <p>Media queries use the <code>@media</code> tag to separate styles within a CSS Document.</p>
+      <pre class="block">@media all and (min-width: 960px) { 
+    body {
+      font-size:100%}
+    }
+}
+
+@media all and (max-width:780px) and (min-width:480px) {
+  body {
+  	font-size:80%;
+  }
+}
+</pre>
+      
+      
+<p>Media queries can be used to indicate the browser dimensions and resolution, device dimensions and resolution, print or web, and other attributes.  It's important to also the meta tag <code>viewport</code> which informs the browser to look for media queries when loading content.</p>
+<pre class="block">&#60;meta name="viewport" content="width=device-width"&#62;</pre>
+
+      
+<p>CSS3 also introduces advanced techniques for text styles, fonts, gradients, border styles and other design elements.  We'll look at the CSS3 version of <code>text-shadow</code> and generating gradients.</p>
+
+<p>CSS3 also introduces some durational effects that have previously been the domain of JavaScript and libraries like jQuery.  The support for many CSS3 durational effects is not universal yet, but it will be soon.  Often there are jQuery catches for browsers that don't provide full CSS3 support, but it still represents a simple and effective way to achieve simple animation and transition effects.  We will look at making a short animation using the <code>@keyframes</code> tag, and a few different ways to use the <code>transition</code> property.</p>
+
+      
 
       <div id="sources"><p>Resources</p>
-        http://www.w3.org/TR/css3-mediaqueries/
-        http://bradfrostweb.com/blog/post/7-habits-of-highly-effective-media-queries/
-        https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html
+        <ul><li><a href="http://www.w3.org/TR/css3-mediaqueries/" target="blank">CSS3 Media queries</a></li>
+        <li><a href="http://bradfrostweb.com/blog/post/7-habits-of-highly-effective-media-queries/" target="blank">Effective media queries</a></li>
+        <li><a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html" target="blank">Viewport</a></li>
+        
+        http://css3.bradshawenterprises.com/transitions/
+        http://matthewlein.com/ceaser/
+        http://css-tricks.com/css-media-queries/
+        http://andrew.hedges.name/experiments/aspect_ratio/
+        http://stackoverflow.com/questions/12539697/iphone-5-css-media-query
+        http://www.stephentgilbert.com/mediaqueries/
+        http://mediaqueri.es/
+        http://www.htmlgoodies.com/beyond/css/introduction-to-css-media-queries.html
+
+        </ul>
         
       </div>
       

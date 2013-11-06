@@ -1,0 +1,44 @@
+@charset 'utf-8';
+
+body {
+	margin:0;
+	padding:0;
+	width:960px;
+	margin:0 auto;
+	margin-top:20px;
+}
+
+div.img {
+	width:180px;
+	height:150px;
+	background-color:lightgreen;
+	margin:5px;
+	border:10px solid white;
+	outline:1px solid black;
+	float:left;
+}
+
+div.overlay {
+	width:160px;
+	height:130px;
+	margin:-10px;
+	position:absolute;
+	background-color:rgba(255,255,255,0.8);
+	opacity:0;
+	padding:20px;
+	font-size:16px;
+	font-family:monaco;
+}
+
+div.img-holder {
+	width:760px;
+	height:480px;
+	background-color:lightgreen;
+	border:10px solid white;
+	outline:1px solid black;
+	position:relative;
+	left:40px;
+	top:40px;
+	display:none;
+	
+}

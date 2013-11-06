@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+   <script charset="utf-8" src="../lib/jquery.js"></script>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Introduction to jQuery</h1>
+      <hr>
+      
+      <h1>What is jQuery?</h1>
+      
+      <p>jQuery is a JavaScript library that simplifies scripting for HTML pages using DOM element selectors and a set of animations, transitions and other manipulations based on CSS and HTML.  DOM refers to the Document Object Model, which is a cross-platform set of conventions for interacting with objects in HTML, XML and XHTML documents through scripting languages.  By giving direct access to the DOM, jQuery allows us to write JavaScript that easily traverses  the hierarchy of a page to manipulate specific elements of our markup, by simply changing CSS attributes, adding animations, or doing more complex scripting.  jQuery was released in 2006 and has become extremely popular with web design.  One of the features of jQuery is that it is compatible with all major browsers.</p>
+      
+      <p>So what is JavaScript?</p>
+      
+      <p>We'll talk about this next semester.  But briefly, JavaScript is a scripting language for browsers that began to be developed at Netscape in the early 90s and later introduced to Microsoft and other browsers.  While JavaScript was intended to provide the functionality of the language Java, it's syntax more closely resembles the C programming language.  It was meant to be a high level language aimed at non-professional programmers, like Visual Basic, or similar to what Processing does with Java.  It was made to implement client-side interactions between browser and user but since has been used to develop server-side programs and applications.  There's a long and interesting history behind JavaScript that we won't get into now, but check out the lecture by Douglas Crockford linked in the resources section if you want to learn more.</p>
+      
+      <p>So how do we use jQuery?</p>
+      
+      <p>jQuery is a file that is attached to the document, similar to a CSS file.  You can host your own copy of jQuery, which you can download from their site or several hosts, and then link to, or you can download a copy hosted on another server, like Google.  It uses the <code>script</code> tag.</p>
+      
+      <pre class="block">&#60;script type="text/javascript" src="jquery.js"&#62;&#60;/script&#62;</pre>
+      
+      <pre class="block">&#60;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&#62;&#60;/script&#62;</pre>
+      
+      <p>Once you have linked the jQuery file, you can begin writing scripts that use jQuery, in a <code>script</code> tag, either in the <code>&#60;head&#62;</code> section or <code>&#60;body&#62;</code>.</p>
+      
+      <pre class="block">&#60;script type="text/javascript"&#62;
+    // 
+    // jQuery goes here
+    //
+  &#60;/script&#62;</pre>
+  
+  <p>Or you can write jQuery into a separate file and link it like the jQuery library.</p>
+  
+  <pre class="block">&#60;script type="text/javascript" src="myjQueryFile.js"&#62;&#60;/script&#62;</pre>
+  
+  <p>jQuery uses a <code>$</code> to define and access the library.  The basic syntax of a jQuery function looks like this: <code>$('selector').action()</code>.  Like in CSS, the selector refers to an HTML element.  The action refers to the script that will be executed on that element.  The rest of the syntax comes from JavaScript.  For today we will do simple jQuery examples.  Next week we will look at some basic programming concepts like data types, conditional statements and variables, which will help us do more complex operations using jQuery.</p>
+  
+  <p>Let's look at a simple example.</p>
+  
+  <pre class="block">
+$(document).ready(function() {
+  $('myDiv').click(function() {
+    $(this).css('color':'blue');
+  });
+});</pre>
+    
+    <script type="text/javascript">
+  $(document).ready(function() {
+    $('#myDiv').click(function() {
+      $(this).css('color','blue'); 
+    });
+
+  });
+    </script>
+    
+    <div id="myDiv">Click me!</div>
+    
+    <p>In this example, the document refers to the HTML page being loaded, and ready is an event that will call the function written inside the parentheses (the argument).  This is used so that the function will not be called before the document is completely loaded, which might cause problems if actions are called on elements that have not yet been loaded.</p>
+    
+    <p>Once the document loads, it will call the function we write as the argument.  This function calls jQuery with the <code>$</code> and then finds the id called "myDiv".  This would also work for a class or a generic HTML tag.  Then it uses a click event to call a function when that HTML element is clicked.  In that function, <code>this</code> refers to the element that has launched the click event.  <code>this</code> or <code>#myDiv</code> is then assigned a new CSS value for the color property.  You can replace the property and value with anything that is compatible with CSS.</p>
+    
+    <p>jQuery can be used to make elements appear and disappear:</p>
+    
+    <pre class="block">
+  $(document).ready(function() {
+    $('#hideButton').click(function() {
+      $('#mygraf').hide();
+    });
+    $('#showButton').click(function(){
+      $('#mygraf').show();
+    }); 
+  });</pre>
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#hideButton').click(function() {
+      $('#mygraf').hide();
+    });
+    $('#showButton').click(function(){
+      $('#mygraf').show();
+    }); 
+  });
+  </script>
+  
+  <p id="mygraf">My paragraph.</p>
+  
+  <button id="hideButton">Hide</button>
+  <button id="showButton">Show</button>
+  
+  <p>Or you can toggle between the two.</p>
+  
+  <pre class="block">
+$(document).ready(function() {
+  $('#toggle').click(function() {
+    $('#newgraf').toggle();
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#toggle').click(function() {
+    $('#newgraf').toggle();
+  });
+});
+</script>
+
+<p id="newgraf">My new paragraph.</p>
+
+<button id="toggle">Toggle</button>
+
+<p>You can also use a number of different events to launch functions, like <code>dblclick</code>, <code>keypress</code>, <code>scroll</code> and others.  Let's use a keypress to hide a div.</p>
+
+  <pre class="block">
+$(document).ready(function() {
+  $('#key').keypress(function() {
+    $(this).toggle();
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#key').keypress(function() {
+    $(this).toggle();
+  });
+});
+</script>
+
+<input id="key" value="Press a key to toggle visibility" style="width:40%"></input>
+
+<p>jQuery also has durational effects that can be used for transitions, such as fade, slide and animate.  These methods add a couple of arguments to their function call, the speed argument, which determines how long the transition will last, and a callback, which is a function to launch once the transition is finished.  Speed is measure in milliseconds, so the argument <code>1000</code> is equivalent to 1 second.  You can also write <code>1s</code>.  Let's look at a couple of examples.</p>
+
+  <pre class="block">
+$(document).ready(function() {
+  $('#fade').click(function() {
+    $('#redsquare').fadeToggle(300);
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#fade').click(function() {
+    $('#redsquare').fadeToggle(300);
+  });
+});
+</script>
+
+<div id="redsquare" style="width:80%;height:100px;background-color:red">You can use fadeIn(), fadeOut(), and fadeToggle(), or fadeTo(), which adds an argument for a specific opacity.</div>
+<button id="fade">fadeToggle</button>
+
+  <pre class="block">
+$(document).ready(function() {
+  $('#slide').click(function() {
+    $('#bluesquare').slideToggle(1000);
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#slide').click(function() {
+    $('#bluesquare').slideToggle(1000);
+  });
+});
+</script>
+
+<div id="bluesquare" style="width:80%;height:100px;background-color:blue"></div>
+<button id="slide">slideToggle</button>
+
+
+  <pre class="block">
+$(document).ready(function() {
+  $('#animate').click(function() {
+    $('#greensquare').animate({
+      fontSize:'+=0.3em',
+      left:'100px',
+      width:'-=10px'
+    });
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#animate').click(function() {
+    $('#greensquare').animate({
+      fontSize:'+=0.3em',
+      left:'100px',
+      width:'-=10px'
+    });
+  });
+});
+</script>
+
+<div id="greensquare" style="width:80%;height:100px;background-color:green;position:relative">Animate</div>
+<button id="animate">animate</button>
+
+<p>Another important method is the <code>stop()</code> method, which will stop all or a specific animation.  This is a good thing to use with multiple animation states, like <code>mousein</code> and <code>mouseout</code>.</p>
+
+<p>I mentioned callback functions earlier.  Let's look at how that would work.</p>
+
+  <pre class="block">
+$(document).ready(function() {
+  $('#callback').click(function() {
+    $('#purple').animate({
+      fontSize:'-=1em',
+      opacity:'-=.1'
+    }, 1000, function() {
+      alert('I\'m fading away.');
+    } );
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#callback').click(function() {
+    $('#purple').animate({
+      fontSize:'-=0.2em',
+      opacity:'-=.1'
+    }, 1000, function() {
+      alert('I\'m fading away.');
+    } );
+  });
+});
+</script>
+
+<div id="purple" style="width:80%;height:100px;background-color:purple;position:relative">I'm shrinking.</div>
+<button id="callback">callback</button>
+
+<p>You can also "chain" jQuery actions together.</p>
+
+  <pre class="block">$(document).ready(function() {
+    $('#chain').click(function() {
+      $('#orange').css('color','blue')
+                  .slideUp(500)
+                  .slideDown(100);
+  });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#chain').click(function() {
+    $('#orange').css('color','blue').slideUp(500).slideDown(100);
+  });
+});
+</script>
+
+<div id="orange" style="width:80%;height:100px;background-color:orange;position:relative">I'm a chain.</div>
+<button id="chain">Chain</button>
+
+<p>jQuery can also be used to edit the HTML iin a document.  You can get values from HTML, set values, add content or markup, remove content or markup and changes CSS attributes.  Let's look at a couple of examples.</p>
+
+  <pre class="block">$(document).ready(function() {
+    $('#get').click(function() {
+      alert('This elements says: ' 
+              + $('#lightblue').text());
+    });
+    $('#set').click(function() {
+      $('#lightblue').text('I\'m new HTML content.');
+    });
+    $('#add').click(function() {
+      $('#lightblue').append('This is added content.');
+    });
+    $('#empty').click(function() {
+      $('#lightblue').empty();
+    });
+});</pre>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#get').click(function() {
+    alert('This elements says: ' + $('#lightblue').text());
+  });
+  $('#set').click(function() {
+    $('#lightblue').text('I\'m new HTML content.');
+  });
+  $('#add').click(function() {
+    $('#lightblue').append('This is added content.');
+  });
+  $('#empty').click(function() {
+    $('#lightblue').empty();
+  });
+});
+</script>
+
+<div id="lightblue" style="width:80%;height:100px;background-color:lightblue;position:relative">I'm some HTML.</div>
+<button id="get">Get the HTML content</button><button id="set">Set the HTML content.</button>
+<button id="add">Add content.</button><button id="empty">Remove content.</button>
+
+<p>You can also move around the HTML document using parent, child, sibling, descendant and ancestor relationships.</p>
+
+<pre class="block">$(document).ready(function() {
+  $('#child').click(function() {
+    $('#lightgreen').children().css('color','blue');
+  });
+});</pre>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#child').click(function() {
+    $('#lightgreen').children().css('color','blue');
+  });
+});
+</script>
+
+<div id="lightgreen" style="width:80%;background-color:lightgreen;position:relative"><h1>This is a div.</h1><p>I'm a child paragraph.</p><p>Me too.</p></div>
+<button id="child">Change the child paragraphs.</button>
+
+<p>Or you can find specific elements.</p>
+
+<pre class="block">$(document).ready(function() {
+  $('#find').click(function() {
+    $('#lavender').find('p').css('color','hotpink');
+  });
+});</pre>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#find').click(function() {
+    $('#lavender').find('p').css('color','hotpink');
+  });
+});
+</script>
+
+<div id="lavender" style="width:80%;background-color:lavender;position:relative"><h1>This is a div.</h1><p>I'm a child paragraph.</p><p>Me too.</p></div>
+<button id="find">Find the p elements.</button>
+
+
+<p>There's a lot more that can be done, so be sure to check out the jQuery API in the resources links below.</p>
+  
+      <div id="sources"><p>Resources</p>
+        http://yuiblog.com/crockford/ douglas crockford lectures
+        http://jquery.com/download/  download jquery
+        https://developers.google.com/speed/libraries/devguide#jquery use google's version
+        http://coding.smashingmagazine.com/2008/09/16/jquery-examples-and-best-practices/ jquery javascript best practices
+        http://purencool.com/javascript-and-jquery-what-is-the-difference jquery vs javascript
+        http://api.jquery.com/ jquery api
+        
+      </div>
+      
+    </div>
+    
+  </div>
+ 
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

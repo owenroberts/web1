@@ -180,7 +180,9 @@ Naavy = {
 				{
 					url:'week11',
 					pages: [
-					['Intro to jQuery', null]
+					['Intro to jQuery', 'lecture'],
+					['jQuery image popup demo', 'demo'],
+					['Assignemnt', 'class']
 					]
 				},
 				{

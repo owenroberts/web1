@@ -182,7 +182,7 @@ Naavy = {
 					pages: [
 					['Intro to jQuery', 'lecture'],
 					['jQuery image popup demo', 'demo'],
-					['Assignemnt', 'class']
+					['Assignment', 'class']
 					]
 				},
 				{

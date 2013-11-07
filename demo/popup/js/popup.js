@@ -12,7 +12,9 @@ $(document).ready(function() {
 	});
 	
 	$('.img').click(function() {
-		$(this).css('position','relative');
+		var content = $(this).find('.inner').html();
+		$('#content').empty();
+		$('#content').append(content);
 		$('.img-holder').fadeIn(1200);
 		$('.overlay').animate({
 			opacity:'0'

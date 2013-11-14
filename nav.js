@@ -52,7 +52,7 @@ Naavy = {
         if (link.target != null) ln.find('a').attr('target', link.target)
         nav.append( ln )
         
-      } )
+      } );
     
       
       //adds rest of navigation links  
@@ -74,7 +74,6 @@ Naavy = {
                   
               )
               if (page[1] != null ) {
-                console.log(page[1])
                 linkUrl = week.url + '-' + page[1] + '.html'
                 li.find('a').attr('href', urlPre + linkUrl)
                 if (linkUrl == pageUrl) li.find('a').attr('id', 'active')
@@ -188,14 +187,18 @@ Naavy = {
 				{
 					url:'week12',
 					pages: [
-					['Electronic literature', null],
-					['More jQuery', null]
+					
+					['More jQuery', 'lecture'],
+					['jQuery slideshow', 'demo'],
+					['Assignment', 'assignment']
+					
 					
 					]
 				},
 				{
 					url:'week13',
 					pages: [
+					['Electronic literature', null],
 					['SVG animation', null]
 					]
 					

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>jQuery continued</h1>
+      <hr>
+      
+      <p>jQuery is a JavaScript library, so in order to use it most effectively, we need to learn some basic JavaScript concepts.  JavaScript is a scripting language, a lightweight programming language, specifically designed for programming the elements of web pages.  Last week we looked at some of the ways jQuery can interact with HTML and CSS content, by getting, setting and modifying various content, attributes and selectors.  We also looked at using the <code>&#60;script&#62;</code> tag and different ways to embed jQuery in the page.  These conventions are all part of JavaScript.  Today we are going to look at some basic concepts in JavaScript and computer science in general to write more sophisticated interactions with the browser.</p>
+      
+      <h1>Variables</h1>
+      <p>We touched on variables briefly last week.  Variables are containers of information.  Variables can hold different types of data.  We will be primarily using numbers and text, or strings, such as <code>var n = 1;</code> or <code>var name = "Jerry";</code>.  One feature that is unique to JavaScript is "type coercion", which is that JavaScript can automatically convert a string with a number character, such as <code>"1"</code> to a number, or a number to a string.  This can be a confusing concept, which will make more sense over time.  For novice coders, it makes things a little easier, but it also can create bad coding practices.  A lot can be done with variables, such as arithmetic, string modification and just keeping track of information.  JavaScript variables have dynamic types, meaning that a variable that once held a number can be assigned a string or boolean.  This is not true in most other languages like Java or C.</p>
+      <p>Another variable type we will use is a <code>boolean</code>, which is a true or false statement.  Booleans can also be expressed as 0 or 1.  Booleans are used for conditional testing, for example, you might say, if this URL is the corrent URL, then load the image.  We'll see examples of booleans in our demo today.</p>
+      <p>An <code>array</code> is another datatype that is a list containing multiple variables, such as this: <code>var imgs = ["cat.jpg", "dog.jpg", "alligator.jpg"];</code> which is a list of images that might be loaded into a site.  In JavaScript, the items in an array can have any datatype, like a number, string, boolean, or even another arrary.  In other languages, the data in an array usually are all of the same type.  The elements of an array are accessed by their index number, starting with zero.  So, <code>imgs[0]</code> will return <code>"cat.jpg"</code>.</p>
+      <p>Variables can also be declared as objects, by using the word "new", such as <code>var imgHolder = new String;</code>.</p>
+      
+      <h1>Objects</h1>
+      <p>In JavaScript, anything can be an object.  In fact, in JavaScript, pretty much everything is an object, which again is not true of programming languages like Java and C.  An object is a piece of data, with attached properties and methods.  Properties are values, much like the properties of a CSS selector.  Methods are actions that can be executed on the data, like the <code>slideUp()</code> and <code>animate()</code> methods we used last week in the jQuery examples.</p>
+      <h1>Functions</h1>
+      <p>A function is a block of code that is executed when called.  Functions act and look like methods, but are not associated with an object.  The syntax of a function looks a little bit like a CSS rule:</p>
+      <pre class="block">function scrollImages() {
+      
+     // actions go here
+      
+}</pre>
+
+      <p>Functions can also take arguments, which can be variables or pieces of data, like the duration argument we used with jQuery transitions last week.  Arguments are passed into the parentheses at the end of the function name and used in the code.</p>
+      <pre class="block">function scrollImages(imgArray, numImages) {
+      
+     // actions go here
+      
+}</pre>
+
+      <p>Functions can also be used to return a value that is the result of whatever code is run, which can be assigned to a variable.</p>
+      <pre class="block">function scrollImages(imgArray, numImages) {
+      
+     // actions go here
+     return x;
+      
+}</pre>
+
+      <p>Variables that are created inside of a funtion are only available to that function.  So two functions can use the same variable name.  Variable declared outside of functions are global, meaning they can be accessed within the function and modified.</p>
+      <pre class="block">var img1 = "cat.jpg"; // a global variable
+
+function scrollImages(img1) {
+      
+     var num = 5; // a local variable
+      
+}</pre>
+
+      <h1>Operators</h1>
+      <p>JavaScript uses various symbols to do operations.  The <code>=</code> sign is used to assign data to variables, like <code>var img = "mycat.jpg";</code> or <code>var i = 0;</code>.  You can also use <code>+</code> to add variables, <code>-</code> for subtraction, <code>*</code> for multiplication, <code>/</code> for division,  <code>++</code> to increment by one, <code>--</code> to decrease a value by one, <code>+=</code> to add a value to the current value, or <code>-=</code> to subtract that value.  You can also use <code>*=</code> and <code>/=</code>.  Modulus, <code>%</code> will give you the remainder from a division, ie <code>5%4 = 1</code>, which is useful for cyclical logic, and can also be used as <code>%=</code>.  These operations are done primarily on numbers, but you can do addition with strings, and add strings to numbers.</p>
+      <p>JavaScript also uses logical operators, which help us determine if two values are equal or if a value is true or false, allowing us to make decisions with code.  The <code>==</code> is used to compare two values.  Because of the way JavaScript handles type, there is also a <code>===</code> sign, that is not used in Java or C, which evaluates the value and the datatype.  You can also use <code>!=</code> to determine if two values are not equivalent or <code>!==</code>.  The operators <code>></code> and <code><</code> can determine if a value is greater than or less than another value, as well as greater or equal, and lesser or equal with <code>>=</code> and <code><=</code>.</p>
+      <p>You can combine logical operators using <code>&&</code>, which requires both operations to return true, or <code>||</code> which requires either operation.  You can use as many as needed.</p>
+      <p>Conditional statements use logical operators to determine whether or not to run a block of code.</p>
+      <pre class="block">if (x <= 5) {
+  x++;
+}</pre>
+      <p>Conditional statments start with <code>if</code>.  You can then use <code>else</code> to execute code if the operation evaluates in the opposite way, or <code>else if</code> to add another condition.</p>
+      
+      <h1>Loops</h1>
+      <p>JavaScript uses loops to execute similar actions multiple times without requiring the code to be repeated.  We will mostly be using for loops, which will allow us to add similar kinds of content, like images or layouts, without having to copy and paste each time.  For loops use three statements, one that is set up before the code block runs, the second which defines a condition for the loop to continue, and the third which defines when the loop should stop running, ie: <code>for (statment 1, statement 2, statement 3) { // code to execute }</code>.</p>
+      <pre class="block">for (var i = 0; i < imgs.length; i++ ) {
+  var img = imgs[i];
+}</pre>
+      
+      <h1>A couple of useful things for testing</h1>
+      <p>When writing JavaScript is can sometimes be difficult to tell why a piece of code is not executing.  There are a couple of ways to send messages to yourself to make sure that your code is executing and your variables are doing what they are supposed to.</p>
+      <p><code>console.log(message);</code> can be used to print things to the console, which you can open with Chrome developer tools and on other browsers.  You can pass the console.log strings, numbers, arrays, functions and any combination of those.</p>
+      <p><code>alert();</code> is a slightly more dramatic way to send a message.  You can pass the same values and the browser will open a new window with the message, which will stop the rest of the code from executing.</p>
+      
+      
+      <p>In the demo today, we will see how all of these concepts are used to create functionality for websites, like an image slider.</p>
+
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

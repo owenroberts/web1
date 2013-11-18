@@ -190,7 +190,7 @@ Naavy = {
 					
 					['More jQuery', 'lecture'],
 					['jQuery slideshow', 'demo'],
-					['Assignment', 'assignment']
+					['Assignment', 'assignment[]']
 					
 					
 					]

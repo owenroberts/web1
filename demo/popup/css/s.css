@@ -11,7 +11,7 @@ body {
 }
 
 div.img {
-	width:180px;
+	width:240px;
 	height:150px;
 	background-color:lightgreen;
 	margin:5px;
@@ -22,26 +22,41 @@ div.img {
 	z-index:0;
 }
 
+div.img img {
+	height:150px;
+}
+
+div.img:hover {
+	cursor:pointer;
+}
+
 div.overlay {
-	width:160px;
+	width:220px;
 	height:130px;
 	margin:-10px;
 	position:absolute;
 	background-color:rgba(255,255,255,0.8);
 	opacity:0;
 	padding:20px;
+	top:0;
+	left:0;
 
 }
 
 div.img-holder {
-	width:760px;
+	width:780px;
 	height:480px;
-	background-color:lightgreen;
+	background-color:lightblue;
 	border:10px solid white;
 	outline:1px solid black;
 	position:relative;
-	left:40px;
+	margin:5px;
+	left:0px;
 	top:40px;	
 	display:none;
 	z-index:1;
+}
+
+div#content {
+	padding:20px;
 }

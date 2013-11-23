@@ -1,0 +1,8 @@
+svg a {
+	-webkit-transform-origin: 50% 50%;
+	transition: -webkit-transform 0.3s;
+}
+
+svg a:hover {
+	-webkit-transform: rotateZ(180deg);
+}

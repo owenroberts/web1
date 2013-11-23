@@ -1,0 +1,28 @@
+body {
+	margin:0;
+	padding:0;
+}
+
+ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+li {
+	float:left;
+	width:100px;
+}
+
+header {
+	height:60px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(134,55,145,1)), color-stop(100%,rgba(255,50,255,1)), color-stop(100%,rgba(162,40,255,1)));
+}
+
+header a {
+	color:white;
+	text-decoration:none;
+	margin-top:40px;
+	position:relative;
+	top:20px;
+}
+

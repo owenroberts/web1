@@ -198,14 +198,15 @@ Naavy = {
 				{
 					url:'week13',
 					pages: [
-					['Electronic literature', null],
-					['SVG animation', null]
+					['Intro to SVG', 'lecture'],
+					['SVG animation', 'demo']
 					]
 					
 				},
 				{
 					url:'week14',
 					pages: [
+					['Electronic literature', null],
 					['Compatibility & backend', null]
 					]
 				}

@@ -20,6 +20,11 @@ pre {
   
 }
 
+pre.inline {
+	padding:0;
+	display:inline;
+}
+
 pre.block {
 	background: #f4f4f4; /* Old browsers */
 	background: -moz-linear-gradient(top, #f4f4f4 74%, #ffffff 100%); /* FF3.6+ */

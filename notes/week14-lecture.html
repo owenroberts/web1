@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Browser compatibility and back end</h1>
+      <hr>
+      
+      <h2>Browsers...</h2>
+      <p>Because browsers are created by different companies they all render CSS styles in different ways.  Most CSS selectors will look similar, but more advanced CSS3 styles are often problematic when testing in different browsers.</p>
+      <p>There are a few ways to deal with this.</p>
+      <p>You can write separate stylesheets for separate browsers.  This is an advanced method which requires some JavaScript to determine what browser is being used and then loading the appropriate stylesheet.  Here's a good tutorial on that method: <a href="http://www.thesitewizard.com/css/excludecss.shtml" target="blank">multiple style sheets</a>.</p>
+      <p>For simpler websites, you can use specific properties to account for different browsers.</p>
+      <p>Those properties look like this:</p>
+      <pre class="inline">-moz-transform: scale(1.6);<br>-ms-transform: scale(1.6);<br>-o-transform: scale(1.6);<br>-webkit-transform: scale(1.6);<br>transform: scale(1.6);</pre>
+      <p>The specific prefixes refer to different browsers.  <pre class="inline">moz</pre> is Mozilla Firefox, <pre class="inline">ms</pre> is for Internet Explorer (Microsoft), <pre class="inline">o</pre> is for Opera, and <pre class="inline">webkit</pre> works for Chrome and some versions of Safari.  In some instances, especially with old versions of IE, the property name will be completely different beyond the prefix, for example, IE version 8 and earlier does not support <code>transform: scale</code> so you have to use <code>zoom</code> or something like this: <code>filter: progid:DXImageTransform.Microsoft.Matrix(M11=1.05,M12=0,M21=0,M22=1.05,SizingMethod='auto expand');</code>.  In fringe cases its best to just google things that aren't working.  There are a lot of web services which will compute these properties for you, like <a href="http://prefixr.com/" target="blank">Prefixr</a>.  There are also a bunch of websites that will tell you if a particular browser will support various libraries and properties like <a href="http://caniuse.com">Can I use...</a>.</p>
+      <p>A good example of the variation in browsers is font, which looks really different in different browsers.  This is a good explanation of how different browsers render font, and how to accommodate the differences: <a href="http://www.smashingmagazine.com/2012/04/24/a-closer-look-at-font-rendering/" target="blank">Font rendering</a>.</p>
+      
+      <h2>Back end</h2>
+      
+      <p>In this class we have covered methods of front end development.  For a website to be functional, we have to combine front and back end development.  Front end refers to what we see on the screen.  This is also called "client side" development, because it is made for a user or client to interact with the programming.  Web development borrows the "model-view-controller" architecture from software design, which separates the user interface from the storage architecture, so that the front end is developed in separate files from the back end.  The front end uses shared protocols to get information from the server and render it on a browser.  Front end design in software involves building a graphic user interphase (GUI) which often acts like a browser, providing visual components for the user to interact with.</p>
+        
+        <p>The most back end that we have done is simply uploading our files to the TCNJ server via Cyberduck or other FTP programs.  While we don't learn back end programming, its good to go over the basic concepts so that you can communicate with back end programmers when working on a project.</p>
+        
+        <p>A server contains software that runs actions, like requests for information, and a database that contains the information.  The information on a server is organized in files and databases, which contain references to information.</p>
+        <p>Traditional web development has relied on "relational" databases like MySQL which can be represented by tables or charts that resemble Excel documents.  Modern SQL (Structured Query Language) languages first appeared in the 1970s.  When using a SQL database, information is queried by inputing a string that is interpreted by the SQL software.  MySQL requires that tables are defined before information can be stored, and every row must have the same number of columns, so pieces of data have to have the same structure.</p>
+        <p>More recently developed databases have been based on a non-relational model, sometimes referred to as NoSQL, which represents data documents.  We have used very small versions on these documents in class when writing JavaScript.  A popular database is MongoDB, which relies on JSON (JavaScript Object Notation) for the data structure.  This is convenient for us because JSON is just JavaScript documents.  Non-relational databases can contain data in differing structures and can be augmented by adding data through a program.  MongoDB uses object querying, which is similar to how we've been using objects in JavaScript to get attributes and information.  Because of these differences, MonogoDB can perform much faster than a relational database in some situations, but generally, most websites do not have a complex enough back end for it to make much of a difference.</p>
+        
+        <p>There are many programming languages that can be used to interact with a server, like JavaScript, Python, PHP and many others.  PHP is one of the most popular languages, which was developed specifically for server side scripting in the mid 90s.  PHP can be written directly into HTML markup.  It uses traditional concepts like functions and objects.  You see PHP in a lot of websites, including all WordPress blogs.  PHP has also been the subject of recent criticism for major security issues (usually caused by developers failing to use best practices) and for the messy way it implements coding concepts, such as the reuse of functions.  Node.js is an example of a recent software platform based on JavaScript that began to be developed in 2009 which has quickly gained popularity.  There are many other web frameworks available with various advantages and disadvantages.</p> 
+          
+        
+        <h2>Domain Name System</h2>
+        <p>If you guys are interested in taking your sites off of the TCNJ servers and hosting them on your own page, the first step would be to register a domain name.  The Domain Name System (DNS) is the system used for naming computers and servers connected to the Internet.  DNS translates IP addresses, which are strings of numbers, into hostnames that can be read in English and used as the basis for URLs.  DNS is implemented by assigning domain names to named servers.  I'll show you quickly how to register a domain name, and then point it to a server, at which point you can use FTP to upload static files, or install software to run a database or dynamic website.</p>
+        
+      
+      
+      <div id="sources"><p>Resources</p>
+        <ul>
+        <li><a href="http://www.neonrain.com/blog/mysql-vs-mongodb-relational-and-non-relational-databases" target="blank">MySQL vs MongoDB</a></li>
+        <li><a href="http://slashdot.org/topic/bi/sql-vs-nosql-which-is-better/" target="blank">SQL vs NoSQL</a></li>
+        <li><a href="http://php.net/" target="blank">PHP</a></li>
+        <li><a href="http://nodejs.org/" target="blank">node.js</a></li>
+</ul>
+        
+        </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

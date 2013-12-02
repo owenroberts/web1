@@ -206,8 +206,9 @@ Naavy = {
 				{
 					url:'week14',
 					pages: [
-					['Electronic literature', null],
-					['Compatibility & backend', null]
+					/*['Electronic literature', null],*/
+					['Compatibility & back end', 'lecture'],
+					['Final', 'assignment']
 					]
 				}
         ],

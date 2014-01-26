@@ -28,13 +28,13 @@ Naavy = {
       //if home page is selected, make it "active", add href
       if (dir == 'notes') urlPre2 = "../"
       else urlPre = 'notes/'
-      if (pageUrl == 'home.html' || pageUrl == '') {
-        nav.find('a').attr('id','active').attr( 'href', 'home.html' )
+      if (pageUrl == 'index.html' || pageUrl == '') {
+        nav.find('a').attr('id','active').attr( 'href', 'index.html' )
         urlPre = "notes/"
         
         //if not homepage, add href
       }  else {
-        nav.find('a').attr( 'href', urlPre2 + 'home.html' )      
+        nav.find('a').attr( 'href', urlPre2 + 'index.html' )      
       }
     
       //add extra links to bottom
@@ -100,117 +100,10 @@ Naavy = {
         {
           url:'week1',
           pages: [
-          ['History of the Internet', 'lecture'],
-          ['Getting started with HTML', 'demo'],
-          ['Assignment', 'assignment']
+          ['Introduction to JavaScript', null],
+          ['Assignment', null]
           ] 
-        },
-        {
-          url:'week2',
-          pages: [
-          ['Evolution of web design', 'lecture'],
-          ['Introduction to CSS', 'demo'],
-          ['Assignment', 'assignment']
-          ]
-        },
-        {
-          url:'week3',
-          pages: [
-          ['Web color', 'lecture-color'],
-          ['Web typography', 'lecture-type'],
-          ['Navigation menu with CSS box model, floats and pseudo classes', 'demo'],
-          ['Assignment', 'assignment']
-          ]
-        },
-        {
-          url:'week4',
-          pages: [
-          ['Form & Grid', 'lecture'],
-          ['Two column layout with HTML & CSS', 'demo'],
-          ['Assignment', 'assignment']
-          ]
-        },
-        {
-          url:'week5',
-          pages: [
-          ['Wireframing', 'lecture'],
-          ['Assignment', 'assignment']
-          ]
-        },
-				{
-					url:'week6',
-					pages: [
-					['CSS: Fixed position, drop down navs', 'demo'],
-					['Wireframe swap', 'class'],
-					['Assignment', 'assignment']
-					]
-				},
-				{
-					url:'week7',
-					pages: [
-					['Internet art', 'lecture'],
-					['Advanced hyperlink styles & embedding media', 'demo'],
-					['Assignment', 'assignment']
-					]
-				},
-				{
-					url:'week8',
-					pages: [
-					['Web standards', 'lecture'],
-					['Responsive layout design', 'demo'],
-					['Assignment', 'assignment']
-					]
-				},
-				{
-					url:'week9',
-					pages: [
-					['Final project presentations', null],
-					['Assignment', 'assignment']
-					]
-				},
-				{
-					url:'week10',
-					pages: [
-					['Interactive design', 'lecture'],
-					['Advanced CSS -- Media queries and animation', 'demo'],
-					['Assignment', 'assignment']
-					]
-				},
-				{
-					url:'week11',
-					pages: [
-					['Intro to jQuery', 'lecture'],
-					['jQuery image popup demo', 'demo'],
-					['Assignment', 'class']
-					]
-				},
-				{
-					url:'week12',
-					pages: [
-					
-					['More jQuery', 'lecture'],
-					['jQuery slideshow', 'demo'],
-					['Assignment', 'assignment']
-					
-					
-					]
-				},
-				{
-					url:'week13',
-					pages: [
-					['Intro to SVG', 'lecture'],
-					['SVG animation', 'demo']
-					]
-					
-				},
-				{
-					url:'week14',
-					pages: [
-					/*['Electronic literature', null],*/
-					['Compatibility & back end', 'lecture'],
-					['Final', 'assignment']
-					]
-				}
+        }
         ],
         
         linkers: [
@@ -220,7 +113,7 @@ Naavy = {
         },
         {
           name: 'Syllabus',
-          url: 'web1-fall2013.pdf',
+          url: 'web2-syllabus.pdf',
           target: 'blank'
         },
         {

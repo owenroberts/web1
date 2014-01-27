@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Introduction to JavaScript</h1>
+      <hr>
+      <p>JavaScript is a scripting language, a lightweight programming language, specifically designed for programming the elements of web pages. Last week we looked at some of the ways jQuery can interact with HTML and CSS content, by getting, setting and modifying various content, attributes and selectors.  Today we are going to look at some basic concepts in JavaScript and computer science in general which will allow us to interact with the browser and begin making dynamic designs.  When we talk about dynamic design we mean making a design which changes given various inputs and interactions.  The power of writing code is that we can build designs that react and change to various input, whether it is time, user interaction, data or other sources.</p>
+      
+       <h1>What we will need in this class:</h1>
+       <p>Everything we do in class will require a text editor and a browser.  I prefer to use <a href="http://macromates.com/download" target="blank">TextMate</a> and will do class demos using TextMate 2, which costs $50.  It's a good investment if you like it, but their are free editors that are just as effective.  For PC users, I recommend <a href="http://notepad-plus-plus.org/" target="blank">Notepad++</a> which is free.  <a href="http://www.sublimetext.com/2" target="blank">Sublime Text</a> is a popular editor for both operating systems.  If you have experience with Dreamweaver and prefer to stick with that I won't hold it against you.</p>
+       <p>I use Chrome as my primary browser and I recommend you do the same.  However, Safari, Opera and Firefox are also good options.</p>
+       <p>An important browser tool is the Console, which can be used for debugging and writing or testing code.  Chrome users can select View > Developer > JavaScript Console or press ⌥⌘J.
+For Safari, you have to enable the Developer menu in Preferences and then go to Develop > Show Error Console, or ⌥⌘C.
+Firefox is Tools > Web Developer > Web Console, or ⌥⌘K.</p>
+
+       <p>If you have a laptop, I recommend bringing it to class.  We will be writing a lot of code in class and it will just make it easier for you to keep track of files.  Of course, the class room has a bunch of computers which you can use if you don't have a laptop.</p>
+       
+       <p>File structure if very important for development.  It may seem like arbitrary conventions for organizing files, but you will find it will save you many headaches in the future.  Don't be afraid to ask about proper file structure.  Our projects will follow the same conventions with a main directory, which contains the index.html file and sub directories for images, CSS files, and JavaScript files.</p>
+       <img src="../imgs/web2files.png"  alt="Web2files">
+       
+       <p>You also will need an FTP client.  Cyberduck or FileZilla are both decent free options.  Look at the FTP instructions in the navigation menu for further information.</p>
+       
+       <h1>Let's get into some JavaScript</h1>
+       <p>First, an introduction by Douglas Crockford, a well known JavaScript architect and text book writer.  We'll watch the first ten minutes.</p>
+       <iframe width="560" height="315" src="http://www.youtube.com/embed/RO1Wnu-xKoY?rel=0" frameborder="0" allowfullscreen></iframe>
+       
+       <p>Great, so now that we know a little bit about the origins of JavaScript we're going to write some.  We'll start slow today and pick up over the next two weeks.  Our assignment for this week is about getting user input to change a design.  We'll learn some basic ways to get input, store it and use it.</p>
+       
+       <h1>The script tag</h1>
+       <p>The <code>&#60;script&#62;</code> tag is an HTML tag that is used to embed JavaScript into web pages.  We covered HTML tags last semester, and will review them next week.  This can be done by embedding an external file, similar to attaching a CSS file.  That would look like this:  </p>
+       
+       <pre class="block">&#60;script type="text/javascript" src="myjs.js"&#62;&#60;/script&#62;</pre>
+       
+       <p>We can also write JavaScript directly into an HTML file:</p>
+       <pre class="block">&#60;script type="text/javascript"&#62;
+   // 
+   // JavaScript goes here
+   //
+&#60;/script&#62;</pre>
+
+      <p>While both methods are acceptible, it is typically better to use external files, especially for JS files that are long or need to be used more than once.  Internal JS is good for functionality that will only be used once.</p>
+      
+      <p>JavaScript can also be written directly into HTML element tags.  This is typically done to trigger events.</p>
+      <pre class="block">&#60;body onload='init();'&#62;&#60;/body&#62;</pre>
+      <pre class="block">&#60;button onclick='launchFunction();'&#62;Click here.&#60;/button&#62;</pre>
+      
+  
+      <h1>Let's write some JavaScript</h1>
+      <p>We're going to make a file called myscript.js and embed it into a web page.  Use this file to try the following examples.</p>
+      <pre class="block"><xmp>document.write('Hello World.');</xmp></pre>
+      <pre class="block"><xmp>document.write('<h1>This is an HTML page.</h1>');
+document.write('<p>This is the first paragraph.</p>');</xmp></pre>
+
+<p>We can use JavaScript to write text on an HTML document and create HTML markup.  Let's look at a few things we can do with JavaScript before we go over syntax.</p>
+<p>We can use events to trigger actions:</p>
+<pre class="block"><xmp><button onclick='alert("I am a button");'>Click me!</button></xmp></pre>
+<p><button onclick='alert("I am a button");'>Click me!</button></p>
+<p>Or change HTML content:</p>
+<pre class="block"><xmp><button id="button" onclick='document.getElementById("button").innerHTML="Button clicked!";' >Change text.</button></xmp></pre>
+<p><button id="button" onclick='document.getElementById("button").innerHTML="Button clicked!";'>Change text.</button></p>
+<p>Or change CSS styles:</p>
+<pre class="block"><xmp><button id="cssbutton" onclick='document.getElementById("cssbutton").style.color="hotpink";'>Change text color.</button></xmp></pre>
+<p><button id="cssbutton" onclick='document.getElementById("cssbutton").style.color="hotpink";'>Change text color.</button></p>
+       
+<h1>Syntax</h1>
+<p>So now that we've seen some examples of JavaScript, let's talk about the syntax that these examples use.</p>
+<p>JavaScript commands are referred to as statements.  A block of JavaScript code is a sequence of statements that are executed by the browser.</p>
+<p>The semi-colon in JavaScript is optional.  Semi-colons are used to separate statements.  Some languages use it, like Java and C++, while other like Python do not.  JavaScript lets you do either, which is nice for beginners and programming cowboys, but there are many cases in which leaving semi-colons out will cause problems, so it is considered best practice to use semi-colons at the end of each statement and we will be adhering to that convention in this class.</p>
+<p>JavaScript code blocks are separated in functions by curly brackets <code>{ .... }</code>.  We will go over this more when we start writing functions.</p>
+<p>Line breaks are not necessary in JavaScript if you are using semi-colons, but they are considered good format for writing code that is legible and well organized.  Many libraries are later "minified" by removing extra characters like line breaks.</p>
+<p>JavaScript is case sensitive.  Writing <code>getElementbyId</code> is wrong.  So is <code>getElementByID</code>.  The correct method is <code>getElementById</code>.  Variables are written in what is known as "camel case", meaning that the first letter is lowercase, and words are separated using capital letters, instead of dashes or underscores.  <code>myVariable</code> is correct.  <code>MyVariable</code> and <code>my_variable</code> are incorrect.</p>
+<p>JavaScript ignores whitespace.  <code>myVariable = 100;</code> is the same as <code>myVariable=100;</code>.</p>
+<p>You might be wondering what's the deal with all those quotation marks?  You can use either double quotations or single quotations to separate strings as the values for variable and function calls.  It is best to use one or the other.  The reason we use both it because we often pass code that requires a string with strings written inside of it like in our onclick examples above.</p>
+<h1>Comments</h1>
+<p>Comments are an important aspect of JavaScript that are not part of the executed program.  Comments are necessary both as ways to communicate with other developers and as organizational markers for us as coders.  You can comment out a single line of JavaScript with a double back slash: <code>//</code>.  Multiple comment lines use <code>/* .... */</code> syntax:</p>
+<p><pre class="block">/*  everything inside 
+  here 
+  will 
+  be commented
+*/</pre></p>
+<h1>Variables</h1>
+<p>In our assignment today we will need to use variable to store information.  Variables are references to places in the computer memory that store information.  In JavaScript variables are special because everything can be written as a variable, as we will talk about more when we learn about objects.  JavaScript uses numbers and strings and has loose variable typing which we will demonstrate in the console.</p>
+<p>Declaring a variable looks like this: <code>var x = 10;</code>.  It is also acceptable to write <code>x = 10;</code> but it is better practice to declare variable with a var keyword.  A variable that is not assigned, such as <code>var index;</code> will have the value <code>undefined</code>.  String variable are declared like this: <code>var myString = "Hello World."</code>.  Boolean variables, which we will cover further next week, look like this: <code>var isValue = false;</code>.  We will cover more data types in depth next week.</p>
+
+<h1>Events</h1>
+<p>Events in JavaScript are functions that react to interactions with the browser, such as user clicks, document loading and window scrolling.  We will cover functions more in depth later, but for now let's talk about some basic user interactions.</p>
+
+<p><code>onclick()</code> executes when an element is loaded.</p>
+<pre class="block"><xmp><script>
+  document.getElementById('onclick').onclick = function(){
+  alert('The button has been clicked.');
+};
+</script></xmp></pre>
+
+<p><button id="onclick">On click.</button></p>
+<script>document.getElementById('onclick').onclick = function(){
+  alert('The button has been clicked.');
+};</script>
+
+<p><code>onchange()</code> executes when an input form is changed.</p>
+<pre class="block"><xmp><script>
+  document.getElementById('onchange').onchange = function(){    alert(document.getElementById('onchange').value);
+  };
+</script></xmp></pre>
+
+<p><input id="onchange" type="text" value="Enter text"></input></p>
+<script>document.getElementById('onchange').onchange = function(){
+  alert(document.getElementById('onchange').value);
+};</script>
+
+<p>This is one way to get data from a user, of which there are many.  We can use forms, input boxes and confirmation alerts, along with other events to get input.</p>
+<p>A <code>confirm</code> alert is similar to the alert function we've already used, but prompts the user to choose "Ok" or "Cancel".</p>
+<pre class="block"><xmp><script>
+function confirmButton()
+{
+var x;
+var r=confirm("Confirm this popup.");
+if (r==true) {
+  x = "You pressed OK!";
+} else {
+  x = "You pressed Cancel!";
+}
+document.getElementById("confirm").innerHTML = x;
+}
+</script></xmp></pre>
+<button onclick="confirmButton()">Click to confirm.</button>
+<p id="confirm"></p>
+<script>
+function confirmButton()
+{
+var x;
+var r=confirm("Confirm this popup.");
+if (r==true) {
+  x = "Ok.";
+} else {
+  x = "Cancel.";
+}
+document.getElementById("confirm").innerHTML = x;
+}
+</script>
+
+<p>A <code>prompt</code> asks the user for input.</p>
+
+
+
+<pre class="block"><xmp><script>
+function promptButton()
+{
+var r = prompt("Enter your name.", "Name");
+if (r != null){
+    document.getElementById("prompt").innerHTML = "Hello, " + r + ".";
+  }
+}
+</script></xmp></pre>
+<button onclick="promptButton()">What is your name?</button>
+<p id="prompt"></p>
+<script>
+function promptButton()
+{
+var r = prompt("Enter your name.", "Name");
+if (r != null){
+    document.getElementById("prompt").innerHTML = "Hello, " + r + ".";
+  }
+}
+</script>
+
+<p>We can also use JavaScript forms.</p>
+<pre class="block"><xmp><script>
+  function submitText() {
+    var result = document.getElementById("textbox").value;
+    alert(result);
+  }
+</script></xmp></pre>
+<input type="text" id="textbox">
+<button onclick="submitText()">Submit</button>
+  <script>
+  function submitText() {
+    var result = document.getElementById("textbox").value;
+    alert(result);
+  }
+</script>
+
+<p>Look at the link in Resources at the bottom of the page to learn more about forms.</p>
+
+<h1>Project critiques</h1>
+<p>This semester we're going to spend a little time each class looking at projects that use JavaScript and talking about whether we like them or not.  Today we're going to look at a data visualization made an author, Douglas Coupland, and musician, Paul Humphreys of Ochestral Manoeuvres in the Dark, that I like.</p>
+  <p><a href="http://www.electricikebana.com/index_no_webgl.html" target="blank">Electric Ikebana</a></p>
+       
+       
+       
+       
+
+       check for access to learning javascript
+       
+
+      <div id="sources"><p>Resources</p>
+        <ul><li><a href="http://yuiblog.com/crockford/" target="blank">Crockford on JavaScript</a></li>
+          <li><a href="http://www.quirksmode.org/js/forms.html#stext" target="blank">JavaScript forms</a></li>
+          </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

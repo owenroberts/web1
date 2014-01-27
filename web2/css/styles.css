@@ -11,7 +11,9 @@ img { border: 0; }
 
 a, a:link, a:hover, a:visited {
 	text-decoration:none;
+	transition:color 1s;
 }
+
 
 
 pre {
@@ -28,7 +30,7 @@ pre.inline {
 pre.block {
 	background: #f4f4f4; /* Old browsers */
 	background: -moz-linear-gradient(top, #f4f4f4 74%, #ffffff 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(74%,#f4f4f4), color-stop(100%,#ffffff));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(84%,#f4f4f4), color-stop(100%,#ffffff));
 	padding:5px;
 	width:80%;
 	white-space:pre-wrap;
@@ -43,7 +45,6 @@ xmp {
   color:blue;
   display:inline;  
   white-space:pre-wrap;
-  padding-left:10px;
 }
 
 a:link, a:visited {

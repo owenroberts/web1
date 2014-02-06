@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  <style type="text/css">
+  
+  #box1 {
+    border:1px dashed black;
+    width:540px;
+    height:280px;
+    background-color:white;
+    text-align:center
+  }
+  
+  #box2 {
+    border:1px solid black;
+    background-color:orange;
+    width:480px;
+    height:220px;
+    margin: 10px 30px;
+  }
+  
+  #box3 {
+    border:1px solid black;
+    width:400px;
+    height:140px;
+    background-color:white;
+    text-align:center;
+    margin: 20px 40px;
+  }
+
+  #box4 {
+    border:1px dashed black;
+    width:300px;
+    height:80px;
+    background-color:white;
+    text-align:center;
+    margin:10px 50px;
+  }
+  
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Reivew of HTML & CSS</h1>
+      <hr>
+      <h1>Document structure</h1>
+      <p>Next week we're going to be covering Document Object Model for JavaScript, so we should review some basics for HTML document structure.  You might recall this stuff from last semester.</p>
+      <p>HTML document structure.</p>
+      <xmp><!DOCTYPE html>
+<html>
+<head>
+  <title>Page title</title>
+  <link type="text/css" rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+</head>
+<body> 
+  <div id="container">
+    <header></header>
+    <nav></nav>
+    <section></section>
+    <aside></aside>
+    <footer></footer>
+  </div>       
+</body>
+    </xmp>
+    
+    <p>Let's go over these basic HTML tags:</p>
+    <code style="color:blue">
+      <ul><li>head</li>
+        <li>meta</li>
+        <li>body</li>
+        <li>div</li>
+        <li>p</li>
+        <li>h1, h2, etc.</li>
+        <li>br</li>
+        <li>hr</li>
+        <li>ol, ul, li</li>
+        <li>blockquote, em, strong, code, pre</li>
+        <li>header, nav, section, aside, footer, article</li>
+        <li>a</li>
+        <li>img</li>
+        <li>style</li>
+        <li>script</li>
+        <li>iframe</li>
+      </ul></code>
+      
+      
+      <p>HTML tags have attributes, which add information for the browser, such as style, scripting and layout.  An example of an attribute is the <code>href</code> and <code>target</code> in an anchor tag: <span style="font-family:courier">&#60;a <code>href="google.com"</code> <code>target="blank"</code> &#62;My link&#60;/a&#62;</span>.</p>
+      
+      <h1>Nesting</h1>
+      <p>Nesting is an important concept to understand when for when we start using the DOM.  DOM manipulation requires "traversing the DOM", or moving from element to element using relationships.  The <code>html</code> elements is always going to be the <code>grandfather</code> element of any element.  <code>Parent</code> elements are the element in which an element is directly nested, like <code>head</code> or <code>body</code> in <code>html</code>.  The elements directly inside of an element are <code>child</code> elements.  <code>children</code> of those elements are the <code>descendants</code> of the previous element.  These terms are used by JavaScript to locate specific parts of the document</p>
+      
+
+      <h1>CSS syntax</h1>
+      <p>Basic CSS syntax looks like this: <code>selector { property: value }</code>.  The selector refers to the HTML tag, the property describes a attribute like color or font-size, and the value sets that value.  Look <a href="http://www.tcnj.edu/~robertso/notes/week2-demo.html">here</a> to review more syntax rules.</p>
+      
+      <h1>CSS box model</h1>
+      <p><div id="box1">Margin
+        <div id="box2">Border
+          <div id="box3">Padding
+            <div id="box4">Content
+              </div>
+          </div>
+        </div>
+      </div></p>
+  
+      <p>Using <code>margin</code>, <code>padding</code>, and <code>border</code>, we can separate our list items from one another.</p>
+      
+    	<h2>CSS Positioning</h2>
+    	<p>The position property allows you to tell HTML elements where to go on a page.  CSS elements default to "static" meaning they will flow with other elements in the page.</p>
+    	<p>Floating</p>
+    	<ul><li>Pushes elements into the flow of the page, either to the right or left.</li>
+    		<li>Best way to position elements next to each other, place images within text, and layout pages.</li>
+    		<li>Clear: Tells the next elements not let floated elements next it.</li>
+    		<li>Values for float and clear include: <code>right, left, none, inherit</code></li>
+    		</ul>
+    	<p>Fixed</p>
+    	<ul><li>Positions elements in browser window, regardless of other elements.
+    		<br><code>position: fixed;</code> </li>   		
+        <li>Can be placed with <code>top, bottom, right, left</code></li>
+    		</ul>
+	
+    	<p>Relative</p>
+    	<ul><li>Positions relative to normal position in the flow of page.</li>
+    		<li>Relative elements can overlap with other elements.</li>
+    		</ul>
+	
+    	<p>Absolute</p>
+    	<ul><li>Positions relative first parent element</li>
+    		<li>Removed from the normal flow of the page.</li>
+    	</ul>
+        
+      <h1>Class vs. id</h1>
+      <p>CSS rules are typically applied using a class selector, <code>.myclass</code>, or an id, <code>#myid</code>.  Class rules are meant to be applied to many different elements on a page and can be written as compound class like this: <code>&#60;p class="red centered content" id="myid"&#62;</code> in which each word refers to a set of rules.  Id can only be used once on a page and each tag can only have one id.  These standards are not enforced consistently by errors, but are essential for best practices.
+      
+
+      <div id="sources"><p>Resources</p>
+       <ul>
+        <li><a href="http://www.w3.org/TR/html401/struct/global.html" target="blank">HTML structure</a></li>
+        <li><a href="http://htmldog.com/reference/htmltags/" target="blank">HTML tags</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/HTML5_element_list" target="blank">HTML elements</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="blank">HTML attributes</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="blank">CSS position</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors" target="blank">CSS selectors</a></li>
+        </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

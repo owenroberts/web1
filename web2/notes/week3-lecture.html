@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      
+      
+      <h1>Document Object Model</h1>
+      <hr>
+      <p>The DOM is an important API (Application Programming Interface) for JS developers, because it provides access to the structural elements of an HTML page, allowing scripting to modify the contents and design of a page.  The DOM organizes parts of the page into objects, with properties and methods that can be referenced by JavaScipt (as well as other scripting languages).  This allows us to create dynamic page designs, combining the HTML standard, CSS and scripting to create animation and dynamic changes to design.</p>
+      <p>Let's look at some examples:</p>
+      <pre class="block"><xmp><script> 
+function grafs() {
+  grafs = document.getElementsByTagName('p');
+  console.log(grafs);
+}
+</script></xmp></pre>
+      <button  onclick="grafs();">Get document paragraphs</button>
+        <script> 
+        function grafs() {
+          g = document.getElementsByTagName('p');
+          console.log(g);
+        }
+        </script>
+        <p>Open the JavaScript console to see the results when you click the button.  Then type <code>g</code> into the console and press Enter.  G is a variable, a list of 
+
+
+          <!-- 
+      statements
+      
+      logic 
+    
+      if then
+      logical operators
+      booleans
+      type coercion with booleans
+    
+      
+      and loops
+      
+      for
+      for in
+      while 
+      do while
+      
+      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FStatements%2Fdo...while
+            https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference/Introduction
+      
+      -->
+      
+      <div id="sources"><p>Resources</p>
+        <li><a href="https://developer.mozilla.org/en-US/docs/DOM" target="blank">DOM</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators" target="blank">Logical operators</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Statements" target="blank">Statements</a></li>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

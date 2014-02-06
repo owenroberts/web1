@@ -2,10 +2,17 @@
 /* CSS STYLES */
 
 
-/* RESETS */
-body, html, ul, h1, h2, h3 { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:15px; line-height:21px;}
+/*
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+@import url(http://fonts.googleapis.com/css?family=Istok+Web);
+@import url(http://fonts.googleapis.com/css?family=Asap);*/
 
-body { font-family:sans-serif;text-rendering: optimizeLegibility; }
+@import url(http://fonts.googleapis.com/css?family=Arimo);
+
+/* RESETS */
+body, html, ul, h1, h2, h3 { margin: 0; padding: 0; outline: 0; font-weight:normal; font-size:16px; line-height:21px;}
+
+body { font-family:'Arimo','Helvetica', sans-serif;text-rendering: optimizeLegibility; background-color:#fff; }
 
 img { border: 0; }
 
@@ -25,26 +32,30 @@ pre {
 pre.inline {
 	padding:0;
 	display:inline;
+	font-size:15px;
 }
 
 pre.block {
 	background: #f4f4f4; /* Old browsers */
 	background: -moz-linear-gradient(top, #f4f4f4 74%, #ffffff 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(84%,#f4f4f4), color-stop(100%,#ffffff));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(98%,#f4f4f4), color-stop(100%,#ffffff));
 	padding:5px;
 	width:80%;
 	white-space:pre-wrap;
+	font-size:15px;
 	
 }
 
 code {
   background:#fdf;
+	font-size:15px;
 }
 
 xmp {
   color:blue;
   display:inline;  
   white-space:pre-wrap;
+	
 }
 
 a:link, a:visited {
@@ -90,6 +101,8 @@ img {
   float: left;
   width: 210px;
 	margin-bottom:60px;
+	
+	
   
 }
 
@@ -140,10 +153,24 @@ img {
 }
 
 
+/*
+	 MENU
+*/
+
+#menu {
+	background: #fafaff;
+	position:fixed;
+	right:0;
+}
+
 /* --- main content -- */
+#content {
+	
+}
 
 #content a {
   display:inline;
+	
 }
 
 #content a:hover {
@@ -231,6 +258,8 @@ ul#layouts {
 #layouts img {
   border:1px dashed #5768e5;
 }
+
+
 
 
 

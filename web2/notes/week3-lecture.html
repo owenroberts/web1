@@ -21,8 +21,8 @@
       <p>Let's look at some examples:</p>
       <pre class="block"><xmp><script> 
 function grafs() {
-  grafs = document.getElementsByTagName('p');
-  console.log(grafs);
+  g = document.getElementsByTagName('p');
+  console.log(g);
 }
 </script></xmp></pre>
       <button  onclick="grafs();">Get document paragraphs</button>
@@ -32,7 +32,80 @@ function grafs() {
           console.log(g);
         }
         </script>
-        <p>Open the JavaScript console to see the results when you click the button.  Then type <code>g</code> into the console and press Enter.  G is a variable, a list of 
+        <p>Open the JavaScript console to see the results when you click the button.  Then type <code>g</code> into the console and press Enter.  <code>g</code> is a variable, a list of objects from the web document, in this case, paragraphs, or &#60;p&#62; tags.  We can manipulate any HTML tag this way.</p>
+        <p>All broswers come with some implementation of the DOM that can be accessed through JavaScript or other scripting languages.  The DOM can be accessed with a simple set of commands.  Look at <a href="https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference" target="blank">MDN's DOM reference</a> for an easily accessible list.</p>
+        <p>We have already looked at some examples of using the DOM last week when used examples like this:</p>
+        <p><code>onclick()</code> executes when an element is loaded.</p>
+        <pre class="block"><xmp><script>
+document.getElementById('onclick').onclick = function(){
+   alert('The button has been clicked.');
+};
+</script></xmp></pre>
+
+        <p><button id="onclick">On click.</button></p>
+        <script>document.getElementById('onclick').onclick = function(){
+          alert('The button has been clicked.');
+        };</script>
+        
+        <p>Let's go over a few important DOM elements, using the console:</p>
+        <p>The <code>window</code> object refers to the web page itself.  We can use it to determine when the page has been loaded or to make an alert.</p>
+        <pre class="block">window.alert('I am using the DOM');</pre>
+        <p><code>document</code> refers to our HTML page.  We can use it to create and modify content.</p>
+        <p class="block">heading = document.createElement("h1");<br>
+          text = document.createTextNode("DOM Lecture!");<br>
+          heading.appendChild(text);<br>
+          document.body.appendChild(heading);</p>
+        <p>In this example, <code>createElement</code> makes a new HTML element, <code>createTextNode</code> makes a piece of HTML text, which is appended to the header we created with the <code>appendChild</code> method, and then added to the body.</p>
+        <p>The DOM uses the HTML element hierarchy to establish relationships between elements and move between them.  The <code>child</code> element is an element directly nested into another element.  <code>descendent</code> elements are any elements inside of the hierarchy of an element.  Similarly, <code>parent</code> and <code>ancestor</code> elements are those that have elements nested inside of them.  <code>sibling</code> elements are those that are next to one another.  Let's review those relationships based on one main element.</p>
+        <style>
+        div.elements {
+          border:2px dashed #f3f;
+          outline:1px solid lightgray;
+          margin:10px 20px;
+          padding:2px;
+          background:#fafafa;
+        }
+        </style>
+        
+        <div id="element" class="elements" style="margin-left:0">Ancestor
+          <div class="elements">Parent
+            <div class="elements">Sibling</div>
+            <div class="elements" style="background:blue">Main
+              <div class="elements">Child
+                <div class="elements">Descendent</div>
+                <div class="elements">Descendent</div>
+              </div>
+              <div class="elements">Child
+                <div class="elements">Descendent</div>
+                <div class="elements">Descendent</div>
+              </div>
+            </div>
+            <div class="elements">Sibling</div>
+    </div></div>
+    
+    <p>In the DOM, elements and attributes are referred to as <code>nodes</code>, hence the <code>createTextNode</code>.  When we get DOM elements in JavaScript, like the <code>g</code> object with the list of paragraphs in the first example, we are using a <code>nodeList</code>. Let's look at the <code>nodes</code> in our element example.</p>
+    <p class="block">var elem = document.getElementById('element');</p>
+    <p>We can get the children and attributes of this element.</p>
+    <p class="block">elem.attributes;<br>
+      elem.attributes.id;<br>
+      elem.attributes.style;</p>
+    
+      <p>Along with <code>getElementById</code>, let's look at some other important DOM methods.</p>
+      <p class="block">var elem = document.getElementById('element');<br>
+        elem.getElementsByTagName('div');<br>
+        elem.innerHTML = "new text";<br>
+        elem.style.color = "red";
+        elem.getAttribute('class');
+        
+      </p>
+      <p>Many other things are possible with the Document Object Model.  Look at the resources to explore further.</p>
+      <h1>Console errors</h1>
+      <p>What happens when you enter the following line of code into the JavaScript console in Chrome?</p>
+      <p class="block">var grafs = document.getElementByTagName('p');</p>
+      <p>By now, you have probably seen some of these errors.  The console is a great resource for this kind of feedback.  If you are missing a semi-colon or parenthesis, the console feedback will usually find it before you do.</p>
+    
+        
+        
 
 
           <!-- 

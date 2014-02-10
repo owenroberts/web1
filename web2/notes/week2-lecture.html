@@ -38,7 +38,7 @@
       <pre class="block">"Hello World".length</pre>
       <p>Strings also have some built in methods like <code>charAt()</code> and <code>replace()</code> which help us do evaluation and manipulation.</p>
       <pre class="block">"Hello World".charAt(0);</pre>
-      <pre class="block">"Hello World".replace("World", "Owen");</pre>
+      <pre class="block">"Hello World".replace("World", "Jerry");</pre>
       <h1>Booleans</h1>
       <p>Booleans default to the values <code>true</code> and <code>false</code>.  In JavaScript many values will become <code>false</code>, such as <code>0</code>, <code>""</code> (empty string), <code>NaN</code>, <code>null</code>, and <code>undefined</code>.  Everything else defaults to <code>true</code>, such as <code>"Hello Wordl"</code>, <code>1</code>, <code>99</code>, or <code>-99</code>.  Try evaluating some booleans in the console with this syntax:</p>
       <pre class="block">Boolean("");<br>Boolean(null);<br>Boolean(4);</pre>
@@ -47,7 +47,7 @@
       <pre class="block">myArray = ["cat", "dog", "alligator"];<br>myArray.length;<br>myArray[0];<br>myArray[2];</pre>
       <p><code>Arrays</code> can be populated by creating a new Array or assigning values.  Arrays can have any length, and unassigned spots will have the value <code>undefined</code>.</p>
       <pre class="block">myArray[99] = "bird";<br>myArray[99];<br>myArray[98];</pre>
-      <p>Array are good for looping through data structures to perform functions and operations.</p>
+      <p>Arrays are useful for looping through data structures to perform functions and operations.</p>
       <p>JavaScript also provides a nice function <code>typeof()</code> which allows us to test what type of data a variable contains</p>
       <pre class="block">typeof("Hello World");<br>typeof(5);<br>typeof(n);</pre>
       <h1>Null and undefined</h1>
@@ -63,10 +63,10 @@
       <pre class="block">function printName(name) {
   console.log(name);
 }
-printName("Owen");</pre>
+printName("Jerry");</pre>
 <p>Functions have to be called to execute.  This can be done with a call to the function as seen above.  Functions can also be made to self instantiate by adding a () to the end of the declaration, which are referred to as Immediately Invoked Function Expressions.</p>
 <pre class="block">(function printName() {
-  console.log("Hello, Owen");
+  console.log("Hello, Jerry");
 })();
 </pre>
 <p>The paranthesis wrap the function to tell the browser it is one statment.</p>
@@ -88,7 +88,7 @@ x = add(5, 25);</pre>
 <p>Functions can also be declared as anonymous functions, which uses an expression syntax, such as <code> var add = function(n1, n2){ .... }</code>.  It has the same functionality as the <code>function add() { .... }</code> format, but can be written in different places in code.</p>
 <p>Functions are the building blocks of programming and in JavaScript, where objects are functions, they are complex and dynamic.  We will learn more about functions as the semester progresses.  For now, lets learn how to use functions and variables to dynamically created HTML pages.</p>
 
-      
+     
 
       <div id="sources"><p>Resources</p>
        <li> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript       " target="blank">JavaScript basics</a></li>

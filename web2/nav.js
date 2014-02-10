@@ -99,7 +99,14 @@ Naavy = {
 				{
 					url:'week3',
 					pages:[
-					['Document Object Model / Logic and loops', null]
+					['Document Object Model', 'lecture'],
+					['Assignment', 'assignment']
+					]
+				},
+				{
+					url:'week4',
+					pages:[
+					['Logic and loops', null]
 					]
 				}
         ],

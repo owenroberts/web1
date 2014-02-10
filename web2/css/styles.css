@@ -18,7 +18,7 @@ img { border: 0; }
 
 a, a:link, a:hover, a:visited {
 	text-decoration:none;
-	transition:color 1s;
+	transition:color 400ms;
 }
 
 
@@ -29,25 +29,28 @@ pre {
   
 }
 
-pre.inline {
+.inline {
 	padding:0;
 	display:inline;
 	font-size:15px;
 }
 
-pre.block {
+.block {
 	background: #f4f4f4; /* Old browsers */
 	background: -moz-linear-gradient(top, #f4f4f4 74%, #ffffff 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(98%,#f4f4f4), color-stop(100%,#ffffff));
 	padding:5px;
 	width:80%;
-	white-space:pre-wrap;
 	font-size:15px;
+	font-family:courier;
+  color:blue;
+	
 	
 }
 
 code {
   background:#fdf;
+	color:purple;
 	font-size:15px;
 }
 
@@ -61,6 +64,10 @@ xmp {
 a:link, a:visited {
   color:#f3f;
   display:block;
+	transition:color 300ms;
+}
+a:hover {
+	color:purple;
 }
 
 hr {
@@ -88,6 +95,8 @@ blockquote {
 img {
   max-width:100%;
 }
+
+
 
 
 /* --- LAYOUT --- */

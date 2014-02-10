@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 1</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+
+      <h1>Create a page with user generated CSS styles</h1>
+      <hr>
+<!--
+      <p>Read <a href="http://www.paulgraham.com/hp.html" target="blank">Hackers and Painters</a> by Paul Graham</p>
+-->
+      <p>Read <a href="http://www.jnd.org/dn.mss/affordance_conv.html" target="blank">Affordance, Conventions and Design</a> by Donald Norman</p>
+      
+      <p>Use JavaScript, HTML, and the DOM to make a page where the user controls the style of the page.  A small example:</p>
+      <div id="example" style="outline:1px solid lightgray;padding:20px">
+        <h1>Welcome to my web page</h1>
+        <p>This is a web page that I made for you to design.</p>
+        <button onclick="bkgColor()">Enter the background color.</button>
+        <button onclick="txtColor()">Enter the text color.</button>
+      </div>
+      
+      
+      <script>
+      function bkgColor() {
+        var c = prompt('What color would you like the background to be?'); 
+        document.getElementById('example').style.background = c;
+      }
+      function txtColor() {
+        var c = prompt('What color would you like the background to be?'); 
+        document.getElementById('example').style.color = c;
+      }
+      </script>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../lib/skip.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

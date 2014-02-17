@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      <h1>JavaScript and CSS3</h1>
+      <hr>
+      <p>Last week we reviesed HTML and CSS.  I want to look at a new property of CSS before we start using JavaScript libraries like jQuery.  CSS3 has a transition property that allows us to do a lot of things that formerly required more JavaScript or jQuery to do, with just CSS and a little JavaScript.  We can use CSS to make transitions between colors, sizes and positions of our elements, using little or no scripting.  Not all CSS properties can have transitions applied to them, but most properties for color, size and position can be animated.  In many cases, CSS psuedo states like <code>:hover</code> or <code>:active</code> can be used to trigger transitions, but we can also set up transitions to be triggered by simple JavaScript changes.  Look at this simple example:</p>
+      <pre class="block"><xmp><style>
+    p#ex1 {
+      transition: color 2s;
+    }
+</style>
+<p id="ex1">Watch the color change.</p>
+<button onclick='document.getElementById("ex1").style.color = "blue";'>Click</button>
+</xmp></pre>
+      <style>
+      p#ex1 {
+        transition: color 2s;
+      }
+      </style>
+      <p id="ex1">Watch the color change.</p>
+      <button onclick='document.getElementById("ex1").style.color = "blue";'>Click</button>
+      
+      <p>I didn't even need a script tag for that one.  The transition property requires a property to transition and a duration.  We can write durastion in seconds or milliseconds, ie: <code>300ms</code> would be 300 milliseconds.  We can also use <code>all</code> to apply transitions to any changes to the CSS style of an element, but those styles must be specified.</p>
+      <pre class="block"><xmp><style>
+  p#ex2 {
+    position:relative;
+    width:200px;
+    height:50px;
+    left:0;
+    transition: all 3s;
+  }
+</style>
+<p id="ex2">Multiple changes.</p>
+<button onclick='allChange();'>Click</button>
+<script>
+  function allChange() {
+    var p = document.getElementById('ex2');
+    p.style.color = "white";
+    p.style.background = "blue"
+    p.style.width = "300px";
+    p.style.height = "200px";
+    p.style.left = "50px";
+  }
+</script></xmp></pre>
+      <style>
+      p#ex2 {
+        position:relative;
+        width:200px;
+        height:50px;
+        left:0;
+        transition: all 3s;
+      }
+      </style>
+      <p id="ex2">Multiple changes.</p>
+      <button onclick='allChange();'>Click</button>
+      <script>
+        function allChange() {
+          var p = document.getElementById('ex2');
+          p.style.color = "white";
+          p.style.background = "blue"
+          p.style.width = "300px";
+          p.style.height = "200px";
+          p.style.left = "50px";
+        }
+      </script>
+      <p>A third value can be added to the transition property to determine the style of animation with the transition timing property, including easings or steps.</p>
+      <pre class="block"><xmp><style>
+  p#ex3 {
+    position:relative;
+    background:purple;
+    width:200px;
+    height:50px;
+    left:0;
+    transition: all 3s ease;
+  }
+  p#ex4 {
+    position:relative;
+    background:blue;
+    width:200px;
+    height:50px;
+    left:0;
+    transition: all 3s steps(5, end);
+  }
+</style>
+<p id="ex3">Easing</p>
+<p id="ex4">Stepping</p>
+<button onclick='ease();'>Click</button>
+<button onclick='step();'>Click</button>
+<script>
+  function ease() {
+    var p = document.getElementById('ex3');
+    p.style.left = "400px";
+  }
+  function step() {
+    var p = document.getElementById('ex4');
+    p.style.left = "400px";
+  }
+</script></xmp></pre>
+      <style>
+      p#ex3 {
+        position:relative;
+        background:purple;
+        width:200px;
+        height:50px;
+        left:0;
+        transition: all 3s ease;
+      }
+      p#ex4 {
+        position:relative;
+        background:blue;
+        width:200px;
+        height:50px;
+        left:0;
+        transition: all 3s steps(5, end);
+      }
+      </style>
+      <p id="ex3">Easing</p>
+      <p id="ex4">Stepping</p>
+      <button onclick='ease();'>Click</button>
+      <button onclick='step();'>Click</button>
+      <script>
+        function ease() {
+          var p = document.getElementById('ex3');
+          p.style.left = "400px";
+        }
+        function step() {
+          var p = document.getElementById('ex4');
+          p.style.left = "400px";
+        }
+      </script>
+      
+      
+      <p>Besides being used for easier transitions in simple design elements like hyperlinks, navigation bars or slideshows, these are powerful methods for interactive graphics.</p>
+
+      <style>
+        #graphic {
+          position:relative;
+          border:1px solid lightgray;
+          height:300px;
+          width:300px;
+        }
+        #blue, #green, #red {
+          position:absolute;
+          bottom:0;
+          transition: all 1s;
+        }
+        #blue {
+          background: lightblue;
+          top:100px;
+          left:40px;
+          width:50px;
+        }
+        #red {
+          background: pink;
+          top:150px;
+          left:120px;
+          width:50px;
+        }
+        #green {
+          background: lightgreen;
+          top:20px;
+          left:200px;
+          width:50px;
+        }
+      </style>
+      <div id="graphic">
+        <div id="blue"></div>
+        <div id="red"></div>
+        <div id="green"></div>
+        <button onclick="one();">Click</button>
+        <button onclick="two();">Click</button>
+        <button onclick="three();">Click</button>
+      </div>
+      <script>
+      function one(){
+        document.getElementById('blue').style.top = "20px";
+        document.getElementById('red').style.top = "160px";
+        document.getElementById('green').style.top = "80px";
+      }
+      function two(){
+        document.getElementById('blue').style.top = "120px";
+        document.getElementById('red').style.top = "110px";
+        document.getElementById('green').style.top = "180px";
+      }
+      function three(){
+        document.getElementById('blue').style.top = "220px";
+        document.getElementById('red').style.top = "10px";
+        document.getElementById('green').style.top = "110px";
+        document.getElementById('blue').style.background = "blue";
+        document.getElementById('red').style.background = "red";
+        document.getElementById('green').style.background = "green";
+      }
+      </script>
+ 
+    
+    <div id="sources"><p>Resources</p>
+<ul>     <li><a href="http://easings.net/" target="blank">Easings</a></li>
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions" target="blank">CSS Transitions</a></li>
+     <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties" target="blank">CSS animated properties</a></li></ul>
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

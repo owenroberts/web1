@@ -38,9 +38,8 @@ pre {
 .block {
 	background: #f4f4f4; /* Old browsers */
 	background: -moz-linear-gradient(top, #f4f4f4 74%, #ffffff 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(98%,#f4f4f4), color-stop(100%,#ffffff));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(90%,#f4f4f4), color-stop(100%,#c8c8c8));
 	padding:5px;
-	width:80%;
 	font-size:15px;
 	font-family:courier;
   color:blue;
@@ -187,8 +186,9 @@ img {
 }
 
 #content h1 {
-  font-size:20px;
+  font-size:24px;
   margin-bottom:20px;
+	padding:5px 0;
 }
 
 #content p, img, iframe, pre, xmp {

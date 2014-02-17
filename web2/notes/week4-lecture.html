@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      <h1>Logic and loops</h1>
+      <hr>
+      <h1>Statements</h1>
+      <p>Statements are blocks of code that control the flow of operations and expressions to determine interactivity in a webpage.  Expressions and operations are statements.  Statements are separated by semi-colons.  Conditional logic and loops are two statements that allow us to add interactivity to a page, by creating rules and conditions for the script to act out.  We're going to look at logic and loops today.</p>
+      
+      <h1>Logic</h1>
+      <p>Conditional statements are actions that are executed if a tested condition is true.  JavaScript uses to formats for conditional statements: <code>if ... else</code> and <code>switch</code>.  Here's an example of a conditional statement:</p>
+      <pre class="block">function input() {
+    var color = prompt("Input 1 or 2");
+    if (color == 1) {
+      document.getElementById('if').style.background = "red";
+    } else if (color == 2) {
+      document.getElementById('if').style.background = "blue";           
+    }
+}</pre>
+      <p id="if">Input 1 for red and 2 for blue.<br>
+        <button onclick="input();">Input.</button>
+      </p>
+      <script>
+        function input() {
+          var color = prompt("Input 1 or 2");
+          if (color == 1) {
+            document.getElementById('if').style.background = "red";
+          } else if (color == 2) {
+            document.getElementById('if').style.background = "blue";           
+          }
+        }
+      </script>
+      
+      <p>If the user inputs 1, the first condition will be true.  If the user inputs 2 the second condition will be true.  Otherwise no condition will be satisfied and nothing will happen.  <code>else if</code> could be changed to <code>else</code> which would execute as long as the first condition doesn't evaluate to true.  You can nest conditional statements and test for as many conditions as desired.</p>
+      <p>Last week we talked about booleans and all the values that evaluate to false, including <code>false</code>, <code>undefined</code>, <code>null</code>, <code>0</code>, <code>NaN</code> and empty string, <code>""</code>.
+        <p>JavaScript uses the <code>==</code> to determine if values are equivalent, resulting in an evaluation of true of false.  The <code>!=</code> operator returns true if two values are not equivalent, or <code>!</code> before a value to indicate the opposite, ie: <code>!true</code> is false.  <code>==</code> ignores data type, so 7 will be equal to "7".  The <code>===</code> sign evaluates value and data type, so <code>7 === "7"</code> will return false.  There are a number of logical statements that help us evaluate more complex statements.  We can use <code>&&</code> and <code>||</code> to add statements to our condition.  <code>&&</code> requires all statements to evaluate true, reading left to right.  <code>||</code> requires one of the statements on either side to be true.  Try these example in the console:</p>
+        <p class="block">
+          true && false</p>
+         <p class="block"> 7 == "7" && NaN != 1</p>
+         <p class="block"> false || true</p>
+        <p class="block">  7 === "7" || 1 == 1 && !(false)      
+        </p>
+        <p>We can also uses parathesis <code>()</code> to nest logic rules.</p>
+        <p class="block">(true&&true||false) && true</p>
+        
+        <p><code>switch</code> statements evaluates an expression and matches that with a series of cases to determine which action to perform.</p>
+        <pre class="block">function switcher() {
+  var s = prompt('Input number.');
+  var p = document.getElementById('switch');
+  switch (s) {
+    case "1":
+      p.style.color = "blue";
+      p.style.background = "lightblue";
+      break;
+    case "2":
+      p.style.color = "green";
+      p.style.background = "lightgreen";
+      p.style.fontSize = "100px";
+      break;
+    case "3":
+      p.style.fontSize = "9px";
+      p.style.background = "purple";      
+  }
+}</pre>
+        
+        <p id="switch">Enter a number between 1 and 3.<br>
+          <button onclick="switcher();">Enter.</button></p>
+        <script>
+          function switcher() {
+            var s = prompt('Input number.');
+            var p = document.getElementById('switch');
+            switch (s) {
+              case "1":
+                p.style.color = "blue";
+                p.style.background = "lightblue";
+                break;
+              case "2":
+                p.style.color = "green";
+                p.style.background = "lightgreen";
+                p.style.fontSize = "100px";
+                break;
+              case "3":
+                p.style.fontSize = "9px";
+                p.style.background = "purple";          
+            }
+          }
+        </script>
+      
+        <h1>Loops</h1>
+        <p>A loop is a set of commands that is executed repeatedly until a condition changes.  JavaScript uses several loops statements.  The most common is possibly the <code>for</code> statement.</p>
+        
+        <pre class = "block">for (var i = 0; i < 5; i++) {
+  console.log("This is the " + i + " loop.");
+}</pre>
+        
+        <p>Looking at that piece of code, the <code>for</code> keyword indicates the beginning of the for loop.  Inside the parentheses there are three statements that control the duration of the loop.  The first statement establishes the initial condition: <code>var i = 0;</code>.  The second statement establishes the end condition: <code>i < 5;</code>.  As long as this condition evaluates to <code>true</code>, the loop will continue.  The final statement executes at the end of each loop to change the condition: <code>i++;</code>.  The code block for the loop is then contained in the curly brackets: <code>{ ... }</code>.</p>
+        
+        <p>Loops are an efficient way to excecute actions on a list or array of data.</p>
+        
+        <pre class="block">var imgs = ["cat.jpg", "dog.jpg", "bird.jpg"];
+for (var i = 0, len = imgs.length; i < len; i++) { 
+  console.log('&#60;img src="'+imgs[i]+'" &#62;');
+}</pre>
+          
+        <p>A <code>do ... while</code> statement repeats until a condition evaluates to false.</p>
+        <pre class="block">i = 0;
+do {
+  i += 1;
+  console.log(i);
+} while (i < 10);</pre>
+        
+        <p>A <code>while</code> statements executes as long as the first statement is true.</p>
+        <pre class="block">i = 0;
+while (i < 5) {
+  i++;
+  console.log("Loop " + i);
+}</pre>
+        
+        <p>JavaScript also uses loops to manipulate objects, such as <code>for ... in</code>.  We'll talk more about objects next week.</p>
+        
+          
+        
+        
+      <!-- 
+  
+  and loops
+  
+  for
+  for in
+  while 
+  do while
+  
+  -->
+
+      <div id="sources"><p>Resources</p>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Statements" target="blank">JavaScript statements</a></li>
+          </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

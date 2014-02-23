@@ -110,6 +110,12 @@ Naavy = {
 					['JavaScript and CSS3', 'demo'],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week5',
+					pages:[
+					['Arrays and Objects', 'lecture']
+					]
 				}
         ],
         

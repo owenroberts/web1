@@ -141,6 +141,7 @@ img {
   color:Gray;
   float:left;
   margin-left:-70px;
+	margin-top:20px;
 }
 
 #nav ul {
@@ -157,7 +158,7 @@ img {
 }
 
 #nav li + div {
-  margin-top:20px;
+  margin-top:0px;
 }
 
 

@@ -114,7 +114,9 @@ Naavy = {
 				{
 					url:'week5',
 					pages:[
-					['Arrays and Objects', 'lecture']
+					['Arrays and Objects', 'lecture'],
+					['Demo: jQuery dynamic grid', 'demo'],
+					['Assignment', 'assignment']
 					]
 				}
         ],

@@ -118,6 +118,14 @@ Naavy = {
 					['Demo: jQuery dynamic grid', 'demo'],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week6',
+					pages:[
+					['Review: SVG', 'review'],
+					['Repetition and random', 'lecture'],
+					['Assignment', 'assignment']
+					]
 				}
         ],
         

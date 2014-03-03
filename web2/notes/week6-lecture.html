@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  <style>
+  body {
+  }
+  svg {
+    margin:0;
+    padding:0;
+    
+    display:inline-block;
+    margin-top:-10px;
+      
+  }
+  div.example {
+    border:1px solid lightgray;
+    padding-left:5px;
+    margin:10px 0;
+  }
+  .example img {
+    padding:0;
+    margin:0;
+  }
+  
+  
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+      
+      <h1>Repetition vs. random</h1>
+      <hr>
+      
+      <p>Repetition is one of the fundamental elements of design.  Using a shape more than once is repetition.  SVG is a convenient way for us to do repetitive designs because they are small and mutable.  We can use the SVG graphics we just learned along with our for loops to create multiple copies of a shape.</p>
+      
+      <svg id="s1" width="100" height="100">
+        <circle cx="50%" cy="50%" r="40" fill="red" stroke="blue" stroke-width="10" />
+      </svg>
+      
+      <!-- 
+      patterns
+        vs
+      random
+        
+      repetition
+        
+      randomness
+        
+      for (var i = 0; i < 10; i++) {
+        var s = document.createElement('img');
+        s.src = "../demo/svg/green-sq.svg";
+        container.appendChild(s);
+      }
+      -->
+      
+      <div class="example" id="example1">
+        <p>Example 1</p>
+        <script>
+        var container = document.getElementById('example1');
+        var s = document.getElementById('s1');
+        for (var i = 0; i < 10; i++) {
+          var clone = s.cloneNode(s);
+          container.appendChild(clone);
+        }
+        </script>  
+      </div>
+      <pre class="block"><xmp><script>
+var container = document.getElementById('example1');
+var s = document.getElementById('s1');
+for (var i = 0; i < 10; i++) {
+  var clone = s.cloneNode(s);
+  container.appendChild(clone);
+}
+</script> </xmp></pre>
+      
+      
+      <p>We can also create new SVGs in Javascript and then append them to the document.</p>
+      
+      <div class="example" id="example2">
+        <p>Example 2</p>
+        <script>
+        var container = document.getElementById('example2');      
+        for (var i = 0; i < 10; i++) {
+          var s = '<svg id="s1" width="100" height="100"><circle cx="50%" cy="50%" r="40" fill="blue" stroke="green" stroke-width="10" /></svg>';
+          container.innerHTML += s;
+        }
+        </script> 
+      </div>
+      <pre class="block"><xmp> <script>
+var container = document.getElementById('example2');      
+for (var i = 0; i < 10; i++) {
+  var s = '<svg id="s1" width="100" height="100"><circle cx="50%" cy="50%" r="40" fill="blue" stroke="green" stroke-width="10" /></svg>';
+  container.innerHTML += s;
+}
+</script> </xmp></pre>
+
+      <svg id="s3" width="100" height="100">
+        <polygon points="0,0 100,0 50,100" fill="orange">
+      </svg> 
+  
+      <p>The advantage of using SVG is that we can create shapes that are not boxes or rectangles.  This is possible with HTML elements, but it requires hacking the usual layout of the elements. We can easily create SVGs of any shape in code or design them in Illustrator and use them on a webpage.</p>
+      
+      
+      
+      <div class="example" id="example3">
+        <p>Example 3</p>
+        <script>
+        var container = document.getElementById('example3');
+        var s = document.getElementById('s3');
+        for (var i = 0; i < 10; i++) {
+          var clone = s.cloneNode(s);
+          container.appendChild(clone);
+        }
+        </script> 
+      </div>
+      <pre class="block"><xmp><script>
+var container = document.getElementById('example3');
+var s = document.getElementById('s3');
+for (var i = 0; i < 10; i++) {
+  var clone = s.cloneNode(s);
+  container.appendChild(clone);
+}
+</script> </xmp></pre>
+
+      <p>When we use repetition with a variety of elements we create patterns.  We can use the same for loop to make patterns with SVG elements, or we can use the SVG <code>pattern</code> definition, which allows us to define a visual block and then use it as a repeating pattern.  These are easy to implement and modify.</p>
+
+      <div class="example">
+        <p>Example 4</p>
+        <svg width="100%" height="200">
+          <defs>
+              <pattern id="checkerPattern" patternUnits="userSpaceOnUse"
+                      x="0" y="0" width="20" height="20"
+                      viewBox="0 0 10 10" >        
+                  <rect x="0" y="0" width="5" height="5" fill="purple" />
+                  <rect x="5" y="5" width="5" height="5" fill="green" />
+              </pattern>
+          </defs>
+          <rect x="0" y="0" width="100%" height="200" fill="url(#checkerPattern)" />     
+        </svg>  
+      </div>
+      <pre class="block"><xmp><svg width="100%" height="200">
+  <defs>
+      <pattern id="checkerPattern" patternUnits="userSpaceOnUse"
+              x="0" y="0" width="20" height="20"
+              viewBox="0 0 10 10" >        
+          <rect x="0" y="0" width="5" height="5" fill="purple" />
+          <rect x="5" y="5" width="5" height="5" fill="green" />
+      </pattern>
+  </defs>
+  <rect x="0" y="0" width="100%" height="200" fill="url(#checkerPattern)" />     
+</svg> </xmp></pre>
+
+      
+      <p>We can make more complex patterns by varying shape, size and color.</p>
+      
+      <div class="example">
+        <p>Example 5</p>
+        <svg width="100%" height="200" >
+          <pattern id="pa" x="0.05" y="0.05" width=".25" height=".25">
+            <rect x="0" y="0" width="200" height="200" fill="lightblue" />
+            <rect fill="blue" x="0" width="25" height="25" y="0"/>
+            <rect fill="darkblue" x="15" width="40" height="40" y="15"/>
+            <rect fill="skyblue" x="45" width="25" height="25" y="45"/>  
+          </pattern>
+          <rect fill="url(#pa)" x="0" y="0" width="200" height="200"/>
+        </svg>
+      </div>
+      <pre class="block"><xmp>  <svg width="100%" height="200" >
+  <pattern id="pa" x="0.05" y="0.05" width=".25" height=".25">
+    <rect x="0" y="0" width="200" height="200" fill="lightblue" />
+    <rect fill="blue" x="0" width="25" height="25" y="0"/>
+    <rect fill="darkblue" x="15" width="40" height="40" y="15"/>
+    <rect fill="skyblue" x="45" width="25" height="25" y="45"/>  
+  </pattern>
+  <rect fill="url(#pa)" x="0" y="0" width="200" height="200"/>
+</svg></xmp></pre>
+      
+      <svg  id="p1" width="25" height="25">
+        <circle r="25" fill="lavender" />
+      </svg>
+      <svg id="p2" width="25" height="25">
+        <circle cx="100%" r="25" fill="pink" />
+      </svg>
+
+      <svg id="p3" width="25" height="25">
+        <circle cx="0" cy="100%" r="25" fill="lightgreen" />
+      </svg>
+
+      <svg id="p4" width="25" height="25">
+        <circle r="25" cx="100%" cy="100%"  fill="lightblue" />
+      </svg>
+      
+      <p>We can vary our pattern by using a for loop with different computations.</p>
+      
+      <div class="example" id="example6">
+
+        <p>Example 6</p>
+      
+        <script>
+        var c = document.getElementById('example6');
+        var s = [
+          document.getElementById('p1'),
+          document.getElementById('p2'),
+          document.getElementById('p3'),
+          document.getElementById('p4')
+        ];
+        for (var i = 0; i < 64; i++) {
+          var clone = s[i%s.length].cloneNode(s[i%s.length]);
+          c.appendChild(clone);
+        }      
+        </script>
+      </div>
+      <pre class="block"><xmp><script>
+var c = document.getElementById('example6');
+var s = [
+  document.getElementById('p1'),
+  document.getElementById('p2'),
+  document.getElementById('p3'),
+  document.getElementById('p4')
+];
+for (var i = 0; i < 64; i++) {
+  var clone = s[i%s.length].cloneNode(s[i%s.length]);
+  c.appendChild(clone);
+}      
+</script></xmp></pre>
+
+      <p>Let's modify it with a simple <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="blank">ternary switch</a>.</p>
+      <div class="example" id="example7">
+
+        <p>Example 7</p>
+
+        <script>
+        var c = document.getElementById('example7');
+        var s = [
+          document.getElementById('p1'),
+          document.getElementById('p2'),
+          document.getElementById('p3'),
+          document.getElementById('p4')
+        ];
+        var sw = false;
+        for (var i = 0; i < 64; i++) {
+          var n = i%4 + (sw ? -1 : 1);
+          var clone = s[n].cloneNode(s[n]);
+          c.appendChild(clone);
+          sw = !sw;
+        }      
+        </script>
+      </div>
+      <pre class="block"><xmp><script>
+var c = document.getElementById('example7');
+var s = [
+  document.getElementById('p1'),
+  document.getElementById('p2'),
+  document.getElementById('p3'),
+  document.getElementById('p4')
+];
+var sw = false;
+for (var i = 0; i < 64; i++) {
+  var n = i%4 + (sw ? -1 : 1);
+  var clone = s[n].cloneNode(s[n]);
+  c.appendChild(clone);
+  sw = !sw;
+}      
+</script></xmp></pre>
+      
+      <p>Or run through the shapes backwards.</p>
+      <div class="example" id="example8">
+
+        <p>Example 8</p>
+
+        <script>
+        var c = document.getElementById('example8');
+        var s = [
+          document.getElementById('p1'),
+          document.getElementById('p2'),
+          document.getElementById('p3'),
+          document.getElementById('p4')
+        ];
+        var sw = false;
+        for (var i = 0; i < 64; i++) {
+          var n = 3 - i%4;
+          var clone = s[n].cloneNode(s[n]);
+          c.appendChild(clone);
+          sw = !sw;
+        }      
+        </script>
+      </div>
+      <pre class="block"><xmp>  <script>      
+var c = document.getElementById('example8');
+var s = [
+  document.getElementById('p1'),
+  document.getElementById('p2'),
+  document.getElementById('p3'),
+  document.getElementById('p4')
+];
+var sw = false;
+for (var i = 0; i < 64; i++) {
+  var n = 3 - i%4;
+  var clone = s[n].cloneNode(s[n]);
+  c.appendChild(clone);
+  sw = !sw;
+}      
+</script></xmp></pre>
+      
+      
+      <p>Randomness is a way to add variability to a design using math and the computer.  Take a look at the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="blank">Math functions</a> available in Javascript, including <code>Math.random()</code>.  Let's also take a look at how randomness can be used in design with the <a href="http://vimeo.com/20488585" target="blank">MIT generative logo</a>.</p>
+      <div class="example" id="example9">
+        <p>Example 9</p>
+        <script>
+        function getRandomNumber(n) {
+          return Math.floor(Math.random()*n);
+        }
+        var c = document.getElementById('example9');
+        var s = [
+          document.getElementById('p1'),
+          document.getElementById('p2'),
+          document.getElementById('p3'),
+          document.getElementById('p4')
+        ];
+        for (var i = 0; i < 132; i++) {
+          var n = getRandomNumber(s.length);
+          var clone = s[n].cloneNode(s[n]);
+          c.appendChild(clone);
+        }
+        </script>     
+      </div>
+      <pre class="block"><xmp><script>
+function getRandomNumber(n) {
+  return Math.floor(Math.random()*n);
+}
+var c = document.getElementById('example9');
+var s = [
+  document.getElementById('p1'),
+  document.getElementById('p2'),
+  document.getElementById('p3'),
+  document.getElementById('p4')
+];
+for (var i = 0; i < 132; i++) {
+  var n = getRandomNumber(s.length);
+  var clone = s[n].cloneNode(s[n]);
+  c.appendChild(clone);
+}
+</script> </xmp></pre>
+      
+      <img src="../demo/svg/green-zag.svg" />
+      
+      <p>We can also use our own Illustrator drawings with code to make patterns.  This SVG could easily have been created in code, but it might be easier to design and modify in Illustrator.  The file can then be loaded into an <code>img</code>, <code>object</code> or <code>embed</code> tag.</p>
+      
+      <div class="example" id="example10">
+        <p>Example 10</p>
+        <script>
+        var c = document.getElementById('example10');
+
+        for (var i = 0; i < 24; i++) {
+          var img = document.createElement('img');
+          img.src = "../demo/svg/green-zag.svg";
+          img.style.width = "80px";
+          img.style.height = "80px";
+          c.appendChild(img);
+        }
+        </script>
+      
+      </div>
+      <pre class="block"><xmp><script>
+var c = document.getElementById('example10');
+
+for (var i = 0; i < 24; i++) {
+  var img = document.createElement('img');
+  img.src = "../demo/svg/green-zag.svg";
+  img.style.width = "80px";
+  img.style.height = "80px";
+  c.appendChild(img);
+}
+</script></xmp></pre>
+        
+  
+      
+      <div id="sources"><p>Resources</p>
+        <ul>
+          <li><a href="http://philbit.com/svgpatterns/        " target="blank">SVG patterns</a></li>
+          <li><a href="http://www.sophia.org/tutorials/design-in-art-repetition-pattern-and-rhythm">Repetition in art</a></li>
+          <li><a href="http://understandinguncertainty.org/node/1066">Randomness in art</a></li>
+        </ul>            
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

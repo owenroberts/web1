@@ -126,6 +126,13 @@ Naavy = {
 					['Repetition and random', 'lecture'],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week7',
+					pages:[
+					['Intro to d3', 'lecture'],
+					['Assignment', 'assignment']
+					]
 				}
         ],
         

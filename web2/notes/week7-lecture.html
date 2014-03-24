@@ -5,6 +5,10 @@
   <meta charset="utf-8">
   <script src="../demo/d3/d3.min.js" type="text/javascript" charset="utf-8"></script>
   
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
 </head>
 
 <body>
@@ -21,7 +25,7 @@
       
       <p>Okay, let's use some basic d3 with HTML.  We can recreate that bar graph from the CSS3 lecture without having to use the hardcoded numbers.</p>
       <p>Let's make a div with a few bars.</p>
-      <pre class="block"><xmp><style>
+      <pre class="block"><code>&lt;style&gt;
   #chart {
     width:400px;
     height:400px;
@@ -30,12 +34,12 @@
   #chart div {
     height:33%;
   }
-</style>
-<div id="chart">
-  <div></div>
-  <div></div>
-  <div></div>
-</div></xmp></pre>
+&lt;/style&gt;
+&lt;div id="chart"&gt;
+  &lt;div>&lt;/div&gt;
+  &lt;div>&lt;/div&gt;
+  &lt;div>&lt;/div&gt;
+&lt;/div&gt;</code></pre>
       <style>
         #chart, #newChart, #external {
           width:400px;
@@ -53,90 +57,89 @@
       </div>
       <p>Now manipulate it with these d3 functions:</p>
       
-      <pre class="block">d3.selectAll('#chart div')
+      <pre class="block"><code>d3.selectAll('#chart div')
   .data(['red', 'green', 'blue'])
-  .style('background-color', function(d) { return d; });</pre>
+  .style('background-color', function(d) { return d; });</code></pre>
   
-      <pre class="block">d3.selectAll('#chart div')
+      <pre class="block"><code>d3.selectAll('#chart div')
   .data([300, 100, 200])
   .transition()
   .duration(2000)
-  .style('width', function(d) { return d + 'px'; });</pre>
+  .style('width', function(d) { return d + 'px'; });</code></pre>
   
       <p>Now let's turn that into a function that will change with whatever values we want to give it:</p>
-      <pre class="block">function updateColor(inputData) {
+      <pre class="block"><code>function updateColor(inputData) {
   d3.selectAll('#chart div')
     .data(inputData)
     .style('background-color', function(d) { return d; });
-}</pre>
-      <pre class="block">function updateWidth(inputData) {
+}</code></pre>
+      <pre class="block"><code>function updateWidth(inputData) {
   d3.selectAll('#chart div')
     .data(inputData)
     .transition()
     .duration(2000)
     .style('width', function(d) { return d + 'px'; });
-}</pre>
+}</code></pre>
 
       <p>Now we have a chart with some real flexibility.  Of course, this wouldn't have been too hard with jQuery.  d3 also has the advantage of interpreting data like CSV or JSON and using SVG.  We'll look at JSON and CSV examples next week.  Let's incorporate SVG into our design now.  With SVG we can manipulate shapes beyond the rectangles afforded by HTML.</p>
       <p>Let's use d3 to do a similar data visualization using circles instead of rectangles.</p>
       <p>Let's add a new chart div:</p>
-      <pre class="block"><xmp><style>
+      <pre class="block"><code>&lt;style&gt;
   #newChart {
     width:400px;
     height:400px;
     border:1px solid lightgray;
   }
-
-</style>
-<div id="chart">
-</div></xmp></pre>
+&lt;/style&gt;
+&lt;div id="chart"&gt;
+&lt;/div&gt;</code></pre>
 
       <div id="newChart"></div>
       <p>Then add an SVG container circles.</p>
-      <pre class="block">var svg = d3.select('#newChart').append('svg')
+      <pre class="block"><code>var svg = d3.select('#newChart').append('svg')
   .attr('width', 400)
-  .attr('height', 400);</pre>
+  .attr('height', 400);</code></pre>
       <p>And a few circles.</p>
-      <pre class="block">svg.append('circle')
+      <pre class="block"><code>svg.append('circle')
   .attr('cx', 100)
   .attr('cy', 100)
-  .attr('r', 20);</pre>
-      <pre class="block">svg.append('circle')
+  .attr('r', 20);</code></pre>
+      <pre class="block"><code>svg.append('circle')
   .attr('cx', 200)
   .attr('cy', 50)
-  .attr('r', 20);</pre>
-      <pre class="block">svg.append('circle')
+  .attr('r', 20);</code></pre>
+      <pre class="block"><code>svg.append('circle')
   .attr('cx', 300)
   .attr('cy', 300)
-  .attr('r', 20);</pre>
+  .attr('r', 20);</code></pre>
 
       <p>Then we can use d3 to manipulate and animate the circles.</p>
-      <pre class="block">d3.selectAll('svg circle')
+      <pre class="block"><code>d3.selectAll('svg circle')
   .data(['red', 'green', 'blue'])
   .transition()
   .duration(2000)
-  .attr('fill', function(d) { return d });</pre>
-    <pre class="block">d3.selectAll('svg circle')
-.data([120, 60, 200])
-.transition()
-.duration(2000)
-.attr('r', function(d) { return d });</pre>
+  .attr('fill', function(d) { return d });</code></pre>
+    <pre class="block"><code>d3.selectAll('svg circle')
+  .data([120, 60, 200])
+  .transition()
+  .duration(2000)
+  .attr('r', function(d) { return d });</code></pre>
       <p>We can then create functions to manipulate this data or draw data from other sources.</p>
       <p>Okay, let's say you wanted to use an SVG you made in Illustrator.  Because SVG is based on XML, you can use the d3 xml import to get the SVG into your design.  You can then use the SVG structure to manipulate the shape.  This will be more difficult the more complex the shape is, but still possible.</p>
       <div id="external"></div>
-      <pre class="block">var externalSVG = d3.select('#external').append('svg')
+      <pre class="block"><code>var externalSVG = d3.select('#external').append('svg')
   .attr('width', 400)
-  .attr('height', 400);</pre>
-      <pre class="block">d3.xml("cat.svg", "image/svg+xml", function(xml) {  
+  .attr('height', 400);</code></pre>
+      <pre class="block"><code>d3.xml("cat.svg", "image/svg+xml", function(xml) {  
   var importedNode = document.importNode(xml.documentElement, true);
   externalSVG.append('g')
     .each(function(){ 
         var cat = this.appendChild(importedNode.cloneNode(true)); 
     });
-});</pre>
+});</code></pre>
       <p>Now manipulate the SVG using the <code>g</code> group we put it in.</p>
-      <p class="block">d3.select('g').transition().attr('transform', 'translate(100,100)');</p>
-      <p class="block">d3.select('g').transition().attr('fill', 'blue');</p>
+      <pre class="block"><code>d3.select('g').transition().attr('transform', 'translate(100,100)');</code></pre>
+      <pre class="block"><code>d3.select('g').transition().attr('fill', 'blue');</code></pre>
       
   
       

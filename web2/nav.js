@@ -133,6 +133,14 @@ Naavy = {
 					['Intro to d3', 'lecture'],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week8',
+					pages:[
+					['d3 demo', 'demo'],
+					['Assignment', 'assignment'],
+					['Final presentations', 'finals']
+					]
 				}
         ],
         

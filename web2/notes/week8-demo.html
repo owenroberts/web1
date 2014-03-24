@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="../demo/d3/d3.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+
+      <h1>d3 with a CSV database</h1>
+      <hr>
+      <p><a href="../demo/d3/demo.html">Link to the demo files.</a></p>
+      
+      <p>Today we're going to use a data set I created with the average ticket price and win loss record for NBA teams up until Friday of this season.  We will try to examine this data to make an analysis or visualize some insight.</p>
+      
+      <p>The demo is based on a simple chart</p>
+      <iframe width='500' height='300' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AkwmWFRdDZludGVPZVJZMzUzOWNfanM2WW1lUXViRHc&output=html&widget=true'></iframe>
+      <p>which was gathered from these sources NBA.com and this chart from Wall Street Journal:</p>
+      
+      <img src="../demo/d3/untitled-1-538.jpg" width="457" height="608" alt="Untitled 1 538">
+      
+      <p>The HTML setup is easy, we just need a container div in which we will place out svg and content.</p>
+      <pre class="block"><code>&lt;div id="chart"&gt;&lt;/div&gt;</code></pre>
+      
+      <p>To get the data into a format we can use, export a CSV file (comma separated values) from our spread sheet and load it into an object using the d3 text method.</p>
+      <pre class="block"><code>d3.text('nbadata.csv', function(datasetText) {
+  var parsedCSV = d3.csv.parseRows(datasetText);
+  var json = (function() {
+    var obj = [];
+    for (var i = 1, csvlen = parsedCSV.length; i < csvlen; i++) {
+      var newObj = new Object();
+      for(var j = 0, len = parsedCSV[0].length; j < len; j++) {
+        newObj[parsedCSV[0][j]] = parsedCSV[i][j];
+      }
+      obj[i-1] = newObj;
+    }
+    return obj;     
+  })();
+  console.log(json);
+});</code></pre>
+
+      <p>That code loads the CSV data into an array called <code>parsedCSV</code>.  Then we use a simple function to iterate over the array, using the first row as the items for 30 different objects, each representing the data for one team, which is then put into array which we call <code>json</code>.  If you copy that code into the JavaScript console, you will see the data.</p>
+      
+      <p>Next we want to setup the area for our chart design.  We will create an SVG to contain the chart and populate it with basic lines and labels.</p>
+      
+      <pre class="block"><code>var w = 600;
+var h = 400;
+var margin = 50;
+var svg = d3.select('#chart1').append('svg')
+.attr('width', w + margin*2)
+.attr('height', h + margin*2);
+
+svg.append('line')
+  .attr({x1:margin/2,x2:margin/2,y1:h+margin*3/2, y2:margin})
+  .attr('stroke', 'gray');
+svg.append('line')
+  .attr({x1:margin/2,x2:w+margin,y1:h+margin*3/2, y2:h+margin*3/2})
+  .attr('stroke', 'gray');
+
+svg.append('text')
+  .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14'})
+  .text('Wins');
+
+svg.append('text')
+  .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14', transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'})
+  .text('Average Ticket Price');</code></pre>
+  
+  <div id="chart1"></div>
+  <script>var w = 500;
+var h = 400;
+var margin = 50;
+var svg = d3.select('#chart1').append('svg')
+.attr('width', w + margin*2)
+.attr('height', h + margin*2);
+
+svg.append('line')
+  .attr({x1:margin/2,x2:margin/2,y1:h+margin*3/2, y2:margin})
+  .attr('stroke', 'gray');
+svg.append('line')
+  .attr({x1:margin/2,x2:w+margin,y1:h+margin*3/2, y2:h+margin*3/2})
+  .attr('stroke', 'gray');
+
+svg.append('text')
+  .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14'})
+  .text('Wins');
+
+svg.append('text')
+  .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14', transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'})
+  .text('Average Ticket Price');</script>
+  
+  <p>Notice the variable <code>w</code> and <code>h</code> at the top.  These set the height and width of our svg.  We can change these and the entire design will change in suit.  We also have a margin so there is enough space to view all the data.</p>
+  <p>Next we want to set up some markers of the values.  We will plot the wins for each team on the x axis and average ticket price on the y axis.  In order to show the range for these values, we will use our data to quickly calculate the range, from min to max for ticket price and wins.  We could just look at the chart, but these functions will allow us to add data to our chart later.</p>
+  <pre class="block"><code>var maxPrice = (function(){
+  var m = 0;
+  for (var i = 0, len = json.length; i < len; i++) {
+    if (Math.floor(json[i]["Average Ticket Price"]) > Math.floor(m)) {
+      m = json[i]["Average Ticket Price"];
+    }
+  }
+  return m;
+})();
+
+var minPrice = (function(){
+  var m = 200;
+  for (var i = 0, len = json.length; i < len; i++) {
+    if (Math.floor(json[i]["Average Ticket Price"]) < Math.floor(m)) {
+      m = json[i]["Average Ticket Price"];
+    }
+  }
+  return m;
+})();
+var maxWins = (function(){
+  var m = 0;
+  for (var i = 0, len = json.length; i < len; i++) {
+    if (Math.floor(json[i]["Wins"]) > Math.floor(m)) {
+      m = json[i]["Wins"];
+    }
+  }
+  return m;
+})();
+
+var minWins = (function(){
+  var m = 200;
+  for (var i = 0, len = json.length; i < len; i++) {
+    if (Math.floor(json[i]["Wins"]) < Math.floor(m)) {
+      m = json[i]["Wins"];
+    }
+  }
+  return m;
+})();</code></pre>
+
+<p>Now I can use those values, along with a couple of loops, to create text and line markers for the range of values on each axis.</p>
+<div id="chart2"></div>
+  <script>d3.text('nbadata.csv', function(datasetText) {
+    var parsedCSV = d3.csv.parseRows(datasetText);
+    var json = (function() {
+      var obj = [];
+      for (var i = 1, csvlen = parsedCSV.length; i < csvlen; i++) {
+        var newObj = new Object();
+        for(var j = 0, len = parsedCSV[0].length; j < len; j++) {
+          newObj[parsedCSV[0][j]] = parsedCSV[i][j];
+        }
+        obj[i-1] = newObj;
+      }
+      return obj;     
+    })();
+    
+    function map(value, start1, stop1, start2, stop2) {
+        return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+    }
+    
+    var maxPrice = (function(){
+      var m = 0;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Average Ticket Price"]) > Math.floor(m)) {
+          m = json[i]["Average Ticket Price"];
+        }
+      }
+      return m;
+    })();
+    
+    var minPrice = (function(){
+      var m = 200;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Average Ticket Price"]) < Math.floor(m)) {
+          m = json[i]["Average Ticket Price"];
+        }
+      }
+      return m;
+    })();
+    var maxWins = (function(){
+      var m = 0;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Wins"]) > Math.floor(m)) {
+          m = json[i]["Wins"];
+        }
+      }
+      return m;
+    })();
+    
+    var minWins = (function(){
+      var m = 200;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Wins"]) < Math.floor(m)) {
+          m = json[i]["Wins"];
+        }
+      }
+      return m;
+    })();
+    
+    var leagueAverage = (function(){
+      var a = 0;
+      for(var i = 0, len =json.length; i < len; i++){
+        a += parseFloat(json[i]["Average Ticket Price"]);
+      }
+      return a/json.length;
+    })();
+    
+    var w = 500;
+    var h = 400;
+    var margin = 50;
+    var svg = d3.select('#chart2').append('svg')
+    .attr('width', w + margin*2)
+    .attr('height', h + margin*2);
+    
+    svg.append('line')
+      .attr({x1:margin/2,x2:margin/2,y1:h+margin*3/2, y2:margin})
+      .attr('stroke', 'gray');
+    svg.append('line')
+      .attr({x1:margin/2,x2:w+margin,y1:h+margin*3/2, y2:h+margin*3/2})
+      .attr('stroke', 'gray');
+    
+    svg.append('text')
+      .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14'})
+      .text('Wins');
+  
+    svg.append('text')
+      .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14', transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'})
+      .text('Average Ticket Price');
+    
+  
+  
+    var i = 0;  
+    do {
+      if (i >= minWins) {
+      svg.append('line')
+        .attr({x1:margin + map(i, minWins, maxWins, 0, w), x2:margin + map(i, minWins, maxWins, 0, w), y1:h+margin*3/2, y2:h+margin*3/2-5, 'stroke':'lightgray', 'stroke-width':1} );   
+      if (i%10 == 0) {  
+      svg.append('text')
+        .attr({x:margin + map(i, minWins, maxWins, 0, w),y:h+margin*2,fill:'gray', 'font-size':'12'})
+        .text(i);
+      }
+    }    
+      i += 1;
+    } while (i <= maxWins);
+    
+    var j = 0;
+    do {
+      if (j >= Math.floor(minPrice)) {
+        svg.append('line')
+          .attr({x1:margin/2,x2:margin/2+5,y1:h + margin - map(j, minPrice, maxPrice, 0, h), y2:h+margin-map(j, minPrice, maxPrice, 0, h), stroke:'lightgray'});
+      
+      if (j%5 == 0){
+        svg.append('text')
+          .attr({x:5,y:h + margin*3/2 - map(j, minPrice, maxPrice, 0, h),fill:'gray', 'font-size':'12'})
+          .text('$'+j);
+      }
+    }
+      j++;
+    } while(j <= maxPrice);
+  });</script>
+  
+  <p>Finally, I want to append circles to the SVG to represent the data for each team.</p>
+  <p>Adding the circles requires a very important mapping function.  This function allows us to map the range of values from the min to max in wins and ticket price, to the range of space we have on our chart.  The function is simple but a little tricky, let's take a look:</p>
+  <pre class="block"><code>function map(value, start1, stop1, start2, stop2) {
+    return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+}</code></pre>
+  <p>Let's look at how that is used to place the circles on the chart.</p>
+  <pre class="block"><code>svg.selectAll('circle')
+  .data(json)
+.enter().append('circle')
+  .attr('cx', function(d) { return map(d["Wins"], minWins, maxWins, 0, w) + margin; } )
+  .attr('cy', function(d) { return h + margin - map(d["Average Ticket Price"], minPrice, maxPrice, 0, h); } )
+  .attr('r', '4' });</code></pre>
+  
+  <div id="chart3"></div>
+  <style>
+    #tooltip.hidden {
+     display:none;
+    }
+    #tooltip {
+      position:absolute;
+      background:rgba(121,121,121,0.95);
+      border-radius:10px;
+      display:inline-block;
+      padding:10px 10px;
+      font-size:9px;
+      line-height:9px;
+      color:#eee;
+      border-bottom:3px solid darkgray;
+    }  
+    #tooltip p {
+      margin:0;
+    }
+  </style>
+  <div id="tooltip" class="hidden">
+          <p><span id="team">Important Label Heading</span></p>
+          <p>$<span id="value">100</span></p>
+          <p><span id="wins">100</span> wins, <br><span id="losses">100</span> losses </p>
+  </div>
+  
+  
+  <script>
+  d3.text('nbadata.csv', function(datasetText) {
+    var parsedCSV = d3.csv.parseRows(datasetText);
+    var json = (function() {
+      var obj = [];
+      for (var i = 1, csvlen = parsedCSV.length; i < csvlen; i++) {
+        var newObj = new Object();
+        for(var j = 0, len = parsedCSV[0].length; j < len; j++) {
+          newObj[parsedCSV[0][j]] = parsedCSV[i][j];
+        }
+        obj[i-1] = newObj;
+      }
+      return obj;     
+    })();
+    
+    function map(value, start1, stop1, start2, stop2) {
+        return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+    }
+    
+    var maxPrice = (function(){
+      var m = 0;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Average Ticket Price"]) > Math.floor(m)) {
+          m = json[i]["Average Ticket Price"];
+        }
+      }
+      return m;
+    })();
+    
+    var minPrice = (function(){
+      var m = 200;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Average Ticket Price"]) < Math.floor(m)) {
+          m = json[i]["Average Ticket Price"];
+        }
+      }
+      return m;
+    })();
+    var maxWins = (function(){
+      var m = 0;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Wins"]) > Math.floor(m)) {
+          m = json[i]["Wins"];
+        }
+      }
+      return m;
+    })();
+    
+    var minWins = (function(){
+      var m = 200;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Wins"]) < Math.floor(m)) {
+          m = json[i]["Wins"];
+        }
+      }
+      return m;
+    })();
+    
+    var leagueAverage = (function(){
+      var a = 0;
+      for(var i = 0, len =json.length; i < len; i++){
+        a += parseFloat(json[i]["Average Ticket Price"]);
+      }
+      return a/json.length;
+    })();
+    
+    var w = 500;
+    var h = 400;
+    var margin = 50;
+    var svg = d3.select('#chart3').append('svg')
+    .attr('width', w + margin*2)
+    .attr('height', h + margin*2);
+    
+    svg.append('line')
+      .attr({x1:margin/2,x2:margin/2,y1:h+margin*3/2, y2:margin})
+      .attr('stroke', 'gray');
+    svg.append('line')
+      .attr({x1:margin/2,x2:w+margin,y1:h+margin*3/2, y2:h+margin*3/2})
+      .attr('stroke', 'gray');
+    
+    svg.append('text')
+      .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14'})
+      .text('Wins');
+  
+    svg.append('text')
+      .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14', transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'})
+      .text('Average Ticket Price');
+    
+  
+  
+    var i = 0;  
+    do {
+      if (i >= minWins) {
+      svg.append('line')
+        .attr({x1:margin + map(i, minWins, maxWins, 0, w), x2:margin + map(i, minWins, maxWins, 0, w), y1:h+margin*3/2, y2:h+margin*3/2-5, 'stroke':'lightgray', 'stroke-width':1} );   
+      if (i%10 == 0) {  
+      svg.append('text')
+        .attr({x:margin + map(i, minWins, maxWins, 0, w),y:h+margin*2,fill:'gray', 'font-size':'12'})
+        .text(i);
+      }
+    }    
+      i += 1;
+    } while (i <= maxWins);
+    
+    var j = 0;
+    do {
+      if (j >= Math.floor(minPrice)) {
+        svg.append('line')
+          .attr({x1:margin/2,x2:margin/2+5,y1:h + margin - map(j, minPrice, maxPrice, 0, h), y2:h+margin-map(j, minPrice, maxPrice, 0, h), stroke:'lightgray'});
+      
+      if (j%5 == 0){
+        svg.append('text')
+          .attr({x:5,y:h + margin*3/2 - map(j, minPrice, maxPrice, 0, h),fill:'gray', 'font-size':'12'})
+          .text('$'+j);
+      }
+    }
+      j++;
+    } while(j <= maxPrice);
+   
+
+    svg.selectAll('circle')
+        .data(json)
+      .enter().append('circle')
+        .attr('cx', function(d) { return map(d["Wins"], minWins, maxWins, 0, w) + margin; } )
+        .attr('cy', function(d) { return h + margin - map(d["Average Ticket Price"], minPrice, maxPrice, 0, h); } )
+        .attr('r', '4')
+
+        .append('title').text( function(d) { return d["Team"]});
+
+    d3.select('#size').on('click', function(){
+      d3.select('#chart3').selectAll('circle')
+          .data(json)
+          .transition()
+          .attr('r', function(d) { return map(d["Average Ticket Price"], minPrice, maxPrice, 10, 30) });
+    });
+    
+    d3.select('#color').on('click', function(){
+      d3.select('#chart3').selectAll('circle')
+          .data(json)
+          .transition()
+          .attr('fill', function(d) { return "hsl("+ Math.floor(map(d["Average Ticket Price"]/d["Wins"], leagueAverage/minWins, leagueAverage/maxWins, 0, 90)) +",100%,50%)"; })
+
+    });
+    var tooltip = false;
+    
+     d3.select('#chart3').selectAll('circle')
+        .data(json)
+        .on('mouseover', function(d){
+          
+          if (tooltip) {  
+          d3.select('#tooltip')
+          .style('left', document.getElementById('chart3').offsetLeft + Math.floor(d3.select(this).attr('cx')) - 80 +'px')
+          .style('top',  document.getElementById('chart3').offsetTop + Math.floor(d3.select(this).attr('cy')) - 60 +'px')
+          .select('#value')
+          .text(d["Average Ticket Price"]);
+          
+          d3.select('#tooltip')
+          .select('#team')
+          .text(d["Team"]);
+          
+          d3.select('#tooltip')
+          .select('#wins')
+          .text(d["Wins"]);
+          
+          d3.select('#tooltip')
+          .select('#losses')
+          .text(d["Losses"]);
+          
+          d3.select('#tooltip').classed('hidden', false);
+        }
+          
+        }) 
+        .on("mouseout", function() {
+          if(tooltip) {
+        d3.select("#tooltip").classed('hidden', true);
+      }
+        });
+        
+    
+    d3.select('#tools').on('click', function(){
+      
+      tooltip = true;
+
+    });
+  });</script>
+  
+  <button id="size">Map ticket price to circle size.</button>
+  <button id="color">Map color to ticket value (ticket price divided by number of wins, compared to league average).</button>
+  <button id="tools">Enable tooltips.</button>
+
+  <script>
+
+  </script>
+  
+  <p>So, we have some data.  Not very exciting though, is it?  Let's add some color and change the shapes and see if we can reveal more about the data we're looking at.</p>
+  <p>Let's use d3 to add some functions to change values in this code.  There are a few buttons under our chart with different functions attached.  Look at how the buttons work and then the functions behind them.</p>
+  
+<pre class="block"><code>d3.select('#size').on('click', function(){
+  d3.select('#chart3').selectAll('circle')
+      .data(json)
+      .transition()
+      .attr('r', function(d) { return map(d["Average Ticket Price"], minPrice, maxPrice, 10, 30) });
+});</code></pre>
+<pre class="block"><code>d3.select('#color').on('click', function(){
+  d3.select('#chart3').selectAll('circle')
+      .data(json)
+      .transition()
+      .attr('fill', function(d) { return "hsl("+ Math.floor(map(d["Average Ticket Price"]/d["Wins"], leagueAverage/minWins, leagueAverage/maxWins, 0, 90)) +",100%,50%)"; })
+
+});</code></pre>
+
+<p>There isn't a lot to conclude from this dataset, other than that ticket value has no correlation to wins.  But if we were to map this data geographically, what might we find?  One we can conclude from this data, assuming that you like watching a team win instead of lose, is that the best ticket value can be found in cities found in the lower right hand corner of the bracket.  We can see the names of those cities by mousing over the circles, but what if we wanted to see all of the data associated with each basketball team?  We can use what is known as a <code>tooltip</code> to add HTML to the page and populate it with our data.</p>
+
+<p>We can define the tooltip layout with a div that we make <code>display:none</code> and then use d3 to bring back with a hover.</p>
+<p>The HTML and CSS for out tooltip:</p>
+<pre class="block"><code>&lt;style&gt;
+#tooltip.hidden {
+ display:none;
+}
+#tooltip {
+  position:absolute;
+  background:rgba(121,121,121,0.95);
+  border-radius:10px;
+  display:inline-block;
+  padding:10px 10px;
+  font-size:9px;
+  line-height:9px;
+  color:#eee;
+  border-bottom:3px solid darkgray;
+}  
+#tooltip p {
+  margin:0;
+}
+&lt;/style&gt;</code></pre>
+
+<pre class="block"><code>&lt;div id="tooltip" class="hidden">
+        &lt;h1>&lt;span id="team">Important Label Heading&lt;/span>&lt;/h1>
+        &lt;p>Average Ticket Price: $&lt;span id="value">100&lt;/span>&lt;/p>
+        &lt;p>&lt;span id="wins">100&lt;/span> wins, &lt;span id="losses">100&lt;/span> losses &lt;/p>
+&lt;/div></code></pre>
+      <div id="sources"><p>Resources</p>
+        <li><a href="http://chimera.labs.oreilly.com/books/1230000000345/ch10.html" target="blank">Interactive data viz for web tutorial</a></li>
+      </div>
+      
+    </div>
+    
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

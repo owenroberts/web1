@@ -25,8 +25,6 @@ a, a:link, a:hover, a:visited {
 
 pre {
   color:blue;
-  padding-left:10px;
-  
 }
 
 .inline {
@@ -50,7 +48,7 @@ pre {
 code {
   background:#fdf;
 	color:purple;
-	font-size:15px;
+	font-size:13px;
 }
 
 xmp {

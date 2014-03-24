@@ -4,51 +4,208 @@
   <title>D3 demo</title>
   <meta charset="utf-8">
   <script src="d3.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  
   <style>
   
     body {
       background:white;
+    }
+    #tooltip.hidden {
+     display:none;
+    }
+    #tooltip {
+      position:absolute;
+      background:rgba(121,121,241,0.95);
+      border-radius:10px;
+      display:inline-block;
+      padding:0 10px;
+      font-size:14px;
+      line-height:10px;
+      color:#eee;
+      border-bottom:3px solid blue;
     }
   
   </style>
   
 </head>
 <body>
-  
-  <p>Butt</p>
-  
+  <h1>NBA Average Ticket Price vs. Win/Loss Record</h1>
+  <button id="switch">Switch</button>
+  <div id="chart"></div>
+  <div id="tooltip" class="hidden">
+          <h1><span id="team">Important Label Heading</span></h1>
+          <p>Average Ticket Price: $<span id="value">100</span></p>
+          <p><span id="wins">100</span> wins, <span id="losses">100</span> losses </p>
+  </div>
   <script>
-  var svg = d3.select('body').append('svg')
-                                         .attr('width', '500')
-                                         .attr('height', '300');
-  
-  for (var i = 0; i < 3; i++) { 
-  svg.append('circle')
-                .attr('cx', 60*i)
-                .attr('cy', 50*i)
-                .attr('r', 20);
-  }
-  
-  var circle = svg.selectAll('circle');
-
-  
-  circle.attr('cx', function() {
-    return Math.random() * 200;
-  })
-  circle.data([100, 32, 400]);
-  
-  circle.attr("cx", function(d) {
-    return d;
-  });
-  circle.attr('r', function(d) {
-    return Math.sqrt(d);
-  });
-  circle.attr("cx", function(d, i) {
-    return i * 100 + 30;
-  });
-                             
-                                        
+  d3.text('nbadata.csv', function(datasetText) {
+    var parsedCSV = d3.csv.parseRows(datasetText);
+    var json = (function() {
+      var obj = [];
+      for (var i = 1, csvlen = parsedCSV.length; i < csvlen; i++) {
+        var newObj = new Object();
+        for(var j = 0, len = parsedCSV[0].length; j < len; j++) {
+          newObj[parsedCSV[0][j]] = parsedCSV[i][j];
+        }
+        obj[i-1] = newObj;
+      }
+      return obj;     
+    })();
     
+    function map(value, start1, stop1, start2, stop2) {
+        return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+    }
+    
+    var maxPrice = (function(){
+      var m = 0;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Average Ticket Price"]) > Math.floor(m)) {
+          m = json[i]["Average Ticket Price"];
+        }
+      }
+      return m;
+    })();
+    
+    var minPrice = (function(){
+      var m = 200;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Average Ticket Price"]) < Math.floor(m)) {
+          m = json[i]["Average Ticket Price"];
+        }
+      }
+      return m;
+    })();
+    var maxWins = (function(){
+      var m = 0;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Wins"]) > Math.floor(m)) {
+          m = json[i]["Wins"];
+        }
+      }
+      return m;
+    })();
+    
+    var minWins = (function(){
+      var m = 200;
+      for (var i = 0, len = json.length; i < len; i++) {
+        if (Math.floor(json[i]["Wins"]) < Math.floor(m)) {
+          m = json[i]["Wins"];
+        }
+      }
+      return m;
+    })();
+    
+    var leagueAverage = (function(){
+      var a = 0;
+      for(var i = 0, len =json.length; i < len; i++){
+        a += parseFloat(json[i]["Average Ticket Price"]);
+      }
+      return a/json.length;
+    })();
+    
+    var w = 600;
+    var h = 400;
+    var margin = 50;
+    var svg = d3.select('#chart').append('svg')
+    .attr('width', w + margin*2)
+    .attr('height', h + margin*2);
+    
+    svg.append('line')
+      .attr({x1:margin/2,x2:margin/2,y1:h+margin*3/2, y2:margin})
+      .attr('stroke', 'gray');
+    svg.append('line')
+      .attr({x1:margin/2,x2:w+margin,y1:h+margin*3/2, y2:h+margin*3/2})
+      .attr('stroke', 'gray');
+    
+    svg.append('text')
+      .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14'})
+      .text('Wins');
+  
+    svg.append('text')
+      .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14', transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'})
+      .text('Average Ticket Price');
+    
+  
+  
+    var i = 0;  
+    do {
+      if (i >= minWins) {
+      svg.append('line')
+        .attr({x1:margin + map(i, minWins, maxWins, 0, w), x2:margin + map(i, minWins, maxWins, 0, w), y1:h+margin*3/2, y2:h+margin*3/2-5, 'stroke':'lightgray', 'stroke-width':1} );   
+      if (i%10 == 0) {  
+      svg.append('text')
+        .attr({x:margin + map(i, minWins, maxWins, 0, w),y:h+margin*2,fill:'gray', 'font-size':'12'})
+        .text(i);
+      }
+    }    
+      i += 1;
+    } while (i <= maxWins);
+    
+    var j = 0;
+    do {
+      if (j >= Math.floor(minPrice)) {
+        svg.append('line')
+          .attr({x1:margin/2,x2:margin/2+5,y1:h + margin - map(j, minPrice, maxPrice, 0, h), y2:h+margin-map(j, minPrice, maxPrice, 0, h), stroke:'lightgray'});
+      
+      if (j%5 == 0){
+        svg.append('text')
+          .attr({x:5,y:h + margin*3/2 - map(j, minPrice, maxPrice, 0, h),fill:'gray', 'font-size':'12'})
+          .text(j);
+      }
+    }
+      j++;
+    } while(j <= maxPrice);
+   
+
+    svg.selectAll('circle')
+        .data(json)
+      .enter().append('circle')
+        .attr('cx', function(d) { return map(d["Wins"], minWins, maxWins, 0, w) + margin; } )
+        .attr('cy', function(d) { return h + margin - map(d["Average Ticket Price"], minPrice, maxPrice, 0, h); } )
+        //.attr('fill', function(d) { if (d["Wins"] > d["Losses"]) { return 'blue';} else {return 'red';}} )
+        .attr('fill', function(d) { return "hsl("+ Math.floor(map(d["Average Ticket Price"]/d["Wins"], leagueAverage/minWins, leagueAverage/maxWins, 0, 90)) +",100%,50%)"; })
+        //.attr('r', function(d) { return map(d["Average Ticket Price"], minPrice, maxPrice, 10, 30) });
+        .attr('r', function(d) { return map(Math.abs(d["Wins"]-d["Losses"]), minWins, maxWins, 10, 30) })
+       
+        .on('mouseover', function(d){
+          d3.select('#tooltip')
+          .style('left',Math.floor(d3.select(this).attr('cx')) - 120 +'px')
+          .style('top', Math.floor(d3.select(this).attr('cy')) - 20 +'px')
+          .select('#value')
+          .text(d["Average Ticket Price"]);
+          
+          d3.select('#tooltip')
+          .select('#team')
+          .text(d["Team"]);
+          
+          d3.select('#tooltip')
+          .select('#wins')
+          .text(d["Wins"]);
+          
+          d3.select('#tooltip')
+          .select('#losses')
+          .text(d["Losses"]);
+          
+          d3.select('#tooltip').classed('hidden', false);
+          
+        }) 
+        .on("mouseout", function() {
+        d3.select("#tooltip").classed('hidden', true);
+        })
+        .append('title').text( function(d) { return d["Team"]});
+        
+        d3.select('#switch').on('click', function(){
+          svg.selectAll('circle')
+              .data(json)
+              .transition()
+              //.attr('fill', function(d) { if (d["Wins"] > d["Losses"]) { return 'blue';} else {return 'red';}} )
+              //.attr('fill', function(d) { return "hsl("+ Math.floor(map(d["Average Ticket Price"]/d["Wins"], leagueAverage/minWins, leagueAverage/maxWins, 0, 90)) +",100%,50%)"; })
+              .attr('r', function(d) { return map(d["Average Ticket Price"], minPrice, maxPrice, 10, 50) });
+              //.attr('r', function(d) { return map(Math.abs(d["Wins"]-d["Losses"]), minWins, maxWins, 10, 30) })
+        });
+    
+  });
   </script>
 </body>
 </html>

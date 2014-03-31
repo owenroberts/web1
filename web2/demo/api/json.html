@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter api & JSON</title>
+  <meta charset="utf-8">
+  <script src="jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+  <style>
+  
+  .plot {
+    width:200px;
+    height:200px;
+    font-size:14px;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+    border:5px solid lightgray;
+    outline:1px solid gray;
+    margin:20px;   
+    position:relative;
+     
+  }
+  .poster {
+    width:200px;
+    height:200px;
+    display:table-cell;
+    border:5px solid lightgray;
+    outline:1px solid gray;
+    cursor:move;
+    position:relative;
+  }
+  .poster img, .plot img {
+    width:200px;
+    height:200px;
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  
+  #container {
+    width:640px;
+    margin:0 auto;
+  }
+
+  
+  </style>
+  
+</head>
+<body onload="init();">
+  <h1>Match the movie poster with plot description.</h1>
+  
+  <div id="container">
+    <div id="plots"></div>
+  
+    <div id="posters"></div>
+  </div>
+  
+  <script>
+  
+  var numMovies = 3;
+  var titles = ["Home Alone", "Space Jam", "Batman"];
+
+  
+  function init() {
+    
+    $('#container').css('width', numMovies*220+'px')
+    for (var i = 0; i < numMovies; i++) {
+      $.getJSON('http://www.omdbapi.com/?t=' + titles[i], function(json){      
+      $('#plots').append('<div id="'+i+'" class="plot"  ondrop="drop(event)" ondragover="allowDrop(event)"><p>'+json["Plot"]+'</p></div>');
+      $('#posters').append('<div class="poster" ondrop="drop(event)" ondragover="allowDrop(event)"><div id="'+i+'" ondrop="drop(event)" ondragover="allowDrop(event)"><img id="p'+i+'"  draggable="true" ondragstart="drag(event)" src="'+json["Poster"]+'"></div></div>');
+    });
+    }
+  } 
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {    
+    $(ev.target).parent().css('border-color', 'lightgray')
+    ev.dataTransfer.setData("Text",ev.target.id);
+  }
+
+  function drop(ev) {
+  ev.preventDefault();
+  var data=ev.dataTransfer.getData("Text");
+  ev.target.appendChild(document.getElementById(data));
+    if ($(ev.target).attr('id') == data.substring(1) && $(ev.target).attr('class') == 'plot' ) {
+      $(ev.target).css('border-color', 'lightgreen');
+    } else if ($(ev.target).attr('class') == 'plot' ) {
+       $(ev.target).css('border-color', 'red');
+    }
+  }
+
+
+ 
+
+                             
+    
+  </script>
+</body>
+</html>

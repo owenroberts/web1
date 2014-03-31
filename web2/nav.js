@@ -141,6 +141,14 @@ Naavy = {
 					['Assignment', 'assignment'],
 					['Final presentations', 'finals']
 					]
+				},
+				{
+					url:'week9',
+					pages:[
+					['JSON', 'demo'],
+					['Final concept presentations', null],
+					['Assignment', 'assignment']
+					]
 				}
         ],
         

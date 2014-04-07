@@ -62,18 +62,39 @@ var svg = d3.select('#chart1').append('svg')
 .attr('height', h + margin*2);
 
 svg.append('line')
-  .attr({x1:margin/2,x2:margin/2,y1:h+margin*3/2, y2:margin})
+  .attr({
+    x1:margin/2,
+    x2:margin/2,
+    y1:h+margin*3/2, 
+    y2:margin
+  })
   .attr('stroke', 'gray');
 svg.append('line')
-  .attr({x1:margin/2,x2:w+margin,y1:h+margin*3/2, y2:h+margin*3/2})
+  .attr({
+    x1:margin/2,
+    x2:w+margin,
+    y1:h+margin*3/2, 
+    y2:h+margin*3/2
+  })
   .attr('stroke', 'gray');
 
 svg.append('text')
-  .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14'})
+  .attr({
+    x:margin/2, 
+    y:h+margin*2, 
+    stroke:'darkblue', 
+    'font-size':'14'
+  })
   .text('Wins');
 
 svg.append('text')
-  .attr({x:margin/2, y:h+margin*2, stroke:'darkblue', 'font-size':'14', transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'})
+  .attr({
+    x:margin/2, 
+    y:h+margin*2, 
+    stroke:'darkblue', 
+    'font-size':'14', 
+    transform:'translate(15,-40) rotate(-90 '+margin/2+','+(h+margin*2)+')'
+  })
   .text('Average Ticket Price');</code></pre>
   
   <div id="chart1"></div>
@@ -260,18 +281,72 @@ var minWins = (function(){
       j++;
     } while(j <= maxPrice);
   });</script>
+  <p>Let's take a look at the loops that populate the lines and values on each axis of the chart.</p>
+  <pre class="block"><code>var i = 0;  
+do {
+  if (i >= minWins) {
+  svg.append('line')
+    .attr({
+      x1:margin + map(i, minWins, maxWins, 0, w), 
+      x2:margin + map(i, minWins, maxWins, 0, w), 
+      y1:h+margin*3/2, y2:h+margin*3/2-5, 
+      'stroke':'lightgray', 
+      'stroke-width':1
+    } );   
+  if (i%10 == 0) {  
+  svg.append('text')
+    .attr({
+      x:margin + map(i, minWins, maxWins, 0, w), 
+      y:h+margin*2,
+      fill:'gray', 'font-size':'12'
+    })
+    .text(i);
+  }
+}    
+  i += 1;
+} while (i <= maxWins);
+
+var j = 0;
+do {
+  if (j >= Math.floor(minPrice)) {
+    svg.append('line')
+      .attr({
+        x1:margin/2,
+        x2:margin/2+5, 
+        y1:h + margin - map(j, minPrice, maxPrice, 0, h), 
+        y2:h+margin-map(j, minPrice, maxPrice, 0, h), 
+        stroke:'lightgray'
+      });
   
-  <p>Finally, I want to append circles to the SVG to represent the data for each team.</p>
-  <p>Adding the circles requires a very important mapping function.  This function allows us to map the range of values from the min to max in wins and ticket price, to the range of space we have on our chart.  The function is simple but a little tricky, let's take a look:</p>
+  if (j%5 == 0){
+    svg.append('text')
+      .attr({
+        x:5,
+        y:h + margin*3/2 - map(j, minPrice, maxPrice, 0, h),
+        fill:'gray', 
+        'font-size':'12'
+      })
+      .text('$'+j);
+  }
+}
+  j++;
+} while(j <= maxPrice);</code></pre>
+  <p>Each one is a <code>do ... while</code> loop, and use a very important mapping function.  This function allows us to map the range of values from the min to max in wins and ticket price, to the range of space we have on our chart.  The function is simple but a little tricky, let's take a look:</p>
   <pre class="block"><code>function map(value, start1, stop1, start2, stop2) {
     return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
 }</code></pre>
+  <p>Finally, I want to append circles to the SVG to represent the data for each team.  I'm going to use the same mapping function to map the values of each point of data onto the size of the chart in our HTML.</p>
+ 
   <p>Let's look at how that is used to place the circles on the chart.</p>
   <pre class="block"><code>svg.selectAll('circle')
   .data(json)
 .enter().append('circle')
-  .attr('cx', function(d) { return map(d["Wins"], minWins, maxWins, 0, w) + margin; } )
-  .attr('cy', function(d) { return h + margin - map(d["Average Ticket Price"], minPrice, maxPrice, 0, h); } )
+  .attr('cx', function(d) { 
+    return map(d["Wins"], minWins, maxWins, 0, w) + margin; 
+  } )
+  .attr('cy', function(d) { 
+    return h + margin - map(d["Average Ticket Price"], minPrice, maxPrice, 0, h); 
+  } )
   .attr('r', '4' );</code></pre>
   
   <div id="chart3"></div>
@@ -502,22 +577,25 @@ var minWins = (function(){
   d3.select('#chart3').selectAll('circle')
       .data(json)
       .transition()
-      .attr('r', function(d) { return map(d["Average Ticket Price"], minPrice, maxPrice, 10, 30) });
+      .attr('r', function(d) { 
+        return map(d["Average Ticket Price"], minPrice, maxPrice, 10, 30) 
+      });
 });</code></pre>
 <pre class="block"><code>d3.select('#color').on('click', function(){
   d3.select('#chart3').selectAll('circle')
       .data(json)
       .transition()
-      .attr('fill', function(d) { return "hsl("+ Math.floor(map(d["Average Ticket Price"]/d["Wins"], leagueAverage/minWins, leagueAverage/maxWins, 0, 90)) +",100%,50%)"; })
-
+      .attr('fill', function(d) { 
+        return "hsl("+ Math.floor(map(d["Average Ticket Price"]/d["Wins"], 
+        leagueAverage/minWins, leagueAverage/maxWins, 0, 90)) +",100%,50%)"; 
+      })
 });</code></pre>
 
 <p>There isn't a lot to conclude from this dataset, other than that ticket value has no correlation to wins.  But if we were to map this data geographically, what might we find?  One we can conclude from this data, assuming that you like watching a team win instead of lose, is that the best ticket value can be found in cities found in the lower right hand corner of the bracket.  We can see the names of those cities by mousing over the circles, but what if we wanted to see all of the data associated with each basketball team?  We can use what is known as a <code>tooltip</code> to add HTML to the page and populate it with our data.</p>
 
 <p>We can define the tooltip layout with a div that we make <code>display:none</code> and then use d3 to bring back with a hover.</p>
 <p>The HTML and CSS for out tooltip:</p>
-<pre class="block"><code>&lt;style&gt;
-#tooltip.hidden {
+<pre class="block"><code>#tooltip.hidden {
  display:none;
 }
 #tooltip {
@@ -533,11 +611,10 @@ var minWins = (function(){
 }  
 #tooltip p {
   margin:0;
-}
-&lt;/style&gt;</code></pre>
+}</code></pre>
 
 <pre class="block"><code>&lt;div id="tooltip" class="hidden">
-        &lt;h1>&lt;span id="team">Important Label Heading&lt;/span>&lt;/h1>
+        &lt;h1>&lt;span id="team">Team&lt;/span>&lt;/h1>
         &lt;p>Average Ticket Price: $&lt;span id="value">100&lt;/span>&lt;/p>
         &lt;p>&lt;span id="wins">100&lt;/span> wins, &lt;span id="losses">100&lt;/span> losses &lt;/p>
 &lt;/div></code></pre>

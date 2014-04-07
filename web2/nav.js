@@ -149,6 +149,13 @@ Naavy = {
 					['Final concept presentations', null],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week10',
+					pages:[
+					['HTML5 Media', 'demo'],
+					['Assignment', 'assignment']
+					]
 				}
         ],
         

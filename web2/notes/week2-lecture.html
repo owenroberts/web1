@@ -32,59 +32,59 @@
       <p>Last week we introduced the concept of a variable, an object that stores a piece of information.  Today we will look deeper at data types and how they are used in JavaScript.  Variables are different data types, which are the most basic structural element of every programming language.  Writing scripts involves manipulating the values of variables, which all have types.  The basic types in JavaScript are <code>numbers</code>, <code>strings</code>, <code>booleans</code>, and <code>objects</code>.  We will talk more about objects in the next class, but for now, objects are broken down further into <code>functions</code> and <code>arrays</code>, which we will talk about today.  There are some other types in JavaScript, like <code>null</code>, <code>undefined</code> and error types, which we will ignore for now.</p>
       <h1>Numbers</h1>
       <p>We talked about numbers last week.  In JavaScript there are no integers, so numbers can be both integers and floating point numbers, such as <code>1</code> and <code>1.5</code>.  This makes is a bit easier for us to do math and change types without throwing an error every time we get an int but want a float (don't worry if that doesn't make sense, unless you've had some Processing or other language before this class).  JavaScript usually converts strings that look like number to numbers for us, which is a nice thing for new programmers, but can get a little hairy.  We talked about that last week and will look at it more when we talk about logical operators next week.  There is a value called <code>NaN</code>, which stands for "Not a Number", which is exactly what the value means.  You will get that if you try to evaluate a string that cannot be parsed to a number.  You can test for <code>NaN</code> using the <code>isNaN()</code> function.  Try writing this in the console:</p>
-      <pre class="block">isNaN(NaN);</pre>
+      <pre class="block"><code>isNaN(NaN);</code></pre>
       <h1>Strings</h1>
       <p>Strings in JavaScript are sequences of characters, using Unicode they are represented by a 16-bit number.  Characters are written as strings with the length of one.  Strings provide <code>length</code>, a property that returns the length of the string.  Try this in the console:</p>
-      <pre class="block">"Hello World".length</pre>
+      <pre class="block"><code>"Hello World".length</code></pre>
       <p>Strings also have some built in methods like <code>charAt()</code> and <code>replace()</code> which help us do evaluation and manipulation.</p>
-      <pre class="block">"Hello World".charAt(0);</pre>
-      <pre class="block">"Hello World".replace("World", "Jerry");</pre>
+      <pre class="block"><code>"Hello World".charAt(0);</code></pre>
+      <pre class="block"><code>"Hello World".replace("World", "Jerry");</code></pre>
       <h1>Booleans</h1>
       <p>Booleans default to the values <code>true</code> and <code>false</code>.  In JavaScript many values will become <code>false</code>, such as <code>0</code>, <code>""</code> (empty string), <code>NaN</code>, <code>null</code>, and <code>undefined</code>.  Everything else defaults to <code>true</code>, such as <code>"Hello Wordl"</code>, <code>1</code>, <code>99</code>, or <code>-99</code>.  Try evaluating some booleans in the console with this syntax:</p>
-      <pre class="block">Boolean("");<br>Boolean(null);<br>Boolean(4);</pre>
+      <pre class="block"><code>Boolean("");<br>Boolean(null);<br>Boolean(4);</code></pre>
       <h1>Arrays</h1>
       <p>An <code>array</code> is an object that contains a list of variables, such as this: <code>var imgs = ["cat.jpg", "dog.jpg", "alligator.jpg"];</code> which is a list of images that might be loaded into a site.  In JavaScript, the items in an array can have any datatype, like a number, string, boolean, or even another arrary.  In other languages, the data in an array usually are all of the same type.  The elements of an array are accessed by their index number, starting with zero.  So, <code>imgs[0]</code> will return <code>"cat.jpg"</code>.  Like strings, arrays have a <code>length</code> property.  Try creating an array, reading from the list, and returning the length:</p>
-      <pre class="block">myArray = ["cat", "dog", "alligator"];<br>myArray.length;<br>myArray[0];<br>myArray[2];</pre>
+      <pre class="block"><code>myArray = ["cat", "dog", "alligator"];<br>myArray.length;<br>myArray[0];<br>myArray[2];</code></pre>
       <p><code>Arrays</code> can be populated by creating a new Array or assigning values.  Arrays can have any length, and unassigned spots will have the value <code>undefined</code>.</p>
-      <pre class="block">myArray[99] = "bird";<br>myArray[99];<br>myArray[98];</pre>
+      <pre class="block"><code>myArray[99] = "bird";<br>myArray[99];<br>myArray[98];</code></pre>
       <p>Arrays are useful for looping through data structures to perform functions and operations.</p>
       <p>JavaScript also provides a nice function <code>typeof()</code> which allows us to test what type of data a variable contains</p>
-      <pre class="block">typeof("Hello World");<br>typeof(5);<br>typeof(n);</pre>
+      <pre class="block"><code>typeof("Hello World");<br>typeof(5);<br>typeof(n);</code></pre>
       <h1>Null and undefined</h1>
       <p>JavaScript uses <code>null</code> and <code>undefined</code> as distinct values.  <code>null</code> indicates a purposely unassigned value.  <code>undefined</code> indicates a variable has not been instantiated, or created.</p>
             
       <h1>Operators</h1>
       <p>JavaScript uses various symbols to do operations.  The <code>=</code> sign is used to assign data to variables, like <code>var img = "mycat.jpg";</code> or <code>var i = 0;</code>.  You can also use <code>+</code> to add variables, <code>-</code> for subtraction, <code>*</code> for multiplication, <code>/</code> for division,  <code>++</code> to increment by one, <code>--</code> to decrease a value by one, <code>+=</code> to add a value to the current value, or <code>-=</code> to subtract that value.  You can also use <code>*=</code> and <code>/=</code>.  Modulus, <code>%</code> will give you the remainder from a division, ie <code>5%4 = 1</code>, which is useful for cyclical logic, and can also be used as <code>%=</code>.  These operations are done primarily on numbers, but you can do addition with strings, and add strings to numbers.</p>
       <p>Try a few operations in the console:</p>
-      <pre class="block">n = x + 1<br>n += 1<br>"Hello" + "World"<br>"7" + 7</pre>
+      <pre class="block"><code>n = x + 1<br>n += 1<br>"Hello" + "World"<br>"7" + 7</code></pre>
       
       <h1>Functions</h1>
       <p>Functions are a core component of JavaScript.  At the most basic a function is a block of code.  Functions in JavaScript can be very complex because functions are objects which can be passed and manipulated like variables.  Functions can be written inside of other functions.  Essentially, functions are blocks of code, assigned to a name like a variable.  That code can take inputs and create outputs and perform other operations.  It can be modified and used multiple times.</p>
-      <pre class="block">function printName(name) {
+      <pre class="block"><code>function printName(name) {
   console.log(name);
 }
-printName("Jerry");</pre>
+printName("Jerry");</code></pre>
 <p>Functions have to be called to execute.  This can be done with a call to the function as seen above.  Functions can also be made to self instantiate by adding a () to the end of the declaration, which are referred to as Immediately Invoked Function Expressions.</p>
-<pre class="block">(function printName() {
+<pre class="block"><code>(function printName() {
   console.log("Hello, Jerry");
 })();
-</pre>
+</code></pre>
 <p>The paranthesis wrap the function to tell the browser it is one statment.</p>
 <p>Functions take <code>arguments</code>, as in the above example, where "Owen" is the argument.  This can be replaced with any string in the function call.  We can declare the number of arguments in the function declaration, or we can put in whatever arguments we want in the call and use the <code>arguments</code> variable to manipulate them.</p>
-<pre class="block">function add(n1, n2) {
+<pre class="block"><code>function add(n1, n2) {
   console.log(n1 + n2);
 }
 add(5, 6);
 function addMore() {
   console.log(arguments);
 }
-addMore(5,6,7,1,6);</pre>
+addMore(5,6,7,1,6);</code></pre>
 <p>If you add more arguments to the <code>add()</code> function, it will not throw an error, but it will ignore the arguments beyond the first two.</p>
 <p>Functions can also <code>return</code> values.  This is useful for evaluating expressions and assigning variables.</p>
-<pre class="block">function add(n1, n2){
+<pre class="block"><code>function add(n1, n2){
   return n1 + n2;
 }
-x = add(5, 25);</pre>
+x = add(5, 25);</code></pre>
 <p>Functions can also be declared as anonymous functions, which uses an expression syntax, such as <code> var add = function(n1, n2){ .... }</code>.  It has the same functionality as the <code>function add() { .... }</code> format, but can be written in different places in code.</p>
 <p>Functions are the building blocks of programming and in JavaScript, where objects are functions, they are complex and dynamic.  We will learn more about functions as the semester progresses.  For now, lets learn how to use functions and variables to dynamically created HTML pages.</p>
 

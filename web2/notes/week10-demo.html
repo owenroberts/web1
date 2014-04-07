@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  
+  <script src="../demo/d3/d3.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+  video {
+    margin:30px 0;
+  }
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+
+      <h1>HTML5 Media & JavaScript</h1>
+      <hr>
+      <h1>Video</h1>
+      <p>Adding video in HTML5 is very simple.  If you plan to just host a video for users to watch, embedding a YouTube video is probably the most effective way to do this, and I recommend checking out the <a href="https://developers.google.com/youtube/youtube_player_demo" target="blank">YouTube API</a> to see what is possible.  To have more control of the style and interactivity of a video, HTML5 and JavaScript provides the ability to add customization and effects.</p>
+      
+      <pre class="block"><code>&lt;video controls>
+  &lt;source src="cat.mp4" type="video/mp4">
+  &lt;source src="cat.ogg" type="video/ogg">
+    Your browser does not support HTML5 video : (
+&lt;/video></code></pre>
+        
+      <video width="480" controls>
+        <source src="cat.mp4" type="video/mp4">
+        <source src="cat.ogg" type="video/ogg">
+          Your browser does not support HTML5 video : (
+      </video>
+      
+      <p>With HTML5 video you must specify multiple sources and make files for each source.  There is not one file type that is supported by all major browsers, so you have to make at least 2 to make sure that your video will appear in Chrome, Safari, Firefox and IE.  For (a lot) more on video format, check out <a href="http://diveintohtml5.info/video.html" target="blank">this page</a> on Dive in HTML5.</p>
+      <p>The <code>type</code> attribute is not necessary but very important for page loading time, especially if you have a lot of video.  If you don't specify the type, the browser will attempt to load each video until it succeeds.  By specifying type, the browser immediately knows which video to load.</p>
+      <p>The <code>video</code> tag has several attributes that can change the look and playback of the video.  Adding <code>controls</code> gives the player default controls for each browser.  <code>autoplay</code> starts the video playback when the page loads.  Adding <code>loop</code> makes the video loop indefinitely, though this is a little buggy depending on the video you use.  In Chrome it doesn't seem to work at all, so I made a little JavaScript fix that we'll look at in a moment.  <code>muted</code> mutes the video.  <code>poster</code> adds an image to use when the video is not playing.</p>
+
+    <pre class="block"><code>&lt;video poster="coolcat.jpg" controls width="480">
+ &lt;source src="cat2.mp4" type="video/mp4">
+&lt;/video></code></pre>
+
+     <video poster="coolcat.jpg" controls width="480">
+       <source src="cat.mp4" type="video/mp4">
+     </video>
+     
+     <p>We can also change the time the video starts at or set a range for the video to play using media fragments.</p>
+      <video width="480" controls>
+        <source src="cat.mp4#t=1,5" type="video/mp4">
+      </video>
+      <pre class="block"><code>&lt;video width="480" controls>
+  &lt;source src="cat.mp4#t=1,5" type="video/mp4">
+&lt;/video></code></pre>
+     
+     
+     <p>The following video uses JavaScript to loop:</p>
+     <video id="loop" width="480" onclick="toggleLoop()" >
+       <source src="cat-loop.mp4" type="video/mp4">
+     </video>
+     <script>
+       var loop = document.getElementById("loop");  
+       var playing = false; 
+       function toggleLoop() {
+         if (playing) {
+           loop.pause();
+           playing = false;
+         } else {
+           loop.play();
+           playing = true;
+         }
+       }
+       loop.addEventListener("ended", function() {loop.currentTime=0.1;loop.play(); }, true);
+     </script>
+
+     <pre class="block"><code>var loop = document.getElementById("loop");   
+loop.addEventListener("ended", function() {
+ loop.currentTime=0.1;loop.play(); 
+}, true);</code></pre>
+   
+   <p>We can do more with JavaScript events.  We can update other parts of the DOM, change the style of the video and make other transformations.</p>
+   
+   <p>In the following example, we can use the video to change the background of our entire page as it plays. At the same time, we will populate a paragraph with text.</p>
+   
+   
+    <video id="js" width="480" controls>
+      <source src="cat.mp4" type="video/mp4">
+    </video>
+    <p id="cattext" style="color:white"></p>
+     
+    <script>
+    var js = document.getElementById('js');
+    var catlines = ["Hello", "I'm a cat", "meow"
+    ];
+    var count = 0;
+    
+    js.addEventListener("timeupdate", function () {
+      if (js.currentTime > 0) {
+        
+      document.getElementsByTagName('html')[0].style.background = "rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*100)+","+Math.floor(Math.random()*255)+")";
+      document.getElementById('cattext').innerHTML = catlines[count%3];
+      count++;
+    }
+    }, false);
+   </script>
+   <style>
+   html {
+     transition:background 1s;
+   }
+   </style>
+   <pre class="block"><code>var js = document.getElementById('js'); 
+   var catlines = ["Hello", "I'm a cat", "meow"];
+   var count = 0; 
+  js.addEventListener("timeupdate", function () {
+    if (js.currentTime > 0) {
+    document.getElementsByTagName('html')[0].style.background 
+    ="rgb("+Math.floor(Math.random()*255)+","
+    +Math.floor(Math.random()*100)+","+Math.floor(Math.random()*255)+")";
+    document.getElementById('cattext').innerHTML = catlines[count%3];   
+  }
+  }, false);</code></pre>
+     
+
+      <p>A more complex example shows how we can populate a <code>canvas</code> element with frames from our video.</p>
+
+     
+       <video id="imgs"  width="480" controls>
+         <source src="cat.mp4" type="video/mp4" >
+       </video>
+      <div>
+         <canvas id="canvas" style="display:none;" width="640" height="360"></canvas>
+         <div id="screenShots"></div>
+       </div>
+       <button onclick="grabScreenshot();">Get image</button><br>
+       <script>
+
+       var v = document.getElementById("imgs");
+       v.addEventListener("loadedmetadata", initScreenshot);
+       v.addEventListener("playing", startScreenshot);
+       v.addEventListener("pause", stopScreenshot);
+       v.addEventListener("ended", stopScreenshot);
+
+
+       var canvas = document.getElementById("canvas");
+       var ctx = canvas.getContext("2d");
+       var ssContainer = document.getElementById("screenShots");
+       var videoHeight, videoWidth;
+       var drawTimer = null;
+
+       function initScreenshot() {
+         console.log("Init Screenshot");
+         videoHeight = v.videoHeight; 
+         videoWidth = v.videoWidth;
+         canvas.width = videoWidth;
+         canvas.height = videoHeight;
+       }
+
+       function startScreenshot() {
+         if (drawTimer == null) {
+           drawTimer = setInterval(grabScreenshot, 1000);
+         }
+       }
+
+       function stopScreenshot() {
+         if (drawTimer) {
+           clearInterval(drawTimer);
+           drawTimer = null;
+         }
+       }
+
+       function grabScreenshot() {
+         ctx.drawImage(v, 0, 0, videoWidth, videoHeight);
+         var img = new Image();
+         img.src = canvas.toDataURL("image/png");
+         img.width = 120;
+         ssContainer.appendChild(img);
+       }
+  
+       </script>
+
+       <p>We can style our video elements the same way we would any HTML element.</p>
+       <style>
+       #styled {
+         border:7px solid #f3f;
+         transition:all 1s;
+         box-shadow:10px 10px 0 blue;
+       }
+       #styled:hover {
+         -webkit-transform: rotateY(120deg); \         
+      }
+      #styled:active {
+         -webkit-transform: rotateZ(180deg); 
+         -webkit-filter:grayscale(100%);
+         
+       }
+       </style>
+      <video id="styled" width="480" onclick="toggleStyle();">
+        <source src="cat.mp4" type="video/mp4">
+      </video> 
+      <pre class="block"><code>#styled {
+   border:7px solid #f3f;
+   transition:all 1s;
+   box-shadow:10px 10px 0 blue;
+ }
+ #styled:hover {
+   -webkit-transform: rotateY(120deg); 
+}
+#styled:active {
+   -webkit-transform: rotateZ(180deg); 
+   -webkit-filter:grayscale(100%);
+ }</code></pre>
+      <script>
+        var s = document.getElementById("styled");  
+        var playing = false; 
+        function toggleStyle() {
+          if (playing) {
+            s.pause();
+            playing = false;
+          } else {
+            s.play();
+            playing = true;
+          }
+        }
+      </script>
+
+      <p>We can also style the controls on the player.</p>
+     
+     <style>
+     #video-container {
+     	position: relative;
+      width:480px;
+     }
+     #video-controls {
+       display:none;
+     	position: absolute;
+      width:auto;
+      height:50px;
+     	bottom: 38px;
+     	left: 0;
+     	right: 0;
+     	opacity: 0;
+     	-webkit-transition: opacity .3s;
+      background:#f3f;
+
+     }
+     #video-container:hover #video-controls {
+     	opacity: .9;
+     }
+
+     button {
+     	background: rgba(0,0,0,.5);
+     	border: 0;
+      margin:8px 10px;
+      padding:10px;
+     	color: #EEE;
+     	-webkit-border-radius: 3px;
+      font-family:monaco;
+      
+     }
+     button#play {
+       position:absolute;
+       width:60px;
+       height:60px;
+       top:120px;
+       left:190px;
+       color:#f3f;
+       outline:1px solid #f3f;
+       font-size:20px;
+       transition:all 300ms;
+     }
+     button#play:hover {
+       background:#fdf;
+     }
+
+     button:hover {
+     	cursor: pointer;
+     }
+     input[type=range] {
+       -webkit-appearance:none;
+       background-color:black;
+       border:#f3f;
+       width:200px;
+       height:18px;
+     }
+     input[type=range]::-webkit-slider-thumb {
+       -webkit-appearance:none;
+       background-color:#fdf;
+       height:30px;
+       width:10px;
+       border-radius:3px;
+     }
+
+     </style>
+     <div id="video-container">
+       <!-- Video -->
+       <video id="controls" width="480" >
+         <source src="cat.mp4" type="video/mp4">
+         <p>
+           Your browser doesn't support HTML5 video.
+         </p>
+       </video>
+       <!-- Video Controls -->
+       <button id="play">&#9654;</button>
+       
+       <div id="video-controls">
+         <button type="button" id="play-pause">Paws</button>
+         <button type="button" id="mute">Mute</button>
+         <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+       </div>
+     </div>
+     <script>
+     var videoControls = document.getElementById('controls');
+     var play = document.getElementById('play');
+     var controls = document.getElementById('video-controls');
+   	  var volumeBar = document.getElementById("volume-bar");
+    	var playButton = document.getElementById("play-pause");
+    	var muteButton = document.getElementById("mute");
+      
+      
+     
+     
+     play.addEventListener('click', function() {
+       videoControls.play();
+       this.style.display = 'none';
+       controls.style.display = 'block';
+       
+     });
+     
+   	// Event listener for the play/pause button
+   	playButton.addEventListener("click", function() {
+   		if (videoControls.paused == true) {
+   			// Play the video
+   			videoControls.play();
+
+   			// Update the button text to 'Pause'
+   			playButton.innerHTML = "Pause";
+   		} else {
+   			// Pause the video
+   			videoControls.pause();
+
+   			// Update the button text to 'Play'
+   			playButton.innerHTML = "Play";
+   		}
+   	});
+    
+  	// Event listener for the mute button
+  	muteButton.addEventListener("click", function() {
+  		if (videoControls.muted == false) {
+  			// Mute the video
+  			videoControls.muted = true;
+
+  			// Update the button text
+  			muteButton.innerHTML = "Unmute";
+  		} else {
+  			// Unmute the video
+  			videoControls.muted = false;
+
+  			// Update the button text
+  			muteButton.innerHTML = "Mute";
+  		}
+  	});
+  	// Event listener for the volume bar
+  	volumeBar.addEventListener("change", function() {
+  		// Update the video volume
+  		videoControls.volume = volumeBar.value;
+  	});
+     </script>
+
+      
+      <h1>Audio</h1>
+      
+      <p>Audio controls and events are similar to video.  Audio support is less consistent across browsers and has less dedicated development.  The audio player syntax looks very similar to video:</p>
+      <pre class="block"><code>&lt;audio controls>
+  &lt;source src="birds.mp3" type="audio/mp3" />
+&lt;/audio></code></pre>
+      <audio controls>
+        <source src="birds.mp3" type="audio/mp3" />
+      </audio>
+      
+      
+       
+     
+      
+
+      <div id="sources"><p>Resources</p>
+        <ul><li><a href="http://www.w3.org/2010/05/video/mediaevents.html" target="blank">W3C video</a></li>
+          <li><a href="http://html5videoguide.net" target="blank">HTML5 video guide</a></li>
+          <li><a href="http://html5doctor.com/html5-audio-the-state-of-play/" target="blank">State of HTML5 audio</a></li>
+          <li><a href="http://craftymind.com/factory/html5video/CanvasVideo.html" target="blank">3D video effect</li>
+          <li><a href="http://popcornjs.org/" target="blank">Popcorn.js</li>
+          <li><a href="http://wavesurfer.fm/" target="blank">Visualize wave forms for audio</a></li>
+          </ul>
+      </div>
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

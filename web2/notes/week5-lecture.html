@@ -2,6 +2,9 @@
 <head>
   <title>TCNJ | WEB 2</title>
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <meta charset="utf-8">
 </head>
 
@@ -17,64 +20,65 @@
       <hr>
       <h1>Arrays</h1>
       <p>We talked about Arrays a bit last week.  Today in the demo we're going to use arrays to popular the dynamic grid we're going to make with color and content.  Let's go over arrays again with that in mind.  Arrays in JavaScript are objects that are like lists.  They are not typed, so we can put any variable, datatype, function or object into an array.  The basic construction sytax for an array looks like this:</p>
-      <p class="block">var myArray = [0, 1, 2, 3];</p>
+      <pre class="block"><code>var myArray = [0, 1, 2, 3];</code></pre>
       <p>Arrays can also be constructed without a variable name:</p>
-      <p class="block">new Array("zero", "one", "two");</p>
+      <pre class="block"><code>new Array("zero", "one", "two");</code></pre>
       <p>JavaScript arrays have methods and properties that allow us to traverse and manipulate them with ease.  We use index numbers and brackets to reference specific elements.  The <code>length</code> property gives us the number of elements.  Because JavaScript indexes start at <code>0</code>, the last element of the array will be equivalent to <code>length - 1</code>.</p>
-      <p class="block">var colorArray = ["red", "blue", "orange"];<br>console.log(colorArray[0]);<br>console.log(colorArray[1]);<br>console.log(colorArray[2]);</p>
+      <pre class="block"><code>var colorArray = ["red", "blue", "orange"];
+console.log(colorArray[0]);
+console.log(colorArray[1]);
+console.log(colorArray[2]);</code></pre>
       <p>We can also add to an array using brackets with index numbers.</p>
-      <p class="block">colorArray[3] = "hotpink";<br>console.log(colorArray);<br>colorArray.length;</p>
+      <pre class="block"><code>colorArray[3] = "hotpink";console.log(colorArray);colorArray.length;</code></pre>
       <p>We can locate elements in an array using the <code>indexOf</code> method:</p>
-      <p class="block">colorArray.indexOf("orange");<br>colorArray.indexOf("purple");</p>
+      <pre class="block"><code>colorArray.indexOf("orange");colorArray.indexOf("purple");</code></pre>
       <p>Check out the link to MDN's Array reference to see other methods and properties of arrays.</p>
       
       <h1>Objects</h1>
       <p>Objects are the basic building block of JavaScript.  They can be thought of like objects in the world, which have names, properties and functionalities.  For instance, a train is an object.  There are many different trains that have similar properties, such as color, speed and size, but different names, which can be divided into groups with common properties.  We have already seen this idea in action, when we made an array and referenced the length property.  This is the syntax to describe the properties of an object: <code>myArray.length</code>.  We can create out own objects and specify what properties they have.</p>
-      <p class="block">myObject.property</p>
+      <pre class="block"><code>myObject.property</code></pre>
       <p>We create objects the same way we create functions or variables, and define properties by defining them.</p>
-      <p class="block">var njTrain = new Object();<br>
-        njTrain.color = "silver";<br>
-        njTrain.line = "NJTransit";<br>
-        njTrain.speed = "100 miles/hr";<br>
-        njTrain.numPassengers = 200;<br>
-      </p>
+      <pre class="block"><code>var njTrain = new Object();
+njTrain.color = "silver";
+njTrain.line = "NJTransit";
+njTrain.speed = "100 miles/hr";
+njTrain.numPassengers = 200;</code></pre>
       <p>We can also set properties using bracket notation:</p>
-      <p class="block">var metroNorthTrain = new Object();<br>
-        metroNorthTrain["color"] = "blue";<br>
-        metroNorthTrain["line"] = "Hudson";<br>
-        metroNorthTrain["speed"] = "120 m/hr";<br>
-        metroNorthTrain["numPassengers"] = 120;<br>
-      </p>
+      <pre class="block"><code>var metroNorthTrain = new Object();
+metroNorthTrain["color"] = "blue";
+metroNorthTrain["line"] = "Hudson";
+metroNorthTrain["speed"] = "120 m/hr";
+metroNorthTrain["numPassengers"] = 120;</code></pre>
       <p>Object property names can be any string, including <code>""</code>, or empty string.  Any object property can be set or accessed with bracket or dot notation, regardless of how it was originally set. </p>  
       <p>Last week when we talked about <code>for loops</code> I mentioned another type of loop called <code>for ... in</code> which is used to iterate over the properties of an object.</p>
-      <pre class="block">for (var item in njTrain) {
+      <pre class="block"><code>for (var item in njTrain) {
   console.log(item);
-}</pre>
-      <pre class="block">for (var item in njTrain) {
+}</code></pre>
+      <pre class="block"><code>for (var item in njTrain) {
     console.log(njTrain[item]);
-}</pre>
+}</code></pre>
         
       <p>We can create new objects with the values using this syntax:</p>
-      <pre class="block">var amtrakTrain = {
+      <pre class="block"><code>var amtrakTrain = {
   color:"red",
   line:"East Coast",
   speed:"150 miles/hr",
   numPassengers: 300
-}</pre>
+}</code></pre>
         
       <p>Another way to make objects is with a constructor function.  This is sort of like JavaScript's version of classes in other languages.  Once a construcutor function is established we can make objects that will have the default properties, and also make objects that include more properties or don't have values for all of the properties.  We do this by writing a function that takes the properties we want as it's arguments.</p>
-      <pre class="block">function Train(color, line, speed, numPassengers) {
+      <pre class="block"><code>function Train(color, line, speed, numPassengers) {
   this.color = color;
   this.line = line;
   this.speed = speed;
   this.numPassengers = numPassengers;
-}</pre>
+}</code></pre>
 
       <p>Then we create objects based on this constructor:</p>
       
-      <p class="block">var mtaTrain = new Train("yellow", "NQR", "50 m/hr", 100);<br>
-        var pathTrain = new Train("blue", "Hoboken", "60 m/hr", 80);
-      </p>
+      <pre class="block"><code>var mtaTrain = new Train("yellow", "NQR", "50 m/hr", 100);
+var pathTrain = new Train("blue", "Hoboken", "60 m/hr", 80);
+</code></pre>
       
       <p>The objects can be accessed and modified using dot or bracket notation.  We can also add methods to objects, which are like functions,  as well as some other special functions, which we'll cover in a later class.</p>
       

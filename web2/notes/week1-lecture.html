@@ -3,6 +3,9 @@
   <title>TCNJ | WEB 2</title>
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
   <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -40,37 +43,43 @@ Firefox is Tools > Web Developer > Web Console, or ⌥⌘K.</p>
        <h1>The script tag</h1>
        <p>The <code>&#60;script&#62;</code> tag is an HTML tag that is used to embed JavaScript into web pages.  We covered HTML tags last semester, and will review them next week.  This can be done by embedding an external file, similar to attaching a CSS file.  That would look like this:  </p>
        
-       <pre class="block">&#60;script type="text/javascript" src="myjs.js"&#62;&#60;/script&#62;</pre>
+       <pre class="block"><code>&#60;script type="text/javascript" src="myjs.js"&#62;&#60;/script&#62;</code></pre>
        
        <p>We can also write JavaScript directly into an HTML file:</p>
-       <pre class="block">&#60;script type="text/javascript"&#62;
+       <pre class="block"><code>&#60;script type="text/javascript"&#62;
    // 
    // JavaScript goes here
    //
-&#60;/script&#62;</pre>
+&#60;/script&#62;</code></pre>
 
       <p>While both methods are acceptible, it is typically better to use external files, especially for JS files that are long or need to be used more than once.  Internal JS is good for functionality that will only be used once.</p>
       
       <p>JavaScript can also be written directly into HTML element tags.  This is typically done to trigger events.</p>
-      <pre class="block">&#60;body onload='init();'&#62;&#60;/body&#62;</pre>
-      <pre class="block">&#60;button onclick='launchFunction();'&#62;Click here.&#60;/button&#62;</pre>
+      <pre class="block"><code>&#60;body onload='init();'&#62;&#60;/body&#62;</code></pre>
+      <pre class="block"><code>&#60;button onclick='launchFunction();'&#62;Click here.&#60;/button&#62;</code></pre>
       
   
       <h1>Let's write some JavaScript</h1>
       <p>We're going to make a file called myscript.js and embed it into a web page.  Use this file to try the following examples.</p>
-      <pre class="block"><xmp>document.write('Hello World.');</xmp></pre>
-      <pre class="block"><xmp>document.write('<h1>This is an HTML page.</h1>');
-document.write('<p>This is the first paragraph.</p>');</xmp></pre>
+      <pre class="block"><code>document.write('Hello World.');</code></pre>
+      <pre class="block"><code>document.write('&lt;h1&gt;This is an HTML page.&lt;/h1&gt;');
+document.write('&lt;p&gt;This is the first paragraph.&lt;/p&gt;');</code></pre>
 
 <p>We can use JavaScript to write text on an HTML document and create HTML markup.  Let's look at a few things we can do with JavaScript before we go over syntax.</p>
 <p>We can use events to trigger actions:</p>
-<pre class="block"><xmp><button onclick='alert("I am a button");'>Click me!</button></xmp></pre>
+<pre class="block"><code>&lt;button onclick='alert("I am a button");'&gt;Click me!&lt;/button&gt;</code></pre>
 <p><button onclick='alert("I am a button");'>Click me!</button></p>
 <p>Or change HTML content:</p>
-<pre class="block"><xmp><button id="button" onclick='document.getElementById("button").innerHTML="Button clicked!";' >Change text.</button></xmp></pre>
+<pre class="block"><code>&lt;button id="button" 
+  onclick='document.getElementById("button")
+   .innerHTML="Button clicked!";'&gt;Change text.
+&lt;/button&gt;</code></pre>
 <p><button id="button" onclick='document.getElementById("button").innerHTML="Button clicked!";'>Change text.</button></p>
 <p>Or change CSS styles:</p>
-<pre class="block"><xmp><button id="cssbutton" onclick='document.getElementById("cssbutton").style.color="hotpink";'>Change text color.</button></xmp></pre>
+<pre class="block"><code>&lt;button id="cssbutton" 
+  onclick='document.getElementById("cssbutton").style.color="hotpink";'&gt;
+  Change text color.
+&lt;/button&gt;</code></pre>
 <p><button id="cssbutton" onclick='document.getElementById("cssbutton").style.color="hotpink";'>Change text color.</button></p>
        
 <h1>Syntax</h1>
@@ -84,11 +93,11 @@ document.write('<p>This is the first paragraph.</p>');</xmp></pre>
 <p>You might be wondering what's the deal with all those quotation marks?  You can use either double quotations or single quotations to separate strings as the values for variable and function calls.  It is best to use one or the other.  The reason we use both it because we often pass code that requires a string with strings written inside of it like in our onclick examples above.</p>
 <h1>Comments</h1>
 <p>Comments are an important aspect of JavaScript that are not part of the executed program.  Comments are necessary both as ways to communicate with other developers and as organizational markers for us as coders.  You can comment out a single line of JavaScript with a double back slash: <code>//</code>.  Multiple comment lines use <code>/* .... */</code> syntax:</p>
-<p><pre class="block">/*  everything inside 
+<p><pre class="block"><code>/*  everything inside 
   here 
   will 
   be commented
-*/</pre></p>
+*/</code></pre></p>
 <h1>Variables</h1>
 <p>In our assignment today we will need to use variable to store information.  Variables are references to places in the computer memory that store information.  In JavaScript variables are special because everything can be written as a variable, as we will talk about more when we learn about objects.  JavaScript uses numbers and strings and has loose variable typing which we will demonstrate in the console.</p>
 <p>Declaring a variable looks like this: <code>var x = 10;</code>.  It is also acceptable to write <code>x = 10;</code> but it is better practice to declare variable with a var keyword.  A variable that is not assigned, such as <code>var index;</code> will have the value <code>undefined</code>.  String variable are declared like this: <code>var myString = "Hello World."</code>.  Boolean variables, which we will cover further next week, look like this: <code>var isValue = false;</code>.  We will cover more data types in depth next week.</p>
@@ -97,11 +106,9 @@ document.write('<p>This is the first paragraph.</p>');</xmp></pre>
 <p>Events in JavaScript are functions that react to interactions with the browser, such as user clicks, document loading and window scrolling.  We will cover functions more in depth later, but for now let's talk about some basic user interactions.</p>
 
 <p><code>onclick()</code> executes when an element is loaded.</p>
-<pre class="block"><xmp><script>
-  document.getElementById('onclick').onclick = function(){
+<pre class="block"><code>document.getElementById('onclick').onclick = function(){
   alert('The button has been clicked.');
-};
-</script></xmp></pre>
+};</code></pre>
 
 <p><button id="onclick">On click.</button></p>
 <script>document.getElementById('onclick').onclick = function(){
@@ -109,10 +116,9 @@ document.write('<p>This is the first paragraph.</p>');</xmp></pre>
 };</script>
 
 <p><code>onchange()</code> executes when an input form is changed.</p>
-<pre class="block"><xmp><script>
-  document.getElementById('onchange').onchange = function(){    alert(document.getElementById('onchange').value);
-  };
-</script></xmp></pre>
+<pre class="block"><code>document.getElementById('onchange').onchange = function(){    
+  alert(document.getElementById('onchange').value);
+};</code></pre>
 
 <p><input id="onchange" type="text" value="Enter text"></input></p>
 <script>document.getElementById('onchange').onchange = function(){
@@ -121,19 +127,16 @@ document.write('<p>This is the first paragraph.</p>');</xmp></pre>
 
 <p>This is one way to get data from a user, of which there are many.  We can use forms, input boxes and confirmation alerts, along with other events to get input.</p>
 <p>A <code>confirm</code> alert is similar to the alert function we've already used, but prompts the user to choose "Ok" or "Cancel".</p>
-<pre class="block"><xmp><script>
-function confirmButton()
-{
-var x;
-var r=confirm("Confirm this popup.");
-if (r==true) {
-  x = "You pressed OK!";
-} else {
-  x = "You pressed Cancel!";
-}
-document.getElementById("confirm").innerHTML = x;
-}
-</script></xmp></pre>
+<pre class="block"><code>function confirmButton() {
+  var x;
+  var r=confirm("Confirm this popup.");
+  if (r==true) {
+    x = "You pressed OK!";
+  } else {
+    x = "You pressed Cancel!";
+  }
+  document.getElementById("confirm").innerHTML = x;
+}</code></pre>
 <button onclick="confirmButton()">Click to confirm.</button>
 <p id="confirm"></p>
 <script>
@@ -154,15 +157,12 @@ document.getElementById("confirm").innerHTML = x;
 
 
 
-<pre class="block"><xmp><script>
-function promptButton()
-{
-var r = prompt("Enter your name.", "Name");
-if (r != null){
+<pre class="block"><code>function promptButton() {
+  var r = prompt("Enter your name.", "Name");
+  if (r != null){
     document.getElementById("prompt").innerHTML = "Hello, " + r + ".";
   }
-}
-</script></xmp></pre>
+}</code></pre>
 <button onclick="promptButton()">What is your name?</button>
 <p id="prompt"></p>
 <script>
@@ -176,12 +176,10 @@ if (r != null){
 </script>
 
 <p>We can also use JavaScript forms.</p>
-<pre class="block"><xmp><script>
-  function submitText() {
-    var result = document.getElementById("textbox").value;
-    alert(result);
-  }
-</script></xmp></pre>
+<pre class="block"><code>function submitText() {
+  var result = document.getElementById("textbox").value;
+  alert(result);
+}</code></pre>
 <input type="text" id="textbox">
 <button onclick="submitText()">Submit</button>
   <script>

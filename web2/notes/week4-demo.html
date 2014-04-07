@@ -3,6 +3,9 @@
   <title>TCNJ | WEB 2</title>
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
   <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -15,14 +18,14 @@
       <h1>JavaScript and CSS3</h1>
       <hr>
       <p>Last week we reviesed HTML and CSS.  I want to look at a new property of CSS before we start using JavaScript libraries like jQuery.  CSS3 has a transition property that allows us to do a lot of things that formerly required more JavaScript or jQuery to do, with just CSS and a little JavaScript.  We can use CSS to make transitions between colors, sizes and positions of our elements, using little or no scripting.  Not all CSS properties can have transitions applied to them, but most properties for color, size and position can be animated.  In many cases, CSS psuedo states like <code>:hover</code> or <code>:active</code> can be used to trigger transitions, but we can also set up transitions to be triggered by simple JavaScript changes.  Look at this simple example:</p>
-      <pre class="block"><xmp><style>
-    p#ex1 {
-      transition: color 2s;
-    }
-</style>
-<p id="ex1">Watch the color change.</p>
-<button onclick='document.getElementById("ex1").style.color = "blue";'>Click</button>
-</xmp></pre>
+      <pre class="block"><code>&lt;style&gt;
+p#ex1 {
+  transition: color 2s;
+}
+&lt;/style&gt;
+&lt;p id="ex1"&gt;Watch the color change.&lt;/p&gt;
+&lt;button onclick='document.getElementById("ex1").style.color = "blue";'&gt;
+  Click&lt;/button&gt;</code></pre>
       <style>
       p#ex1 {
         transition: color 2s;
@@ -32,7 +35,7 @@
       <button onclick='document.getElementById("ex1").style.color = "blue";'>Click</button>
       
       <p>I didn't even need a script tag for that one.  The transition property requires a property to transition and a duration.  We can write durastion in seconds or milliseconds, ie: <code>300ms</code> would be 300 milliseconds.  We can also use <code>all</code> to apply transitions to any changes to the CSS style of an element, but those styles must be specified.</p>
-      <pre class="block"><xmp><style>
+      <pre class="block"><code>&lt;style&gt;
   p#ex2 {
     position:relative;
     width:200px;
@@ -40,10 +43,10 @@
     left:0;
     transition: all 3s;
   }
-</style>
-<p id="ex2">Multiple changes.</p>
-<button onclick='allChange();'>Click</button>
-<script>
+&lt;/style&gt;
+&lt;p id="ex2">Multiple changes.&lt;/p&gt;
+&lt;button onclick='allChange();'>Click&lt;/button&gt;
+&lt;script&gt;
   function allChange() {
     var p = document.getElementById('ex2');
     p.style.color = "white";
@@ -52,7 +55,7 @@
     p.style.height = "200px";
     p.style.left = "50px";
   }
-</script></xmp></pre>
+&lt;/script&gt;</code></pre>
       <style>
       p#ex2 {
         position:relative;
@@ -75,7 +78,7 @@
         }
       </script>
       <p>A third value can be added to the transition property to determine the style of animation with the transition timing property, including easings or steps.</p>
-      <pre class="block"><xmp><style>
+      <pre class="block"><code>&lt;style&gt;
   p#ex3 {
     position:relative;
     background:purple;
@@ -92,12 +95,12 @@
     left:0;
     transition: all 3s steps(5, end);
   }
-</style>
-<p id="ex3">Easing</p>
-<p id="ex4">Stepping</p>
-<button onclick='ease();'>Click</button>
-<button onclick='step();'>Click</button>
-<script>
+&lt;/style&gt;
+&lt;p id="ex3"&gt;Easing&lt;/p&gt;
+&lt;p id="ex4"&gt;Stepping&lt;/p&gt;
+&lt;button onclick='ease();'&gt;Click&lt;/button&gt;
+&lt;button onclick='step();'&gt;Click&lt;/button&gt;
+&lt;script&gt;
   function ease() {
     var p = document.getElementById('ex3');
     p.style.left = "400px";
@@ -106,7 +109,7 @@
     var p = document.getElementById('ex4');
     p.style.left = "400px";
   }
-</script></xmp></pre>
+&lt;/script&gt;</code></pre>
       <style>
       p#ex3 {
         position:relative;

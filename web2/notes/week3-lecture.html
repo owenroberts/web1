@@ -2,6 +2,9 @@
 <head>
   <title>TCNJ | WEB 2</title>
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <meta charset="utf-8">
 </head>
 
@@ -19,12 +22,10 @@
       <hr>
       <p>The DOM is an important API (Application Programming Interface) for JS developers, because it provides access to the structural elements of an HTML page, allowing scripting to modify the contents and design of a page.  The DOM organizes parts of the page into objects, with properties and methods that can be referenced by JavaScipt (as well as other scripting languages).  This allows us to create dynamic page designs, combining the HTML standard, CSS and scripting to create animation and dynamic changes to design.</p>
       <p>Let's look at some examples:</p>
-      <pre class="block"><xmp><script> 
-function grafs() {
+      <pre class="block"><code>function grafs() {
   g = document.getElementsByTagName('p');
   console.log(g);
-}
-</script></xmp></pre>
+}</code></pre>
       <button  onclick="grafs();">Get document paragraphs</button>
         <script> 
         function grafs() {
@@ -36,11 +37,9 @@ function grafs() {
         <p>All broswers come with some implementation of the DOM that can be accessed through JavaScript or other scripting languages.  The DOM can be accessed with a simple set of commands.  Look at <a href="https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference" target="blank">MDN's DOM reference</a> for an easily accessible list.</p>
         <p>We have already looked at some examples of using the DOM last week when used examples like this:</p>
         <p><code>onclick()</code> executes when an element is loaded.</p>
-        <pre class="block"><xmp><script>
-document.getElementById('onclick').onclick = function(){
+        <pre class="block"><code>document.getElementById('onclick').onclick = function(){
    alert('The button has been clicked.');
-};
-</script></xmp></pre>
+};</code></pre>
 
         <p><button id="onclick">On click.</button></p>
         <script>document.getElementById('onclick').onclick = function(){
@@ -49,12 +48,12 @@ document.getElementById('onclick').onclick = function(){
         
         <p>Let's go over a few important DOM elements, using the console:</p>
         <p>The <code>window</code> object refers to the web page itself.  We can use it to determine when the page has been loaded or to make an alert.</p>
-        <pre class="block">window.alert('I am using the DOM');</pre>
+        <pre class="block"><code>window.alert('I am using the DOM');</code></pre>
         <p><code>document</code> refers to our HTML page.  We can use it to create and modify content.</p>
-        <p class="block">heading = document.createElement("h1");<br>
-          text = document.createTextNode("DOM Lecture!");<br>
-          heading.appendChild(text);<br>
-          document.body.appendChild(heading);</p>
+        <pre class="block"><code>heading = document.createElement("h1");
+text = document.createTextNode("DOM Lecture!");
+heading.appendChild(text);
+document.body.appendChild(heading);</code></pre>
         <p>In this example, <code>createElement</code> makes a new HTML element, <code>createTextNode</code> makes a piece of HTML text, which is appended to the header we created with the <code>appendChild</code> method, and then added to the body.</p>
         <p>The DOM uses the HTML element hierarchy to establish relationships between elements and move between them.  The <code>child</code> element is an element directly nested into another element.  <code>descendent</code> elements are any elements inside of the hierarchy of an element.  Similarly, <code>parent</code> and <code>ancestor</code> elements are those that have elements nested inside of them.  <code>sibling</code> elements are those that are next to one another.  Let's review those relationships based on one main element.</p>
         <style>
@@ -84,52 +83,26 @@ document.getElementById('onclick').onclick = function(){
     </div></div>
     
     <p>In the DOM, elements and attributes are referred to as <code>nodes</code>, hence the <code>createTextNode</code>.  When we get DOM elements in JavaScript, like the <code>g</code> object with the list of paragraphs in the first example, we are using a <code>nodeList</code>. Let's look at the <code>nodes</code> in our element example.</p>
-    <p class="block">var elem = document.getElementById('element');</p>
+    <pre class="block"><code>var elem = document.getElementById('element');</code></pre>
     <p>We can get the children and attributes of this element.</p>
-    <p class="block">elem.attributes;<br>
-      elem.attributes.id;<br>
-      elem.attributes.style;</p>
+    <pre class="block"><code>elem.attributes;
+elem.attributes.id;
+elem.attributes.style;</code></pre>
     
       <p>Along with <code>getElementById</code>, let's look at some other important DOM methods.</p>
-      <p class="block">var elem = document.getElementById('element');<br>
-        elem.getElementsByTagName('div');<br>
-        elem.innerHTML = "new text";<br>
-        elem.style.color = "red";
-        elem.getAttribute('class');
-        
-      </p>
+      <pre class="block"><code>var elem = document.getElementById('element');
+elem.getElementsByTagName('div');
+elem.innerHTML = "new text";
+elem.style.color = "red";
+elem.getAttribute('class');</code> </pre>
       <p>Many other things are possible with the Document Object Model.  Look at the resources to explore further.</p>
       <h1>Console errors</h1>
       <p>What happens when you enter the following line of code into the JavaScript console in Chrome?</p>
-      <p class="block">var grafs = document.getElementByTagName('p');</p>
+      <pre class="block"><code>var grafs = document.getElementByTagName('p');</code></pre>
       <p>By now, you have probably seen some of these errors.  The console is a great resource for this kind of feedback.  If you are missing a semi-colon or parenthesis, the console feedback will usually find it before you do.</p>
     
         
-        
 
-
-          <!-- 
-      statements
-      
-      logic 
-    
-      if then
-      logical operators
-      booleans
-      type coercion with booleans
-    
-      
-      and loops
-      
-      for
-      for in
-      while 
-      do while
-      
-      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FStatements%2Fdo...while
-            https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference/Introduction
-      
-      -->
       
       <div id="sources"><p>Resources</p>
         <li><a href="https://developer.mozilla.org/en-US/docs/DOM" target="blank">DOM</a></li>
@@ -141,7 +114,6 @@ document.getElementById('onclick').onclick = function(){
     
   </div>
   <script charset="utf-8" src="../lib/jquery.js"></script>
-  <script charset="utf-8" src="../lib/skip.js"></script>
   <script charset="utf-8" src="../nav.js"></script>
   
 </body>

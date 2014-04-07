@@ -3,6 +3,9 @@
   <title>TCNJ | WEB 2</title>
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
   <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <script src="../lib/jquery.js" type="text/javascript" charset="utf-8"></script>
   
 </head>
@@ -26,12 +29,11 @@
       
       <p>Let's look at a simple example.</p>
   
-      <pre class="block">
-$(document).ready(function() {
+      <pre class="block"><code>$(document).ready(function() {
   $('myDiv').click(function() {
     $(this).css('color', 'blue');
   });
-});</pre>
+});</code></pre>
     
         <script type="text/javascript">
       $(document).ready(function() {
@@ -50,15 +52,14 @@ $(document).ready(function() {
         
         <p>jQuery can be used to make elements appear and disappear:</p>
     
-        <pre class="block">
-$(document).ready(function() {
+        <pre class="block"><code>$(document).ready(function() {
   $('#hideButton').click(function() {
     $('#mygraf').hide();
   });
   $('#showButton').click(function(){
     $('#mygraf').show();
   }); 
-});</pre>
+});</code></pre>
   
       <script type="text/javascript">
       $(document).ready(function() {
@@ -78,12 +79,11 @@ $(document).ready(function() {
   
       <p>Or you can toggle between the two.</p>
   
-      <pre class="block">
-$(document).ready(function() {
+      <pre class="block"><code>$(document).ready(function() {
   $('#toggle').click(function() {
     $('#newgraf').toggle();
   });
-});</pre>
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -103,12 +103,11 @@ $(document).ready(function() {
 
     <p>jQuery also has durational effects that can be used for transitions, such as fade, slide and animate.  These methods add a couple of arguments to their function call, the speed argument, which determines how long the transition will last, and a callback, which is a function to launch once the transition is finished.  Speed is measure in milliseconds, so the argument <code>1000</code> is equivalent to 1 second.  You can also write <code>1s</code>.  Let's look at a couple of examples.</p>
 
-      <pre class="block">
-$(document).ready(function() {
+      <pre class="block"><code>$(document).ready(function() {
   $('#fade').click(function() {
     $('#redsquare').fadeToggle(300);
   });
-});</pre>
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -121,12 +120,11 @@ $(document).ready(function() {
     <div id="redsquare" style="width:80%;height:100px;background-color:red">You can use fadeIn(), fadeOut(), and fadeToggle(), or fadeTo(), which adds an argument for a specific opacity.</div>
     <button id="fade">fadeToggle</button>
 
-      <pre class="block">
-$(document).ready(function() {
+      <pre class="block"><code>$(document).ready(function() {
   $('#slide').click(function() {
     $('#bluesquare').slideToggle(1000);
   });
-});</pre>
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -140,8 +138,7 @@ $(document).ready(function() {
     <button id="slide">slideToggle</button>
 
 
-      <pre class="block">
-$(document).ready(function() {
+      <pre class="block"><code>$(document).ready(function() {
   $('#animate').click(function() {
     $('#greensquare').animate({
       fontSize:'+=0.3em',
@@ -149,7 +146,7 @@ $(document).ready(function() {
       width:'-=10px'
     });
   });
-});</pre>
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -170,17 +167,16 @@ $(document).ready(function() {
 
     <p>I mentioned callback functions earlier.  Let's look at how that would work.</p>
 
-      <pre class="block">
-    $(document).ready(function() {
-      $('#callback').click(function() {
-        $('#purple').animate({
-          fontSize:'-=1em',
-          opacity:'-=.1'
-        }, 1000, function() {
-          alert('I\'m fading away.');
-        } );
-      });
-    });</pre>
+      <pre class="block"><code>$(document).ready(function() {
+  $('#callback').click(function() {
+    $('#purple').animate({
+      fontSize:'-=1em',
+      opacity:'-=.1'
+    }, 1000, function() {
+      alert('I\'m fading away.');
+    } );
+  });
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -200,13 +196,13 @@ $(document).ready(function() {
 
     <p>You can also "chain" jQuery actions together.</p>
 
-      <pre class="block">$(document).ready(function() {
-        $('#chain').click(function() {
-          $('#orange').css('color','blue')
-                      .slideUp(500)
-                      .slideDown(100);
-      });
-    });</pre>
+      <pre class="block"><code>$(document).ready(function() {
+    $('#chain').click(function() {
+      $('#orange').css('color','blue')
+                  .slideUp(500)
+                  .slideDown(100);
+  });
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -221,21 +217,21 @@ $(document).ready(function() {
 
     <p>jQuery can also be used to edit the HTML iin a document.  You can get values from HTML, set values, add content or markup, remove content or markup and changes CSS attributes.  Let's look at a couple of examples.</p>
 
-      <pre class="block">$(document).ready(function() {
-        $('#get').click(function() {
-          alert('This elements says: ' 
-                  + $('#lightblue').text());
-        });
-        $('#set').click(function() {
-          $('#lightblue').text('I\'m new HTML content.');
-        });
-        $('#add').click(function() {
-          $('#lightblue').append('This is added content.');
-        });
-        $('#empty').click(function() {
-          $('#lightblue').empty();
-        });
-    });</pre>
+      <pre class="block"><code>$(document).ready(function() {
+    $('#get').click(function() {
+      alert('This elements says: ' 
+              + $('#lightblue').text());
+    });
+    $('#set').click(function() {
+      $('#lightblue').text('I\'m new HTML content.');
+    });
+    $('#add').click(function() {
+      $('#lightblue').append('This is added content.');
+    });
+    $('#empty').click(function() {
+      $('#lightblue').empty();
+    });
+});</code></pre>
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -260,11 +256,11 @@ $(document).ready(function() {
 
     <p>You can also move around the HTML document using parent, child, sibling, descendant and ancestor relationships.</p>
 
-    <pre class="block">$(document).ready(function() {
-      $('#child').click(function() {
-        $('#lightgreen').children().css('color','blue');
-      });
-    });</pre>
+    <pre class="block"><code>$(document).ready(function() {
+  $('#child').click(function() {
+    $('#lightgreen').children().css('color','blue');
+  });
+});</code></pre>
 
 
     <script type="text/javascript">
@@ -280,11 +276,11 @@ $(document).ready(function() {
 
     <p>Or you can find specific elements.</p>
 
-    <pre class="block">$(document).ready(function() {
-      $('#find').click(function() {
-        $('#lavender').find('p').css('color','hotpink');
-      });
-    });</pre>
+    <pre class="block"><code>$(document).ready(function() {
+  $('#find').click(function() {
+    $('#lavender').find('p').css('color','hotpink');
+  });
+});</code></pre>
 
 
     <script type="text/javascript">

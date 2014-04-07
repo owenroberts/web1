@@ -3,6 +3,9 @@
   <title>TCNJ | WEB 2</title>
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
   <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <style>
   body {
   }
@@ -45,21 +48,6 @@
         <circle cx="50%" cy="50%" r="40" fill="red" stroke="blue" stroke-width="10" />
       </svg>
       
-      <!-- 
-      patterns
-        vs
-      random
-        
-      repetition
-        
-      randomness
-        
-      for (var i = 0; i < 10; i++) {
-        var s = document.createElement('img');
-        s.src = "../demo/svg/green-sq.svg";
-        container.appendChild(s);
-      }
-      -->
       
       <div class="example" id="example1">
         <p>Example 1</p>
@@ -72,14 +60,12 @@
         }
         </script>  
       </div>
-      <pre class="block"><xmp><script>
-var container = document.getElementById('example1');
+      <pre class="block"><code>var container = document.getElementById('example1');
 var s = document.getElementById('s1');
 for (var i = 0; i < 10; i++) {
   var clone = s.cloneNode(s);
   container.appendChild(clone);
-}
-</script> </xmp></pre>
+}</code></pre>
       
       
       <p>We can also create new SVGs in Javascript and then append them to the document.</p>
@@ -94,13 +80,13 @@ for (var i = 0; i < 10; i++) {
         }
         </script> 
       </div>
-      <pre class="block"><xmp> <script>
-var container = document.getElementById('example2');      
+      <pre class="block"><code>var container = document.getElementById('example2');      
 for (var i = 0; i < 10; i++) {
-  var s = '<svg id="s1" width="100" height="100"><circle cx="50%" cy="50%" r="40" fill="blue" stroke="green" stroke-width="10" /></svg>';
+  var s = '&lt;svg id="s1" width="100" height="100"&gt;
+    &lt;circle cx="50%" cy="50%" r="40" fill="blue" stroke="green" stroke-width="10" /&gt;
+  &lt;/svg&gt;';
   container.innerHTML += s;
-}
-</script> </xmp></pre>
+}</code></pre>
 
       <svg id="s3" width="100" height="100">
         <polygon points="0,0 100,0 50,100" fill="orange">
@@ -121,14 +107,12 @@ for (var i = 0; i < 10; i++) {
         }
         </script> 
       </div>
-      <pre class="block"><xmp><script>
-var container = document.getElementById('example3');
+      <pre class="block"><code>var container = document.getElementById('example3');
 var s = document.getElementById('s3');
 for (var i = 0; i < 10; i++) {
   var clone = s.cloneNode(s);
   container.appendChild(clone);
-}
-</script> </xmp></pre>
+}</code></pre>
 
       <p>When we use repetition with a variety of elements we create patterns.  We can use the same for loop to make patterns with SVG elements, or we can use the SVG <code>pattern</code> definition, which allows us to define a visual block and then use it as a repeating pattern.  These are easy to implement and modify.</p>
 
@@ -146,7 +130,7 @@ for (var i = 0; i < 10; i++) {
           <rect x="0" y="0" width="100%" height="200" fill="url(#checkerPattern)" />     
         </svg>  
       </div>
-      <pre class="block"><xmp><svg width="100%" height="200">
+      <pre class="block"><code><svg width="100%" height="200">
   <defs>
       <pattern id="checkerPattern" patternUnits="userSpaceOnUse"
               x="0" y="0" width="20" height="20"
@@ -156,7 +140,7 @@ for (var i = 0; i < 10; i++) {
       </pattern>
   </defs>
   <rect x="0" y="0" width="100%" height="200" fill="url(#checkerPattern)" />     
-</svg> </xmp></pre>
+</svg> </code></pre>
 
       
       <p>We can make more complex patterns by varying shape, size and color.</p>
@@ -173,15 +157,15 @@ for (var i = 0; i < 10; i++) {
           <rect fill="url(#pa)" x="0" y="0" width="200" height="200"/>
         </svg>
       </div>
-      <pre class="block"><xmp>  <svg width="100%" height="200" >
-  <pattern id="pa" x="0.05" y="0.05" width=".25" height=".25">
-    <rect x="0" y="0" width="200" height="200" fill="lightblue" />
-    <rect fill="blue" x="0" width="25" height="25" y="0"/>
-    <rect fill="darkblue" x="15" width="40" height="40" y="15"/>
-    <rect fill="skyblue" x="45" width="25" height="25" y="45"/>  
-  </pattern>
-  <rect fill="url(#pa)" x="0" y="0" width="200" height="200"/>
-</svg></xmp></pre>
+      <pre class="block"><code>&lt;svg width="100%" height="200"&gt;
+  &lt;pattern id="pa" x="0.05" y="0.05" width=".25" height=".25"&gt;
+    &lt;rect x="0" y="0" width="200" height="200" fill="lightblue" /&gt;
+    &lt;rect fill="blue" x="0" width="25" height="25" y="0"/&gt;
+    &lt;rect fill="darkblue" x="15" width="40" height="40" y="15"/&gt;
+    &lt;rect fill="skyblue" x="45" width="25" height="25" y="45"/&gt;
+  &lt;/pattern&gt;
+  &lt;rect fill="url(#pa)" x="0" y="0" width="200" height="200"/&gt;
+&lt;/svg&gt;</code></pre>
       
       <svg  id="p1" width="25" height="25">
         <circle r="25" fill="lavender" />
@@ -218,8 +202,7 @@ for (var i = 0; i < 10; i++) {
         }      
         </script>
       </div>
-      <pre class="block"><xmp><script>
-var c = document.getElementById('example6');
+      <pre class="block"><code>var c = document.getElementById('example6');
 var s = [
   document.getElementById('p1'),
   document.getElementById('p2'),
@@ -229,8 +212,7 @@ var s = [
 for (var i = 0; i < 64; i++) {
   var clone = s[i%s.length].cloneNode(s[i%s.length]);
   c.appendChild(clone);
-}      
-</script></xmp></pre>
+}</code></pre>
 
       <p>Let's modify it with a simple <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="blank">ternary switch</a>.</p>
       <div class="example" id="example7">
@@ -254,8 +236,7 @@ for (var i = 0; i < 64; i++) {
         }      
         </script>
       </div>
-      <pre class="block"><xmp><script>
-var c = document.getElementById('example7');
+      <pre class="block"><code>var c = document.getElementById('example7');
 var s = [
   document.getElementById('p1'),
   document.getElementById('p2'),
@@ -268,8 +249,7 @@ for (var i = 0; i < 64; i++) {
   var clone = s[n].cloneNode(s[n]);
   c.appendChild(clone);
   sw = !sw;
-}      
-</script></xmp></pre>
+}</code></pre>
       
       <p>Or run through the shapes backwards.</p>
       <div class="example" id="example8">
@@ -293,8 +273,7 @@ for (var i = 0; i < 64; i++) {
         }      
         </script>
       </div>
-      <pre class="block"><xmp>  <script>      
-var c = document.getElementById('example8');
+      <pre class="block"><code>var c = document.getElementById('example8');
 var s = [
   document.getElementById('p1'),
   document.getElementById('p2'),
@@ -307,8 +286,7 @@ for (var i = 0; i < 64; i++) {
   var clone = s[n].cloneNode(s[n]);
   c.appendChild(clone);
   sw = !sw;
-}      
-</script></xmp></pre>
+}</code></pre>
       
       
       <p>Randomness is a way to add variability to a design using math and the computer.  Take a look at the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="blank">Math functions</a> available in Javascript, including <code>Math.random()</code>.  Let's also take a look at how randomness can be used in design with the <a href="http://vimeo.com/20488585" target="blank">MIT generative logo</a>.</p>
@@ -332,8 +310,7 @@ for (var i = 0; i < 64; i++) {
         }
         </script>     
       </div>
-      <pre class="block"><xmp><script>
-function getRandomNumber(n) {
+      <pre class="block"><code>function getRandomNumber(n) {
   return Math.floor(Math.random()*n);
 }
 var c = document.getElementById('example9');
@@ -347,8 +324,7 @@ for (var i = 0; i < 132; i++) {
   var n = getRandomNumber(s.length);
   var clone = s[n].cloneNode(s[n]);
   c.appendChild(clone);
-}
-</script> </xmp></pre>
+}</code></pre>
       
       <img src="../demo/svg/green-zag.svg" />
       
@@ -369,8 +345,7 @@ for (var i = 0; i < 132; i++) {
         </script>
       
       </div>
-      <pre class="block"><xmp><script>
-var c = document.getElementById('example10');
+      <pre class="block"><code>var c = document.getElementById('example10');
 
 for (var i = 0; i < 24; i++) {
   var img = document.createElement('img');
@@ -378,8 +353,7 @@ for (var i = 0; i < 24; i++) {
   img.style.width = "80px";
   img.style.height = "80px";
   c.appendChild(img);
-}
-</script></xmp></pre>
+}</code></pre>
         
   
 <p>Examples from class:</p>

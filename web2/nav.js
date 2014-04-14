@@ -156,6 +156,11 @@ Naavy = {
 					['HTML5 Media', 'demo'],
 					['Assignment', 'assignment']
 					]
+				},
+				{
+					url:'week11',
+					pages:[
+					['HTML5 Animation', 'demo']					]
 				}
         ],
         

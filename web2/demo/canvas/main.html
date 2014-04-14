@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas demo</title>
+  <style>
+    canvas {
+      position:absolute;
+      top:0px;
+      left:0px;
+      background:transparent;
+    }
+    #background {
+      z-index:-2;
+    }
+    #main {
+      z-index:-1;
+    }
+    #ship {
+      z-index:0;
+    }
+    .score {
+      position:absolute;
+      top:5px;
+      left:480px;
+      color:orange;
+      cursor:default;
+    }
+    .game-over {
+      position:absolute;
+      top:100px;
+      left:210px;
+      font-size:30px;
+      cursor:default;
+      display:none;
+    }
+    .game-over span {
+      font-size:20px;
+      cursor:pointer;
+      position:relative;
+      left:50px;
+    }
+    .game-over span:hover {
+      color:orange;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background" width="800" height="600">
+    Your browser does not support canvas.
+  </canvas>
+  <canvas id="main" width="800" height="600">
+  </canvas>
+  <canvas id="ship" width="800" height="600">
+  </canvas>
+  <div class="score">Score: <span id="score"></span></div>
+  <div class="game-over" id="game-over">Game Over<br><span onclick="game.restart()">Restart</span></div>
+  
+  <script src="game.js"></script>
+</body>
+</html>
+    

@@ -1,0 +1,88 @@
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text);
+
+body, html {
+	height:100%;
+	width:100%;
+	margin:0;
+}
+
+body{
+	font-family:'Crimson Text';
+}
+
+h1 {
+	margin:0;
+	padding:20px;
+	text-align:center;
+}
+
+div {
+	height:786px;
+	position:relative;
+}
+
+#container {
+	width:auto;
+	height:14144px;
+	overflow:hidden;
+	position:relative;
+}
+
+section {
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+.scrollable {
+	width:100%;
+	position:absolute;
+}
+.svg, .canvas {
+	position:fixed;
+}
+.sideways {
+	position:fixed;
+}
+#two img {
+	width:100px;
+	position:absolute;
+}
+
+#bg {
+	background: url(imgs/bg1.jpg);
+}
+
+#three img {
+	width:200px;
+	position:absolute;
+	z-index:3;
+}
+#four img {
+	width:150px;
+	position:absolute;
+	z-index:2;
+}
+
+#five {
+	left:450%;
+	z-index:5;
+}
+
+#five img {
+	width:150px;
+	position:absolute;
+	z-index:2;
+}
+
+#six {
+	left:-6000px;
+	z-index:5;
+}
+
+#six img {
+	width:250px;
+	position:absolute;
+	z-index:5;
+}
+

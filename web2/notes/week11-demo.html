@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  
+  <script src="../demo/d3/d3.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+
+      <h1>HTML5 Animation</h1>
+      <hr>
+      <p><a href="../demo/lax/demo.html">Click for demo</a>, or <a href="../demo/lax.zip">download files.</a></p>
+      
+      <p>This demo is sort of a catch all for a few different topics that will be useful for the final projects, many of which are related to doing animation with elements, SVG and the <code>canvas</code> tag in HTML5.  The demo uses vertical scrolling as the input for animating various elements.  It looks at doing paralax animation vertically and horizontally, changing the location hash tag, animating SVG and animating with the canvas.</p>
+      
+      
+      <h1>Scrolling</h1>
+      <p>The basic idea behind parallax animation is moving different layers of elements at different rates.  This creates the illusions of 3D space.  Typically when we scroll an HTML page, elements that are positioned relatively or absolutely will move with the page, while fixed position will stay in place.  To create a parallax effect, create different layers and change the speed at which they animate.  Let's take a look at some examples of the code:</p>
+      
+      <p>Our HTML starts with a container, which is set to a very large height to allow for a lot of scrolling.  It is also set to <code>overflow:hidden</code> so we can hide elements on the sides to animate from the left and right.  Inside create several layers that are absolutely positioned, so they will sit on top of each other.  Layers that scroll will get the class <code>.scrollable</code>.  There is a background layer, <code>id="bg"</code>, a non-scrolling layer which will move at the regular rate, and two scrolling layers.</p>
+      <pre class="block"><code>&lt;div id="container">
+  &lt;section class="scrollable" id="bg"&gt;&lt;/section&gt;          
+  &lt;section id="one"&gt;&lt;/section&gt; 
+  &lt;section class="scrollable" id="two"&gt;&lt;/section&gt;          
+  &lt;section class="scrollable" id="three"&gt;&lt;/section&gt;          
+&lt;/div&gt;</code></pre>
+
+      <p>Inside the <code>#one</code> section, put 4 divs which will maintain the basic structure of the site.</p>
+      <pre class="block"><code>&lt;div>&lt;h1>Div 1&lt;/h1>&lt;/div>
+&lt;div>&lt;h1>Div 2&lt;/h1>&lt;/div>
+&lt;div>&lt;h1>Div 3&lt;/h1>&lt;/div>
+&lt;div>&lt;h1>Div 4&lt;/h1>&lt;/div></code></pre>
+
+      <p>Then setup the CSS for the container and each div.</p>
+      <pre class="block"><code>body, html {
+	height:100%;
+	width:100%;
+	margin:0;
+}
+h1 {
+	margin:0;
+	padding:20px;
+}
+#container {
+	width:auto;
+	height:15000px;
+	overflow:hidden;
+	position:relative;
+}
+section {
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+div {
+	height:786px;
+	position:relative;
+}
+.scrollable {
+	width:100%;
+	position:absolute;
+}
+#bg {
+	background: url(imgs/bg1.jpg);
+}
+#two img {
+	width:100px;
+	position:absolute;
+}
+#three img {
+	width:200px;
+	position:absolute;
+	z-index:3;
+}</code></pre>
+
+      <p>The width and height for each section and div is 100%,  along with the body and html.  Then for the images in the second and third divs, change the width so one appears larger, and thus closer than the other, and positition them absolutely, so we can place them in different places with <code>top</code> and <code>left</code> attributes.</p>
+      
+      <p>For example:</p>
+      <pre class="block"><code>&lt;img src="imgs/img1.png"  style="top:400px;left:1000px;">
+&lt;img src="imgs/img1.png" style="top:100px;left:800px;"></code></pre>
+
+      <p>The last step before we start the JavaScript is to add some made up attributes to the scrollable sections using the HTML5 <code>data-</code> attribute standard to set the direction and speed for the animation of the divs.</p>
+      <pre class="block"><code>&lt;section class="scrollable" id="bg" data-dir="top" data-speed="1.05">
+&lt;section class="scrollable" id="two" data-speed="1.5" data-dir="top">
+&lt;section class="scrollable" id="three" data-speed="2.5" data-dir="top"></code></pre>
+      <p>Now for the JavaScript file.  In the demo I'm using both <code>d3</code> and <code>jQuery</code> to grab elements and do animation, but most of this code is native JavaScript.</p>
+      <p>First I want to load all of my scrollable sections into an array of objects.</p>
+      <pre class="block"><code>var scrollers = document.getElementsByClassName('scrollable');
+var objs = [];
+for (var i = 0, len = scrollers.length; i < len; i++) {
+	objs[i] = {
+		e:scrollers[i],
+		o:$(scrollers[i]).position(),
+		s:$(scrollers[i]).attr('data-speed'),
+		d:$(scrollers[i]).attr('data-dir'),
+		w:$(scrollers[i]).attr('data-wait')
+	};
+}</code></pre>
+      <p>I'm using the jQuery function <code>.poisition()</code> to save the offset of the div which I then add to my scrolling effect later, though that will be more useful when we start scrolling left.  The <code>data-dir</code> and <code>data-speed</code> are used to change the position at the right speed and direction and scrolling.</p>
+      
+      <p>Most of the animation is going to occur inside a <code>window.onscroll</code> event listener, turning the scrolling interaction essentially into a playhead.  Once we listen for scrolling, set the <code>scrollY</code> value, so I can use that value throughout this function without recalculating.  This will keep track of how far we have scrolled.</p>
+    	<pre class="block"><code>window.onscroll = function() {
+  var ws = window.scrollY;
+}</code></pre>
+      <p>Inside the <code>onscroll</code> event we will use a <code>for</code> loop to run through all of our scrollable elements and move them according to the amount of scrolling.</p>
+      <pre class="block"><code>for (var i = 0, len = objs.length; i < len; i++) {
+  $(objs[i].e).css(objs[i].d, objs[i].o[objs[i].d] + ws/objs[i].s);
+}</code></pre>
+      <p>So we're changing the position of whatever <code>data-dir</code> is, in this case it's <code>top</code> for each of the sections.  The <code>data-speed</code> is used to dived the amount of window scroll, so the higher the speed value, the slower it scrolls.</p>
+      <p>Then set the <code>z-index</code> for the sections and divs according to where they should appear on the screen.</p>
+      <pre class="block"><code>&lt;div  style="z-index:1">&lt;h1>Div 2&lt;/h1>&lt;/div>
+&lt;div  style="z-index:0">&lt;h1>Div 3&lt;/h1>&lt;/div></code></pre>
+      
+      <p>This is the essential mechanism behind the vertical parallax scrolling.  After this, add a few more sections with different speed to achieve more layers of animation.  We can also add sections that scroll right or left, and use big offsets to time them to appear later as we continue to scroll down the page.  A negative value will make the section animate to the right, while a positive value will go left.</p>
+      
+      <pre class="block"><code>&lt;section class="scrollable sideways" id="five" data-speed="-0.5" data-dir="left">
+&lt;section class="scrollable sideways" id="six" data-speed="1" data-dir="left"></code></pre>
+      <p>This makes each section animate sideways.  We will add the <code>.sideways</code> class in CSS to make the section stay in its vertical position and change the <code>left</code> attribute to make them appear later.</p>
+      <pre class="block"><code>.sideways {
+	position:fixed;
+}
+#five {
+	left:450%;
+	z-index:5;
+}
+#six {
+	left:-6000px;
+	z-index:5;
+}</code></pre>
+
+      
+      <h1>location.hash</h1>
+      <p>If we're using a animated effect like this to display parts of a portfolio or other information and would like to be able to link directly to each section invidiually we can use the <code>location.hash</code> function to automate our animations and add hashes to the URL.</p>
+      <p>First we want to create a set of hashes and add them to our URL as the user scrolls through the page.</p>
+      <pre class="block"><code>var hashes = {
+	demo:1655,
+	example:5000
+};</code></pre>
+      <p>Then we want to use the position of the scrollY to add hashes to the URL as we scroll, so that users can link to specific URLS.</p>
+      <pre class="block"><code>for (var i in hashes) {
+	if (ws > 1655 && ws < 5000) {
+		location.hash = 'demo';
+	} else if (ws > 5000) {
+		location.hash = 'example';
+	} 
+}</code></pre>
+
+    <p>Finally, we can determine when loading the page if the URL has a hash, and then animate the scroll bar to that hash.  Because all of the animations are built into the position of the scrollbar, they will be animated as well.</p>
+    <pre class="block"><code>if (location.hash != '') {
+	$('body, html').animate({
+		scrollTop: hashes[location.hash.substring(1)]
+	}, 1000);
+}</code></pre>
+
+    <p>The animation uses a substring of the hash (to eliminate the #) and matches it with the hashes object to determine how far to scroll.  This is pretty easy in HTML, with a little help from jQuery.</p>
+    
+    <h1>SVG animation</h1>
+    <p>We can also use <code>d3</code> to animate SVGs with the scrollY.</p>
+    <p>Create an HTML section for the SVG, also fixed position.</p>
+    <pre class="block"><code>&lt;section class="svg" id="seven">
+  &lt;svg>
+      &lt;rect x="400" y="100" width="100" height="100" 
+      stroke-width="4" stroke="transparent" 
+      fill="transparent" 
+      stroke-dasharray="400" stroke-dashoffset="400" />
+  &lt;/svg>
+&lt;/section></code></pre>
+    <p>Then create a window of scrollY values to make the SVG visible and animate.</p>
+    <pre class="block"><code>if (ws > 6500 && ws < 9500) {
+  d3.select('rect')
+    .attr('fill', 'blue')
+    .attr('stroke', 'red')
+    .attr('x', ws/9)
+    .attr('stroke-dashoffset', ws/8);
+} else {
+  d3.select('rect')
+    .transition()
+    .duration(2000)
+    .attr('fill', 'transparent')
+    .attr('stroke', 'transparent');
+}</code></pre>
+
+      <h1>canvas</h1>
+      <p>The HTML5 <code>canvas</code> was developed as a alternative to Java applications and Flash animation embedded in HTML.  The canvas is a context for drawing inside the HTML page using JavaScript.  This is a very basic introduction, a much more comprehensive explanation of the canvas is available <a href="">here</a>.  It's a very flexible and expressive aspect of HTML/JavaScript that can be used for games, interactive designs and applications.</p>
+      
+      <p>To animate with canvas, create another section, again fixed position, and put a canvas inside, similar to SVG.</p>
+      <pre class="block"><code>&lt;section class="canvas" id="eight">
+  &lt;canvas id="canvas" width="1400" height="768">&lt;/canvas>
+&lt;/section></code></pre>
+      <p>In JavaScript, get the canvas context and create some variables to animate.</p>
+      <pre class="block"><code>var cToggle = false;
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+var hasCtx = false;
+if (canvas.getContext) { hasCtx = true;}</code></pre>
+
+      <p>The canvas is redrawn for every frame of animation.  Usually this is done using <code>requestAnimationFrame</code> which runs at the speed that the browser itself is redrawing.  In this case we're using the <code>onscroll</code> event to draw each new frame.  We need to determine is the canvas is available and save the setting so we don't waste power returning that each time.  We also want to set a canvas toggle, so we are only drawing when something is actually appearing on the canvas.  Canvas draw calls are expensive because they're writing to individual pixels, so we want to limit the number of draw calls we make.</p>
+      
+      <p>Inside the <code>onscroll</code> event, draw a new canvas with some randomly generated rectangles at the end of the animation demo.</p>
+      
+      <pre class="block"><code>if (ws > 10000 && !cToggle) {
+	cToggle = true;
+} else if (ws < 10000 && cToggle){
+	cToggle = false;
+	ctx.clearRect(0,0,1400,768); // clear canvas
+}
+if (hasCtx && cToggle) {
+	ctx.clearRect(0,0,1400,768); // clear canvas
+	for (var i = 0; i < 50; i++) {
+		ctx.fillStyle = "hsl("+(Math.random()*90 + 210)+", 50%, 50%)";
+		ctx.fillRect(ws - 12000 + Math.random()*1400, Math.random()*500, 10, 10);
+	}			
+}</code></pre>
+      
+      
+      
+    
+
+      
+
+      <div id="sources"><p>Resources</p>
+        <ul>
+          </ul>
+      </div>
+  </div>
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

@@ -160,8 +160,16 @@ Naavy = {
 				{
 					url:'week11',
 					pages:[
-					['HTML5 Animation', 'demo']					]
+					['HTML5 Animation', 'demo']					
+					]
+				},
+				{
+					url:'week12',
+					pages:[
+					['Canvas interaction', 'demo']					
+					]
 				}
+				
         ],
         
         linkers: [

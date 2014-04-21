@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<head>
+  <title>TCNJ | WEB 2</title>
+  <link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <meta charset="utf-8">
+  
+  <script src="../demo/d3/d3.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/mono-blue.min.css">
+  <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+	
+  <div id="container">
+    
+    <nav></nav>
+
+    <div id="content">
+
+      <h1>Interacting with the canvas</h1>
+      <hr>
+      <p><a href="../demo/paper/demo.html" target="blank">The demo</a> | <a href="../demo/paper.zip">Download files</a></p>
+      <p>Last week we had a brief glimpse as the <code>canvas</code> with HTML5 animation.  The canvas is also a great tool for creating user interaction with JavaScript.  With the canvas we can detect events from the mouse or keyboard and use JavaScript to create graphics and animation.  Today we're going to look at paper.js, a library that uses the canvas a platform for vector graphics with scripting for animation.  It provides a bunch of methods and properties accessible with JavaScript for drawing and interacting.  We'll check out some of the basic examples on their site and then look at using it to make an interactive background behind a regular HTML web page.</p>
+      
+      <p><a href="http://paperjs.org" target="blank">Paper.js</a></p>
+      
+      <p>Okay, now that we've seen some of the basics, let's set up an HTML page and start scripting.</p>
+      <p>Last week we layered different sections on top of one another in order to get a stack of layers to control the animation of each layer.  Today we'll do something similar where we'll use the canvas as a background layer.  This way all of our HTML for our page can be visible on top, while showing something in the background.  My <code>canvas</code> and <code>#content</code> sections are both position absolutely, with the <code>canvas</code> on <code>z-index: -1</code> and <code>#content</code> on <code>z-index: 1</code>.</p>
+      <pre class="block"><code>canvas {
+  position:absolute;
+  z-index:-1;
+  top:0;
+  left:0;
+}
+#content {
+  position:absolute;
+  z-index:1;
+  top:0;
+  left:0;
+}</code></pre>
+
+      <p>I have references to my paper.js library and my own JS file.</p>
+      <pre code="block"><code>&lt;script type="text/javascript" src="paper-full.min.js">&lt;/script>
+&lt;script type="text/paperscript" src="windmills.js" canvas="canvas">&lt;/script></code></pre>
+
+      <p>And in the body of my HTML page I have my canvas and a section with some content.  The <code>resize</code> property on my canvas makes it fit the whole window.</p>
+      <pre class="block"><code>&lt;canvas id="canvas" resize>&lt;/canvas>
+&lt;div id="content">
+  &lt;section>
+    &lt;h1>My Portfolio&lt;/h1>
+    &lt;p>Some text.&lt;/p>
+    &lt;ul>Some links
+      &lt;li>&lt;a href="#">Link&lt;/a>&lt;/li>
+      &lt;li>&lt;a href="#">Link&lt;/a>&lt;/li>
+      &lt;li>&lt;a href="#">Link&lt;/a>&lt;/li>
+    &lt;/ul>
+  &lt;/section>
+  &lt;section>
+    &lt;h1>A project&lt;/h1>
+    &lt;p>An img or something.&lt;/p>
+  &lt;/section>
+&lt;/div></code></pre>
+
+      <p>Once all of this is setup, I start with my code.</p>
+      
+      <p>First I want to setup my grid by getting the size of the window, setting the number of columns and rows and then positioning each square of the grid.  I also want to use an offset, so that my grid doesn't overlap with the sides of the page.</p>
+      <pre class="block"><code>var width = window.innerWidth;
+var height = window.innerHeight;
+var columns = 7;
+var rows = 8;
+var offset = 50;
+var w = Math.floor(width/columns);
+var h = Math.floor(height/rows);</code></pre>
+
+      <p>Then I need a few variable to hold references to my shapes and other properties I will need to manipulate for animation.</p>
+      <pre class="block"><code>var size = 20;
+var speed;
+var rotate = 0;
+var shapeArray = [];
+var mousePosition;</code></pre>
+
+      <p>Then I want to build my first shape.</p>
+      <pre class="block"><code>var origin = new Point(offset, offset);
+var rect = new Rectangle(origin, size);
+var shape = new Path.Rectangle(rect, 8);
+shape.strokeColor = "blue";
+shape.fillColor = "lightblue";
+shape.strokeWidth = "5";
+shape.strokeCap = "round";
+shape.closed = true;</code></pre>
+
+      <p>Then I want to make copies of the shape and populate my array and remove the original shape.</p>
+      <pre class="block"><code>for (var i = 0; i < columns; i ++) {
+	for (var j = 0; j < rows; j ++) {
+		shapeArray[j+i*rows] = shape.clone();
+		shapeArray[j+i*rows].position = new Point(Math.ceil(offset+i*w), Math.ceil(offset+j*h));
+	}
+}
+shape.remove();</code></pre>
+
+      <p>Then I need to detect if the mouse is moving and save the position of the mouse.</p>
+      <pre class="block"><code>function onMouseMove(event) {
+	var len = event.delta.length;
+	rotate += Number(len);
+	mousePosition = event.point;	
+}</code></pre>
+
+      <p>Finally, in my <code>onFrame</code> event, which executes every frame, I animate the rotation of each shape, using the speed variable, the distance between the shape and mouse and the speed of the mouse.</p>
+      <pre class="block"><code>function onFrame(){
+	if (rotate > 300) {
+		speed = 40;
+	} else if (rotate > 100) {		
+		speed = 20;
+	} else {
+		speed = 3;
+	}
+	if (rotate > 0) {		
+		for (var i = 0, len = windmills.length; i < len; i++) {		
+			var distance = Math.ceil(windmills[i].position.getDistance(mousePosition)/100);	
+			windmills[i].rotate(speed*2/distance);
+		}
+		rotate -= speed;
+	}			
+}</code></pre>
+
+    <p>Now we can go back and edit the shape or change the properties we're animating.</p>
+      
+      
+      
+    
+
+      
+
+
+  <script charset="utf-8" src="../lib/jquery.js"></script>
+  <script charset="utf-8" src="../nav.js"></script>
+  
+</body>
+</html>

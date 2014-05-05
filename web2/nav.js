@@ -139,7 +139,7 @@ Naavy = {
 					pages:[
 					['d3 demo', 'demo'],
 					['Assignment', 'assignment'],
-					['Final presentations', 'finals']
+					['Final concept', 'finals']
 					]
 				},
 				{
@@ -167,6 +167,12 @@ Naavy = {
 					url:'week12',
 					pages:[
 					['Canvas interaction', 'demo']					
+					]
+				},
+				{
+					url:'week13',
+					pages:[
+					['Final', 'assignment']					
 					]
 				}
 				
